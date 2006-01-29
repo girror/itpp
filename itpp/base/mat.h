@@ -33,6 +33,12 @@
 #ifndef MAT_H
 #define MAT_H
 
+#ifndef _MSC_VER
+#  include <itpp/config.h>
+#else
+#  include <itpp/config_msvc.h>
+#endif
+
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -40,7 +46,7 @@
 #include <sstream>
 #include <cmath>
 #include <algorithm>
-#include <itpp/config.h>
+
 #include <itpp/itconfig.h>
 #include <itpp/base/itassert.h>
 #include <itpp/base/binary.h>
@@ -171,6 +177,8 @@ namespace itpp {
   template<class Num_T>
 	class Mat {
   public:
+    //! The type of the matrix values
+    typedef Num_T value_type;
     //! Default constructor. An element factory \c f can be specified
     explicit Mat(const Factory &f = DEFAULT_FACTORY) : factory(f) { init(); }
     //! Create a matrix of size (inrow, incol). An element factory \c f can be specified
@@ -1313,8 +1321,8 @@ namespace itpp {
   }
 
 #if defined(HAVE_CBLAS) || defined(HAVE_MKL)
-  template<> const Vec<double> operator*(const mat &m, const Vec<double> &v);
-  template<> const Vec<std::complex<double> > operator*(const cmat &m, const Vec<std::complex<double> > &v);
+  template<> const vec operator*(const mat &m, const vec &v);
+  template<> const cvec operator*(const cmat &m, const cvec &v);
 #endif
 
   template<class Num_T>
@@ -1539,10 +1547,13 @@ namespace itpp {
     return is;
   }
 
-  // ---------------------- Instantiations --------------------------------
+#ifndef _MSC_VER
+
+  //---------------------------------------------------------------------
+  // Instantiations
+  //---------------------------------------------------------------------
 
   //------- class instantiations --------
-#ifndef _MSC_VER
 
   //! Template instantiation of Mat<double>
   extern template class Mat<double>;
@@ -1643,10 +1654,12 @@ namespace itpp {
 
   //-------- Multiplication operators ---------------
 
+#if !defined(HAVE_CBLAS) && !defined(HAVE_MKL)
   //! Template instantiation of operator*
   extern template const mat operator*(const mat &m1, const mat &m2);
   //! Template instantiation of operator*
   extern template const cmat operator*(const cmat &m1, const cmat &m2);
+#endif
   //! Template instantiation of operator*
   extern template const imat operator*(const imat &m1, const imat &m2);
   //! Template instantiation of operator*
@@ -1654,10 +1667,12 @@ namespace itpp {
   //! Template instantiation of operator*
   extern template const bmat operator*(const bmat &m1, const bmat &m2);
 
+#if !defined(HAVE_CBLAS) && !defined(HAVE_MKL)
   //! Template instantiation of operator*
   extern template const vec operator*(const mat &m, const vec &v);
   //! Template instantiation of operator*
   extern template const cvec operator*(const cmat &m, const cvec &v);
+#endif
   //! Template instantiation of operator*
   extern template const ivec operator*(const imat &m, const ivec &v);
   //! Template instantiation of operator*
@@ -1789,7 +1804,7 @@ namespace itpp {
   //! Template instantiation of input stream
   extern template std::istream &operator>>(std::istream &is, bmat  &m);
 
-#endif // _MSC_VER
+#endif // #ifndef _MSC_VER
 
 } // namespace itpp
 

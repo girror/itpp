@@ -80,14 +80,14 @@ namespace itpp {
   inline void  little_endian(it_s8 x, it_s8 &y) { y = x; }
   inline void  little_endian(it_u8 x, it_u8 &y) { y = x; }
 
+  //Determine the endianity (Little or Big):
 #if defined(sparc)
 #define __LITTLE_ENDIAN__
 #elif defined(i386) || defined(_M_IX86) || defined(__x86_64__) || defined(alpha) || defined(vms)
 #define __BIG_ENDIAN__
 #endif
 
-  //Determine the endianity (Little or Big):
-#if defined (__LITTLE_ENDIAN__)
+#if defined(__LITTLE_ENDIAN__)
 
   //------------------------------------------------------
   // Little Endian
@@ -137,7 +137,7 @@ namespace itpp {
   inline void little_endian(it_u64 x, it_u64 &y) { REV_4(&x,&y); }
 #endif
 
-#elif defined (__BIG_ENDIAN__)
+#elif defined(__BIG_ENDIAN__)
 
   //------------------------------------------------------
   // Big Endian

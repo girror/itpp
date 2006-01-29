@@ -36,41 +36,37 @@ using namespace itpp;
 using namespace std;
 
 
-#if (defined(HAVE_LAPACK) && defined(HAVE_CBLAS)) || defined(HAVE_MKL)
+#if defined(HAVE_LAPACK) || defined(HAVE_MKL)
 
 int main()
 {
   cout << "================================" << endl;
   cout << "      Test of svd routines      " << endl;
   cout << "================================" << endl;
+
   {
     cout << "Real matrix" << endl;
-    mat A = randn(5,5);
+    mat A = randn(5, 5);
     mat U, V;
     vec S;
     svd(A, U, S, V);
 
     cout << "A = " << round_to_zero(A) << endl;
-    cout << "U = " << round_to_zero(U) << endl;
-    cout << "V = " << round_to_zero(V) << endl;
-    cout << "S = " << round_to_zero(S) << endl;
-    //cout << "A = U*diag(S)*V^T = " << U*diag(S)*transpose(V) << endl;
-    cout << "only S = " << round_to_zero(svd(A)) << endl;
+    cout << "norm(A - U*diag(S)*V^T) = " 
+	 << round_to_zero(norm(A - U * diag(S) * transpose(V))) << endl;
 
   }
   {
     cout << endl << "Complex matrix" << endl;
-    cmat A = randn_c(5,5);
+    cmat A = randn_c(5, 5);
     cmat U, V;
     vec S;
     svd(A, U, S, V);
 
     cout << "A = " << round_to_zero(A) << endl;
-    cout << "U = " << round_to_zero(U) << endl;
-    cout << "V = " << round_to_zero(V) << endl;
-    cout << "S = " << round_to_zero(S) << endl;
-    //cout << "A = U*diag(S)*V^H = " << U*diag(S)*conj(transpose(V)) << endl;
-    cout << "only S = " << round_to_zero(svd(A)) << endl;
+    cout << "norm(A - U*diag(S)*V^H) = " 
+	 << round_to_zero(norm(A - U * diag(S) * hermitian_transpose(V))) 
+	 << endl;
   }
 
   return 0;
@@ -79,7 +75,7 @@ int main()
 #else
 
 int main() { 
-  cerr << "Error: LAPACK and CBLAS (or MKL) are needed for this test program" << endl;
+  cerr << "Error: LAPACK (or MKL) is needed for this test program" << endl;
   return 1;
 }
 

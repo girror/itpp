@@ -1,4 +1,150 @@
+==============================================================================
+
+2006-01-28  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* IT++ 3.9.1 released (CVS tag: release-3-9-1)
+
+2006-01-27  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* INSTALL, doc/local/installation.doc: Updated to reflect recent
+	modifications in configuration scripts
+
+	* autogen.sh, configure.ac, config/acx_blas.m4,
+	config/acx_cblas.m4, config/acx_lapack.m4: Scripts modified to
+	simplify the configuration process
+
+2006-01-26  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* doc/local/verification.doc: Test results of version 3.9.1
+	included
+
+	* NEWS, TODO: Updated before releasing verision 3.9.1
+
+2006-01-25  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* tests/cholesky_test.cpp, tests/cholesky_test.ref,
+	tests/det_test.cpp, tests/det_test.ref, tests/eigen_test.cpp,
+	tests/eigen_test.ref, tests/inv_test.cpp, tests/lu_test.cpp,
+	tests/lu_test.ref, tests/qr_test.cpp, tests/qr_test.ref,
+	tests/svd_test.cpp, tests/svd_test.ref: Modified test rutines
+	based on LAPACK to make them robust to non-unique results
+
+	* itpp/base/elmatfunc.h, itpp/base/scalfunc.h, itpp/base/stat.h:
+	Changed the default floating-point precision threshold from 1e-15
+	to 1e-14
+
+	* tests/timer_test.cpp: Minor fixes in the order of logical tests
+	occurence
+
+	* doc/local/index.doc.in, doc/local/itpp_header.html: Cosmetic
+	changes ("Version" -> "Stable Release")
+
+	* configure.ac, itpp/config_msvc.h, itpp/base/itassert.h: Fixed a
+	bug with redefinition of NDEBUG and ASSERT_LEVEL in the
+	<itpp/config.h>	and CXXFLAGS
+
+2006-01-23  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/converters.cpp: Fixed bug [1412383]. The dec2bin()
+	functions appended en extra zero in front of the bit vector. This
+	wrong behaviour has been fixed.
+
+2006-01-22  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp.vcproj: Protocol sources are now included in the MSVC++
+	project file
+
+2006-01-21  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/binfile.cpp, itpp/base/cholesky.cpp,
+	itpp/base/copy_vector.h, itpp/base/eigen.cpp, itpp/base/inv.cpp,
+	itpp/base/lapack.h, itpp/base/ls_solve.cpp, itpp/base/lu.cpp,
+	itpp/base/mat.h, itpp/base/qr.cpp, itpp/base/svd.cpp,
+	itpp/base/timing.cpp, itpp/base/transforms.cpp, itpp/base/vec.h:
+	Including a proper configuration header depending on _MSC_VER
+	definition
+
+2006-01-13  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* tests/*.cpp, tests/transforms_test.ref: Fixed incorrect
+	preprocessor checks for defined external libraries. One reference
+	file updated.
+	
+	* itpp/base/transform.cpp: Fixed improper error messages
+
+	* configure.ac: Fixed a minor bug, which prevented disabling CBLAS
+	support using `--without-cblas' configure switch
+
+2006-01-11  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/machdep.h: Reverted back recent changes due to
+	compilation problems under MSVC++ .NET
+
+2006-01-10  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/matfunc.cpp, itpp/base/matfunc.h: Cosmetic changes -
+	removed unnecessary definition and updated author's list
+
+2006-01-09  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* INSTALL: Updated fragment with GCC version recommendations
+	* configure.ac: Updated GENERIC_LIBRARY_VERSION
+
+2006-01-08  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* doc/local/installation.doc: Updated fragment with GCC version
+	recommendations (merged from the trunk)
+
+	* tests/Makefile.am, tests/rec_syst_conv_code_test.cpp,
+	tests/rec_syst_conv_code_test.ref: Minor cosmetic changes (renamed
+	some test files) (merged from the trunk)
+
+	* itpp/base/fastica.cpp, itpp/base/gf2mat.cpp, itpp/base/gf2mat.h,
+	itpp/base/machdep.h, itpp/base/scalfunc.h, itpp/comm/interleave.h,
+	itpp/protocol/packet_generator.cpp, tests/gf2mat_test.cpp: Minor
+	cosmetic changes, e.g. removing inappropriate semicolons (detected
+	when compiling with `-ansi' and `-pedantic' flags). (merged from
+	the trunk) 
+
+	* itpp/base/mat.h, itpp/base/vec.h: Fixed bug [1399822]. The
+	problem was caused by explicit specialisation of some templated
+	operators, when HAVE_CBLAS or HAVE_MKL are defined. In such a
+	case, the following forward declarations of explicit
+	instantiations (with extern) of these operators should be switched
+	off. (merged from the trunk)
+
+	* doc/images/favicon.ico, doc/images/Makefile.am,
+	doc/local/itpp_header.html, doc/Makefile.am: Added IT++ favicon
+	(merged from the trunk)
+
+	* extras/itsave.m: Fixed bug [1396020]. Now itsave() works properly
+	in both Matlab and Octave. Thanks to Jordy Potman for providing a
+	patch. (merged from the trunk)
+
+	* autogen.sh: Reordering of the invoked commands (merged from the
+	trunk) 
+
+	* itpp.spec.in: Minor fixes (merged from the trunk)
+
+	* configure.ac, NEWS, doc/local/index.doc.in: Updated for a next
+        bug-fix release
+
+	* Created IT++ 3.9 branch (CVS tag: itpp-3-9-branch)
+
+==============================================================================
+
 2005-12-28  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* IT++ 3.9.0 released (CVS tag: release-3-9-0)
+
+2005-12-28  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/mat.h, itpp/base/vec.h: Added a `value_type' typedef,
+	which provides a similar notation to the std::vector<> class.
+	Requested by Christian Stimming in patch report [1387075].
+
+	* doc/local/index.doc.in: `https://' links changed to `http://'
+	ones
 
 	* itpp/base/parser.cpp: Implemented feature request [1167378]. An
 	error message is displayed if the Parser's init() functions can

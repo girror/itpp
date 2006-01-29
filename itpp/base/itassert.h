@@ -33,6 +33,12 @@
 #ifndef ITASSERT_H
 #define ITASSERT_H
 
+#ifndef _MSC_VER
+#  include <itpp/config.h>
+#else
+#  include <itpp/config_msvc.h>
+#endif
+
 #include <itpp/itconfig.h>
 #include <iostream>
 #include <string>
