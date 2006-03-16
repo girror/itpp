@@ -2,7 +2,7 @@
 #-------------------------------------------------------------------
 AC_PREREQ(2.59)
 AC_COPYRIGHT([Copyright (C) 2005  Adam Piatyszek <ediap@users.sourceforge.net>])
-AC_INIT([IT++], [3.10.0], [ediap@users.sourceforge.net], [itpp])
+AC_INIT([IT++], [3.10.1], [ediap@users.sourceforge.net], [itpp])
 AC_CONFIG_HEADER([itpp/config.h])
 AC_CONFIG_SRCDIR([itpp/base/vec.cpp])
 AC_CONFIG_AUX_DIR([config])
@@ -17,7 +17,7 @@ ITPP_EXTERNAL_VERSION="2.1.1"
 AC_SUBST(ITPP_EXTERNAL_VERSION)
 
 # Shared library versioning
-GENERIC_LIBRARY_VERSION="2:0:0"
+GENERIC_LIBRARY_VERSION="2:1:0"
 #                        | | |
 #                 +------+ | +---+
 #                 |        |     |
