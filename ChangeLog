@@ -1,3 +1,7 @@
+2006-03-19  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* doc/local/index.doc.in: Changes CVS related links to SVN ones.
+
 2006-03-16  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* tests/modulator_nd_test.cpp: Fixed minor bug with namespace and
