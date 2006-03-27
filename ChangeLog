@@ -1,3 +1,10 @@
+2006-03-27  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* configure.ac, itpp-config.in: Minor fix in the itpp-config
+	script. Now `itpp-config --libs-debug' uses `-litpp' when the
+	debug library is not available (merged rev. 388:389 from the main
+	trunk).
+
 2006-03-24  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* config/acx_blas.m4: Removed unnecessary check for "libblas",
