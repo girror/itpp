@@ -1,3 +1,22 @@
+2006-03-31  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* doc/local/verification.doc: Updated IT++ Supported Systems page
+	with new tests (merged rev. 395:396 from the main trunk).
+
+	* config/acx_fft.m4: Improvements and fixes in external FFT
+	library detection (merged rev. 394:395 from the main trunk).
+
+	* config/acx_cblas.m4: Added check for acml.h header file when
+	checking for ACML's CBLAS library (merged rev. 393:394 from the
+	main trunk).
+
+	* itpp/base/cblas.cpp, config/acx_cblas.m4, configure.ac,
+	doc/doxygen_html.cfg.in, itpp/base/sources.mk: Fixed CBLAS
+	interface when using ACML BLAS implementation. ACML C interface
+	is not the same as in other implementation, so a limited set of
+	wrapper functions has been created in `cblas.cpp' file (merged
+	rev. 392:393 from the main trunk).
+
 2006-03-27  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* configure.ac, itpp-config.in: Minor fix in the itpp-config

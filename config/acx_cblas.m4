@@ -39,6 +39,7 @@ case $with_cblas in
 esac
 
 test x"$acx_cblas_ok" != xdisabled && acx_cblas_ok=no
+cblas_acml_ok=no
 
 # We cannot use CBLAS if BLAS is not found
 if test "x$acx_blas_ok" != xyes; then
@@ -49,8 +50,17 @@ fi
 if test "x$CBLAS_LIBS" != x; then
   save_LIBS="$LIBS"; LIBS="$CBLAS_LIBS $BLAS_LIBS $LIBS $FLIBS"
   AC_MSG_CHECKING([for cblas_sgemm in $CBLAS_LIBS])
-  AC_TRY_LINK_FUNC(cblas_sgemm, [acx_cblas_ok=yes], [CBLAS_LIBS=""])
+  AC_TRY_LINK_FUNC(cblas_sgemm, [acx_cblas_ok=yes])
   AC_MSG_RESULT($acx_cblas_ok)
+  # Special check for ACML CBLAS
+  if test $acx_cblas_ok = no; then
+    AC_MSG_CHECKING([for sgemm in $CBLAS_LIBS])
+    AC_TRY_LINK_FUNC(sgemm, [acx_cblas_ok=yes], [CBLAS_LIBS=""])
+    AC_MSG_RESULT($acx_cblas_ok)
+    if test $acx_cblas_ok = yes; then
+      AC_CHECK_HEADER([acml.h], [cblas_acml_ok=yes], [acx_cblas_ok=no])
+    fi
+  fi
   LIBS="$save_LIBS"
 fi
 
@@ -68,6 +78,16 @@ if test $acx_cblas_ok = no; then
   LIBS="$save_LIBS"
 fi
 
+# CBLAS from ACML linked to by default using FLIBS?
+if test $acx_cblas_ok = no; then
+  save_LIBS="$LIBS"; LIBS="$LIBS $BLAS_LIBS $FLIBS"
+  AC_CHECK_FUNC(sgemm, [acx_cblas_ok=yes])
+  if test $acx_cblas_ok = yes; then
+    AC_CHECK_HEADER([acml.h], [cblas_acml_ok=yes], [acx_cblas_ok=no])
+  fi
+  LIBS="$save_LIBS"
+fi
+
 # Generic CBLAS library?
 for cblas in cblas gslcblas; do
   if test $acx_cblas_ok = no; then
@@ -82,6 +102,9 @@ AC_SUBST(CBLAS_LIBS)
 # Finally, define HAVE_CBLAS
 if test x"$acx_cblas_ok" = xyes; then
   AC_DEFINE(HAVE_CBLAS, 1, [Define if you have CBLAS library.])
+  if test x"$cblas_acml_ok" = xyes; then
+    AC_DEFINE(HAVE_CBLAS_ACML, 1, [Define if you have ACML CBLAS library.])
+  fi
 fi
 
 ])dnl ACX_CBLAS
