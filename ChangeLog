@@ -1,3 +1,8 @@
+2006-04-07  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* doc/local/verification.doc, doc/local/installation.doc: Minor
+	documentation updates (merged rev. 406:407 from	the main trunk).
+
 2006-04-04  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/base/bessel/jv.cpp, itpp/base/scalfunc.cpp,
