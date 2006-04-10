@@ -1,90 +1,201 @@
+/*!
+ * \file 
+ * \brief Convolutional encoder/decoder class test program
+ * \author Tony Ottosson and Adam Piatyszek
+ *
+ * $Date$
+ * $Revision$
+ *
+ * -------------------------------------------------------------------------
+ *
+ * IT++ - C++ library of mathematical, signal processing, speech processing,
+ *        and communications classes and functions
+ *
+ * Copyright (C) 1995-2005  (see AUTHORS file for a list of contributors)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+ *
+ * -------------------------------------------------------------------------
+ */
+
 #include <itpp/itcomm.h>
 
-using std::cout;
-using std::endl;
 using namespace itpp;
+using namespace std;
 
-int main(void)
+
+int main()
 {
- cout << "====================================================" << endl;
- cout << "convcode: Test of convolutional coders" << endl;
- cout << "====================================================" << endl;
+  cout << "====================================" << endl;
+  cout << "    Test of convolutional coders    " << endl;
+  cout << "====================================" << endl;
 
- Array<ivec> spectrum, spectrum_fast, spectrum_punct, spectrum_punct_fast;
- //Array<llvec> spectrum, spectrum_fast, spectrum_punct, spectrum_punct_fast;
- spectrum.set_size(2);
- spectrum_fast.set_size(2);
- spectrum_punct.set_size(2);
- spectrum_punct_fast.set_size(2);
+  Array<ivec> spectrum, spectrum_fast, spectrum_punct, spectrum_punct_fast;
+  spectrum.set_size(2);
+  spectrum_fast.set_size(2);
+  spectrum_punct.set_size(2);
+  spectrum_punct_fast.set_size(2);
 
- ivec dist_profile;
- //llvec dist_profile;
+  Convolutional_Code code;
+  Punctured_Convolutional_Code code_punct;
+  BPSK bpsk;
+  BERC berc;
 
- Convolutional_Code code;
- Punctured_Convolutional_Code code_punct;
- BPSK bpsk;
+  const int no_bits = 2500;
+  const int packet_size = 500;
 
- ivec generator(2);
- generator(0)=0133;
- generator(1)=0171;
+  int coded_packet_size;
+  bvec bits, tail_coded_bits, tail_decoded_bits, tailbite_coded_bits, 
+    tailbite_decoded_bits, trunc_coded_bits, trunc_decoded_bits;
+  vec symbols;
+  ivec dist_profile;
 
- bvec bits=randb(7);
- bvec outbits, temp_outbits, decoded_bits;
- vec tx_symbols, rx_symbols;
+  ivec G(2); 
+  G(0) = 0133; 
+  G(1) = 0171;
+  int L = max(needed_bits(G(0)), needed_bits(G(1))); // L = 7
+  
+  code.set_generator_polynomials(G, L);
+  code_punct.set_generator_polynomials(G, L);
 
- code.set_generator_polynomials(generator, 7);
- code_punct.set_generator_polynomials(generator, 7);
+  bmat punct_matrix = "1 0 1; 1 1 0"; // results in R = 3/4
+  code_punct.set_puncture_matrix(punct_matrix);
 
- bmat punct_matrix = "0 1;1 0";
- code_punct.set_puncture_matrix(punct_matrix);
 
- cout << "code: catastrophic test:" << code.catastrophic() << endl;
- cout << "code: rate:" << code.get_rate() << endl;
+  cout << "------------------------------------------------------------------------------" << endl;
+  cout << "1) Rate 1/2 code" << endl;
+  cout << "------------------------------------------------------------------------------" << endl;
 
- code.calculate_spectrum(spectrum, 10, 10);
- code.fast(spectrum_fast, 10, 10);
- code.distance_profile(dist_profile, 10);
+  cout << "Catastrophic test = " << code.catastrophic() << endl;
+  cout << "Code rate         = " << code.get_rate() << endl << endl;
 
- cout << "spectrum:" << endl;
- cout << "Ad=" << spectrum(0) << endl;
- cout << "Cd=" << spectrum(1) << endl;
+  code.calculate_spectrum(spectrum, 10, 10);
+  code.fast(spectrum_fast, 10, 10);
+  code.distance_profile(dist_profile, 10);
 
- cout << "spectrum, fast:" << endl;
- cout << "Ad=" << spectrum_fast(0) << endl;
- cout << "Cd=" << spectrum_fast(1) << endl;
+  cout << "Spectrum:" << endl;
+  cout << "* Ad = " << spectrum(0) << endl;
+  cout << "* Cd = " << spectrum(1) << endl;
 
- cout << "distance profile=:" << dist_profile << endl;
+  cout << "Spectrum, fast:" << endl;
+  cout << "* Ad = " << spectrum_fast(0) << endl;
+  cout << "* Cd = " << spectrum_fast(1) << endl << endl;
 
- cout << "code: encode:" << endl;
- code.encode_tail(bits, outbits);
+  cout << "Distance profile  = " << dist_profile << endl << endl;
 
- bpsk.modulate_bits(outbits, tx_symbols);
- rx_symbols = tx_symbols;
+  cout << "Tail method test. Printing 30 bits starting from bit 1400:" << endl;
+  bits = randb(no_bits);
+  cout << "* Input bits    = " << bits.mid(1400, 30) << endl;
+  tail_coded_bits = code.encode_tail(bits);
+  cout << "* Coded bits    = " << tail_coded_bits.mid(1400, 30) << endl;
+  bpsk.modulate_bits(tail_coded_bits, symbols);
+  tail_decoded_bits = code.decode_tail(symbols);
+  cout << "* Decoded bits  = " << tail_decoded_bits.mid(1400, 30) << endl;
+  berc.count(bits, tail_decoded_bits);
+  cout << "BER = " << berc.get_errorrate() << endl << endl;
 
- code.decode_tail(tx_symbols, decoded_bits);
+  cout << "Tailbite method test. Printing 30 bits starting from bit 1400:" 
+       << endl;
+  cout << "* Input bits    = " << bits.mid(1400, 30) << endl;
+  tailbite_coded_bits = code.encode_tailbite(bits);
+  cout << "* Coded bits    = " << tailbite_coded_bits.mid(1400, 30) << endl;
+  bpsk.modulate_bits(tailbite_coded_bits, symbols);
+  tailbite_decoded_bits = code.decode_tailbite(symbols);
+  cout << "* Decoded bits  = " << tailbite_decoded_bits.mid(1400, 30) << endl;
+  berc.clear();
+  berc.count(bits, tailbite_decoded_bits);
+  cout << "BER = " << berc.get_errorrate() << endl << endl;
 
- cout << "bits =" << bits << endl;
- cout << "outbits =" << outbits << endl;
- cout << "decoded_bits =" << decoded_bits << endl;
+  cout << "Trunc method test. Printing 30 bits starting from bit 1400:" << endl;
+  cout << "* Input bits    = " << bits.mid(1400, 30) << endl;
+  trunc_coded_bits.set_size(0);
+  for (int i = 0; i < no_bits/packet_size; i++) {
+    trunc_coded_bits = concat(trunc_coded_bits, 
+			      code.encode_trunc(bits.mid(i*packet_size, 
+							 packet_size)));
+  }
+  cout << "* Coded bits    = " << trunc_coded_bits.mid(1400, 30) << endl;
+  bpsk.modulate_bits(trunc_coded_bits, symbols);
+  trunc_decoded_bits.set_size(0);
+  coded_packet_size = round_i(packet_size / code.get_rate());
+  for (int i = 0; i < no_bits/packet_size; i++) {
+    trunc_decoded_bits = 
+      concat(trunc_decoded_bits, 
+	     code.decode_trunc(symbols.mid(i*coded_packet_size, 
+					   coded_packet_size)));
+  }
+  cout << "* Decoded bits  = " << trunc_decoded_bits.mid(1400, 30) << endl;
+  berc.clear();
+  berc.count(bits, trunc_decoded_bits);
+  cout << "BER = " << berc.get_errorrate() << endl << endl;
 
- cout << endl << "=====================================" << endl;
- cout << "Punctured code" << endl;
- cout << "=====================================" << endl;
 
- cout << "code_punct: catastrophic test:" << code_punct.catastrophic() << endl;
- cout << "code_punct: rate:" << code_punct.get_rate() << endl;
+  cout << "------------------------------------------------------------------------------" << endl;
+  cout << "1) Punctured code (R = 3/4)" << endl;
+  cout << "------------------------------------------------------------------------------" << endl;
 
- cout << "punct_matrix = " << code_punct.get_puncture_matrix() << endl;
+  cout << "Catastrophic test = " << code_punct.catastrophic() << endl;
+  cout << "Code rate         = " << code_punct.get_rate() << endl;
+  cout << "Puncture matrix   = " << code_punct.get_puncture_matrix() << endl 
+       << endl;
 
- cout << "code_punct: encode:" << endl;
- code_punct.encode_tail(bits, outbits);
- bpsk.modulate_bits(outbits, tx_symbols);
- rx_symbols = tx_symbols;
+  cout << "Tail method test. Printing 30 bits starting from bit 1400:" << endl;
+  bits = randb(no_bits);
+  cout << "* Input bits    = " << bits.mid(1400, 30) << endl;
+  tail_coded_bits = code_punct.encode_tail(bits);
+  cout << "* Coded bits    = " << tail_coded_bits.mid(1400, 30) << endl;
+  bpsk.modulate_bits(tail_coded_bits, symbols);
+  tail_decoded_bits = code_punct.decode_tail(symbols);
+  cout << "* Decoded bits  = " << tail_decoded_bits.mid(1400, 30) << endl;
+  berc.count(bits, tail_decoded_bits);
+  cout << "BER = " << berc.get_errorrate() << endl << endl;
 
- code_punct.decode_tail(rx_symbols, decoded_bits);
+  cout << "Tailbite method test. Printing 30 bits starting from bit 1400:" 
+       << endl;
+  cout << "* Input bits    = " << bits.mid(1400, 30) << endl;
+  tailbite_coded_bits = code_punct.encode_tailbite(bits);
+  cout << "* Coded bits    = " << tailbite_coded_bits.mid(1400, 30) << endl;
+  bpsk.modulate_bits(tailbite_coded_bits, symbols);
+  tailbite_decoded_bits = code_punct.decode_tailbite(symbols);
+  cout << "* Decoded bits  = " << tailbite_decoded_bits.mid(1400, 30) << endl;
+  berc.clear();
+  berc.count(bits, tailbite_decoded_bits);
+  cout << "BER = " << berc.get_errorrate() << endl << endl;
 
- cout << "bits =" << bits << endl;
- cout << "outbits =" << outbits << endl;
- cout << "decoded_bits =" << decoded_bits << endl;
+  cout << "Trunc method test. Printing 30 bits starting from bit 1400:" << endl;
+  cout << "* Input bits    = " << bits.mid(1400, 30) << endl;
+  trunc_coded_bits.set_size(0);
+  for (int i = 0; i < no_bits/packet_size; i++) {
+    trunc_coded_bits = concat(trunc_coded_bits, 
+			      code_punct.encode_trunc(bits.mid(i*packet_size, 
+							       packet_size)));
+  }
+  cout << "* Coded bits    = " << trunc_coded_bits.mid(1400, 30) << endl;
+  bpsk.modulate_bits(trunc_coded_bits, symbols);
+  trunc_decoded_bits.set_size(0);
+  coded_packet_size = round_i(packet_size / code_punct.get_rate());
+  for (int i = 0; i < no_bits/packet_size; i++) {
+    trunc_decoded_bits = 
+      concat(trunc_decoded_bits, 
+	     code_punct.decode_trunc(symbols.mid(i*coded_packet_size, 
+						 coded_packet_size)));
+  }
+  cout << "* Decoded bits  = " << trunc_decoded_bits.mid(1400, 30) << endl;
+  berc.clear();
+  berc.count(bits, trunc_decoded_bits);
+  cout << "BER = " << berc.get_errorrate() << endl << endl;
 
+  return 0;
 }
