@@ -1,5 +1,7 @@
 2006-04-11  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* NEWS: Updated to reflect recent changes.
+
 	* configure.ac: Updated IT++ External package version number
 	(merged rev. 415:417 from the main trunk).
 
