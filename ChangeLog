@@ -1,3 +1,12 @@
+2006-04-29  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* doc/local/authors.doc, doc/local/index.doc.in,
+	doc/local/sources.mk: Added AUTHORS page (merged rev. 434:435 from
+	the main trunk).
+
+	* doc/local/help_wanted.doc: Cosmetic changes (merged rev. 434:435
+	from the main trunk).
+
 2006-04-21  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* doc/local/index.doc.in, doc/local/itpp_header.html,
