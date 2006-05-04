@@ -1,5 +1,10 @@
 2006-05-04  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/itmex.h: Fixed missing std:: specifiers before complex<>
+	types (merged rev. 441:441 from the main trunk).
+
+2006-05-03  Adam Piatyszek  <ediap@users.sourceforge.net>
+
 	* itpp/base/matfunc.h, itpp/base/scalfunc.h, itpp/base/sigfun.cpp,
 	itpp/base/transforms.cpp, itpp/comm/channel.cpp,
 	itpp/srccode/vq.h, tests/pam_test.cpp, tests/psk_test.cpp,
