@@ -1,3 +1,13 @@
+2006-05-04  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/matfunc.h, itpp/base/scalfunc.h, itpp/base/sigfun.cpp,
+	itpp/base/transforms.cpp, itpp/comm/channel.cpp,
+	itpp/srccode/vq.h, tests/pam_test.cpp, tests/psk_test.cpp,
+	tests/qam_test.cpp: Fixed bug [1480535]. Now needed_bits() returns
+	a proper number of bits required to represent integer `n', e.g.
+	"needed_bits(0) = 1", "needed_bits(7) = 3", "needed_bits(8) = 4"
+	(partly merged rev. 439:440 from the main trunk).
+
 2006-05-03  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/itmex.h: Fixed a small bug related to missing #include
