@@ -1,7 +1,14 @@
+2006-05-08  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/cblas.cpp: Fixed bug [1483125]. Now a complex dot
+	product is properly returned by a dot function when using ACML
+	blas libraries. Thanks to Danilo Zanatta for this bug report
+	(merged rev. 443:444 from the main trunk).
+
 2006-05-04  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/itmex.h: Fixed missing std:: specifiers before complex<>
-	types (merged rev. 441:441 from the main trunk).
+	types (merged rev. 441:442 from the main trunk).
 
 2006-05-03  Adam Piatyszek  <ediap@users.sourceforge.net>
 
