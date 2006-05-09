@@ -1,5 +1,8 @@
 2006-05-09  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/config_msvc.h: Manually updated the config header for
+	MSVC++ .NET with MKL.
+
 	* configure.ac, Makefile.am, tests/Makefile.am: Fixed a problem
 	with different line endings on Windows based platforms. Now,
 	sed program is necessary for performing tests (merged rev. 445:446
