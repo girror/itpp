@@ -65,6 +65,8 @@ double erf(double x);
   \ingroup errorfunc
 */
 double erfc(double x);
+#endif
+
 /*!
   \brief True gamma function
   \ingroup miscfunc
@@ -81,13 +83,7 @@ extern int signgam;
   \ingroup miscfunc
 */
 double cbrt(double x);
-#endif
 
-// #ifdef MINGW
-// Workaround due to bug in MinGW. Link to bug report:
-// https://sourceforge.net/tracker/index.php?func=detail&aid=990081&group_id=2435&atid=102435
-// extern int signgam;
-// #endif
 
 // Fix log2 for some platforms, that have it defined as a macro
 #if defined (log2)

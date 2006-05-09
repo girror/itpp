@@ -30,11 +30,19 @@
  * -------------------------------------------------------------------------
  */
 
+
+#ifndef _MSC_VER
+#  include <itpp/config.h>
+#else
+#  include <itpp/config_msvc.h>
+#endif
+
 #include <itpp/base/scalfunc.h>
 #include <itpp/base/vec.h>
 #include <cmath>
 
-#ifdef _MSC_VER
+
+#ifndef HAVE_TGAMMA
 // "True" gamma function
 double tgamma(double x)
 {
@@ -47,10 +55,14 @@ double tgamma(double x)
   else 
     return exp((x + 0.5) * log(x + 5.5) - x - 5.5 + log(s));
 }
+#endif
 
-// This global variable is normally declared in <cmath>, but not under MSVC++
+// This global variable is normally declared in <cmath>, but not always
+#if (HAVE_DECL_SIGNGAM != 1)
 int signgam;
+#endif
 
+#ifndef HAVE_LGAMMA
 // Logarithm of an absolute value of gamma function 
 double lgamma(double x)
 {
@@ -58,7 +70,9 @@ double lgamma(double x)
   signgam = (gam < 0) ? -1 : 1;
   return log(fabs(gam));
 }
+#endif
 
+#ifndef HAVE_CBRT
 // Cubic root
 double cbrt(double x)
 {
@@ -154,8 +168,12 @@ namespace itpp {
 
   double gamma(double x)
   {
+#if !defined(HAVE_TGAMMA) && defined(HAVE_LGAMMA)
     double lg = lgamma(x);
     return signgam * exp(lg);
+#else
+    return tgamma(x);
+#endif
   }
 
   double Qfunc(double x)

@@ -1,5 +1,14 @@
 2006-05-09  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/base/timing.cpp: Fixed gettimeofday() function definition
+	for Windows based platforms (MinGW, MSVC++). No need for MINGW
+	definition any more (merged rev. 450:451 from the main trunk).
+
+	* itpp/base/scalfunc.cpp, itpp/base/scalfunc.h: Added checks for
+	`lgamma' and `tgamma' functions, and `signgam' declaration. This
+	solves problems on some platforms where these declaration and/or
+	functions are not available.
+
 	* itpp/config_msvc.h: Manually updated the config header for
 	MSVC++ .NET with MKL.
 
