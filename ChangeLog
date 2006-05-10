@@ -1,3 +1,9 @@
+2006-05-10  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* configure.ac: Check for a host added, which is used to disable
+	building of a shared library on Windows based platforms (merged
+	rev. 455:456 from the main trunk).
+
 2006-05-09  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/base/timing.cpp: Fixed gettimeofday() function definition
