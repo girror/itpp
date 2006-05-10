@@ -1,5 +1,15 @@
 2006-05-10  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* tests/source_test.cpp, tests/source_test.ref,
+	tests/window_test.cpp, tests/window_test.ref: Minor fixes in test
+	programs due to different formatting under MinGW environment
+	(merged rev. 456:459 from the main trunk).
+
+	* test/Makefile.am: Added a dirty hack using sed regular expresion
+	that ensures floating point output in the form of `e-06' instead
+	of `e-006', which is default for the MinGW compiler (merged rev.
+	456:459 from the main trunk).
+
 	* configure.ac: Check for a host added, which is used to disable
 	building of a shared library on Windows based platforms (merged
 	rev. 455:456 from the main trunk).
