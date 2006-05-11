@@ -1,3 +1,12 @@
+2006-05-11  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* doc/local/installation.doc, INSTALL: Updated documentation
+	according to the recent changes (merged rev. 460:462 from the main
+	trunk).
+
+	* config/acx_fft.m4: Changed the order of checking for FFT
+	libraries (merged rev. 460:462 from the main trunk).
+
 2006-05-10  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* tests/source_test.cpp, tests/source_test.ref,
