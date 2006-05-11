@@ -1,8 +1,8 @@
+#include <itpp/itbase.h>
 #include <iomanip>
 
-using std::cout;
-using std::endl;
 using namespace itpp;
+using namespace std;
 
 int main(void)
 {
