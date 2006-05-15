@@ -33,25 +33,36 @@
 #ifndef SCALFUNC_H
 #define SCALFUNC_H
 
+#ifndef _MSC_VER
+#  include <itpp/config.h>
+#else
+#  include <itpp/config_msvc.h>
+#endif
+
 #include <itpp/base/itassert.h>
 #include <complex>
 #include <limits>
 
 
-#if !defined(__GLIBC__) || __GLIBC__ < 2
-
   /*! \addtogroup miscfunc */
   //!@{
 
+#ifndef HAVE_ASINH
   //! Arcus sinhyp
   double asinh(double x);
+#endif
+
+#ifndef HAVE_ACOSH
   //! Arcus coshyp
   double acosh(double x);
+#endif
+
+#ifndef HAVE_ATANH
   //! Arcus tanhyp
   double atanh(double x);
+#endif
   //!@}
 
-#endif
 
 #ifdef _MSC_VER
 // These functions are part of C99. But apparently not in Visual C++.

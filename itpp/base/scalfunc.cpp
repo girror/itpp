@@ -30,13 +30,6 @@
  * -------------------------------------------------------------------------
  */
 
-
-#ifndef _MSC_VER
-#  include <itpp/config.h>
-#else
-#  include <itpp/config_msvc.h>
-#endif
-
 #include <itpp/base/scalfunc.h>
 #include <itpp/base/vec.h>
 #include <cmath>
@@ -75,6 +68,29 @@ double cbrt(double x)
 {
   return pow(x, 1.0/3.0);
 }
+#endif
+
+#ifndef HAVE_ASINH
+  double asinh(double x)
+  {
+    return ((x>=0) ? log(x+sqrt(x*x+1)):-log(-x+sqrt(x*x+1)));
+  }
+#endif
+
+#ifndef HAVE_ACOSH
+  double acosh(double x)
+  {
+    it_error_if(x<1,"acosh(x): x<1");
+    return log(x+sqrt(x*x-1));
+  }
+#endif
+
+#ifndef HAVE_ATANH
+  double atanh(double x)
+  {
+    it_error_if(fabs(x)>=1,"atanh(x): abs(x)>=1");
+    return 0.5*log((x+1)/(x-1));
+  }
 #endif
 
 
@@ -347,27 +363,6 @@ namespace itpp {
         return cerf_continued_fraction(z);
     }
   }
-
-
-#if !defined(__GLIBC__) || __GLIBC__ < 2
-  double asinh(double x)
-  {
-    return ((x>=0) ? log(x+sqrt(x*x+1)):-log(-x+sqrt(x*x+1)));
-  }
-
-  double acosh(double x)
-  {
-    it_error_if(x<1,"acosh(x): x<1");
-    return log(x+sqrt(x*x-1));
-  }
-
-  double atanh(double x)
-  {
-    it_error_if(fabs(x)>=1,"atanh(x): abs(x)>=1");
-    return 0.5*log((x+1)/(x-1));
-  }
-
-#endif
 
   //Calculates factorial coefficient for index <= 170.
   double fact(int index)
