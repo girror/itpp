@@ -57,12 +57,9 @@ double tgamma(double x)
 }
 #endif
 
+#if !defined(HAVE_LGAMMA) || (HAVE_DECL_SIGNGAM != 1)
 // This global variable is normally declared in <cmath>, but not always
-#if (HAVE_DECL_SIGNGAM != 1)
 int signgam;
-#endif
-
-#ifndef HAVE_LGAMMA
 // Logarithm of an absolute value of gamma function 
 double lgamma(double x)
 {
@@ -168,12 +165,7 @@ namespace itpp {
 
   double gamma(double x)
   {
-#if !defined(HAVE_TGAMMA) && defined(HAVE_LGAMMA)
-    double lg = lgamma(x);
-    return signgam * exp(lg);
-#else
     return tgamma(x);
-#endif
   }
 
   double Qfunc(double x)
