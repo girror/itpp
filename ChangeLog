@@ -1,5 +1,12 @@
 2006-05-15  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* doc/local/authors.doc: Cosmetic changes (merged rev. 471:472
+	from the main trunk).
+
+	* doc/local/verification.doc: Updated to reflect recent tests
+	under Windows (Cygwin and MinGW with ACML) (merged rev. 471:472
+	from the main trunk).
+
 	* configure.ac, itpp/base/scalfunc.cpp, itpp/base/scalfunc.h:
 	Added checks for acosh(), asinh() and atanh() functions.
 
