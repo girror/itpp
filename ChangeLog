@@ -1,5 +1,7 @@
 2006-05-15  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* NEWS: Updated to reflect recent changes.
+
 	* doc/local/index.doc.in, doc/local/installation.doc, INSTALL:
 	Updated according to the recent changes(merged rev. 473:474 from
 	the main trunk).
