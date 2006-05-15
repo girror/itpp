@@ -1,5 +1,9 @@
 2006-05-15  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* doc/local/index.doc.in, doc/local/installation.doc, INSTALL:
+	Updated according to the recent changes(merged rev. 473:474 from
+	the main trunk).
+
 	* doc/local/authors.doc: Cosmetic changes (merged rev. 471:472
 	from the main trunk).
 
