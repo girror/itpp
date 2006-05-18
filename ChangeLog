@@ -1,3 +1,9 @@
+2006-05-18  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* doc/local/verification.doc: Updated to reflect recent tests
+	under Windows (MinGW with IT++ External) (merged rev. 481:482
+	from the main trunk).
+
 ==============================================================================
 
 2006-05-15  Adam Piatyszek  <ediap@users.sourceforge.net>
