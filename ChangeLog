@@ -1,3 +1,13 @@
+2006-06-01  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* doc/local/index.doc.in: Cosmetic changes in page layout (merged
+	rev. 493:495 from the main trunk).
+
+2006-05-31  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* tests/gf2mat_test.cpp: Missing initialisation added (merged rev.
+	493:495 from the main trunk).
+
 2006-05-19  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* tests/timer_test.cpp: Minor fix to avoid a hazard in timing test
