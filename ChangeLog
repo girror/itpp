@@ -1,3 +1,9 @@
+2006-07-04  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* tests/eigen_test.cpp: Fixed bug [1516976] by setting the
+	threshold of round_to_zero() function to 1e-13. Thanks to Rosario
+	for reporting this bug (merged rev. 500:501 from the main trunk).
+
 2006-06-15  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/comm/convcode.h, itpp/comm/convcode.cpp: Fixed bug
