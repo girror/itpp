@@ -1,5 +1,7 @@
 2006-07-11  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* NEWS: Updated to reflect recent fixes.
+
 	* configure.ac: Increased itpp-external version number to 2.3.0
 	(merged rev. 515:516 from the main trunk).
 
