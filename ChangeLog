@@ -1,5 +1,9 @@
 2006-07-12  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* configure.ac: Fixed a minor problem with using AC_DISABLE_SHARED
+	macro for Windows environments (merged rev. 527:528 from the main
+	trunk).
+
 	* **/*.{h,cpp}: Copyright date updated to `1995-2006'.
 
 	* configure.ac: Increased version numbers and Copyright year.
