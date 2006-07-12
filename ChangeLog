@@ -1,6 +1,6 @@
 2006-07-12  Adam Piatyszek  <ediap@users.sourceforge.net>
 
-	* itpp/**/*.{h,cpp}: Copyright date updated to `1995-2006'.
+	* **/*.{h,cpp}: Copyright date updated to `1995-2006'.
 
 	* configure.ac: Increased version numbers and Copyright year.
 
