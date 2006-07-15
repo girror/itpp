@@ -145,7 +145,7 @@ namespace itpp {
       ls.set_max_stepsize(2);
     }
 
-    bool more = 1; //???
+    bool more = true; //???
 
     while  (!stop && more) {
       vec h, w, y, v;
@@ -161,7 +161,7 @@ namespace itpp {
       bool red = false; 
       
       if  (nh <= stop_epsilon_2*(stop_epsilon_2 + nx)) // stop criterion
- 	stop = 2;  
+ 	stop = true;  
       else {
  	if  (fst || nh > Delta) { // Scale to ||h|| = Delta
   	  h = (Delta / nh) * h;
@@ -444,7 +444,7 @@ namespace itpp {
 
     // Get an initial interval for am
     double a = 0, Fa = F_end, dFa = dF0;
-    bool stop = 0;
+    bool stop = false;
     double b = std::min(1.0, max_stepsize), Fb, dFb;
 
 

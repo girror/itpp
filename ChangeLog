@@ -1,5 +1,9 @@
 2006-07-16  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/base/newton_search.cpp: Logical variables initialised with
+	`true or `false' instead of inteager numbers (merged rev. 531:532
+	from the main trunk).
+
 	* itpp/base/scalfunc.h: Fixed a minor problem with duplicated
 	declaration of tgamma(), lgamma() and cbrt() functions.
 
