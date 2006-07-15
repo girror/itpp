@@ -1,3 +1,8 @@
+2006-07-16  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/scalfunc.h: Fixed a minor problem with duplicated
+	declaration of tgamma(), lgamma() and cbrt() functions.
+
 2006-07-12  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* configure.ac: Fixed a minor problem with using AC_DISABLE_SHARED

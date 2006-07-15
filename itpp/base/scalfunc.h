@@ -78,22 +78,30 @@ double erf(double x);
 double erfc(double x);
 #endif
 
+#ifndef HAVE_TGAMMA
 /*!
   \brief True gamma function
   \ingroup miscfunc
 */
 double tgamma(double x);
+#endif
+
+#if !defined(HAVE_LGAMMA) || (HAVE_DECL_SIGNGAM != 1)
 /*!
   \brief Lograrithm of an absolute gamma function
   \ingroup miscfunc
 */
 double lgamma(double x);
 extern int signgam;
+#endif
+
+#ifndef HAVE_CBRT
 /*
   \brief Cubic root
   \ingroup miscfunc
 */
 double cbrt(double x);
+#endif
 
 
 // Fix log2 for some platforms, that have it defined as a macro
