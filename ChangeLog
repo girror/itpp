@@ -1,5 +1,8 @@
 2006-07-17  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/base/itfile.h: Fixed a minor problem with overloaded virtual
+	function open().
+
 	* itpp/comm/modulator_nd.cpp, itpp/comm/modulator.h,
 	itpp/base/newton_search.cpp: Minor cleanup fixes of warnings
 	detected under MSVC++ .NET compiler (merged rev. 534:535
