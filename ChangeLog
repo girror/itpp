@@ -1,5 +1,8 @@
 2006-07-17  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp.sln, itpp.vcproj: Moved MSVC++ .NET project files into
+	win32 subdirectory. Removed project files for MSVC++ 2003 .NET.
+
 	* itpp/base/itassert.cpp: Conversion from integer to std::string
 	implemented in pure C++ by using std::stringstream class.
 
