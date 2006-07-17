@@ -1,5 +1,8 @@
 2006-07-17  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* win32/Makefile.am, Makefile.am, configure.ac: Added and updated
+	Makefiles and configuration script.
+
 	* itpp.sln, itpp.vcproj: Moved MSVC++ .NET project files into
 	win32 subdirectory. Removed project files for MSVC++ 2003 .NET.
 

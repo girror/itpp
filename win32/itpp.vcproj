@@ -40,8 +40,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../;./"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES"
+				AdditionalIncludeDirectories="..;&quot;C:\Program Files\Intel\MKL\8.1\include&quot;"
+				PreprocessorDefinitions="_WIN32;_DEBUG;ASSERT_LEVEL=2"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -63,7 +63,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib/itpp_debug.lib"
+				OutputFile="libs\itpp_debug.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -106,8 +106,8 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\itpp\"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1"
+				AdditionalIncludeDirectories="..;&quot;C:\Program Files\Intel\MKL\8.1\include&quot;"
+				PreprocessorDefinitions="_WIN32;NDEBUG"
 				RuntimeLibrary="0"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="0"
@@ -127,7 +127,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib/itpp.lib"
+				OutputFile="libs\itpp.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -158,291 +158,315 @@
 				Name="base"
 				>
 				<File
-					RelativePath=".\itpp\base\bessel\airy.cpp"
+					RelativePath="..\itpp\base\bessel.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel.cpp"
+					RelativePath="..\itpp\base\binary.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\binary.cpp"
+					RelativePath="..\itpp\base\binfile.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\binfile.cpp"
+					RelativePath="..\itpp\base\cblas.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel\chbevl.cpp"
+					RelativePath="..\itpp\base\cholesky.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\cholesky.cpp"
+					RelativePath="..\itpp\base\converters.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\converters.cpp"
+					RelativePath="..\itpp\base\det.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\det.cpp"
+					RelativePath="..\itpp\base\eigen.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\eigen.cpp"
+					RelativePath="..\itpp\base\elmatfunc.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\elmatfunc.cpp"
+					RelativePath="..\itpp\base\fastica.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\fastica.cpp"
+					RelativePath="..\itpp\base\fastmath.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\fastmath.cpp"
+					RelativePath="..\itpp\base\filter.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\filter.cpp"
+					RelativePath="..\itpp\base\filter_design.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\filter_design.cpp"
+					RelativePath="..\itpp\base\freq_filt.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\freq_filt.cpp"
+					RelativePath="..\itpp\base\gf2mat.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\gf2mat.cpp"
+					RelativePath="..\itpp\base\integration.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel\hyperg.cpp"
+					RelativePath="..\itpp\base\inv.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel\i0.cpp"
+					RelativePath="..\itpp\base\itassert.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel\i1.cpp"
+					RelativePath="..\itpp\base\itfile.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\integration.cpp"
+					RelativePath="..\itpp\base\itpp_version.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\inv.cpp"
+					RelativePath="..\itpp\base\ls_solve.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\itassert.cpp"
+					RelativePath="..\itpp\base\lu.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\itfile.cpp"
+					RelativePath="..\itpp\base\mat.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\itpp_version.cpp"
+					RelativePath="..\itpp\base\matfunc.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel\iv.cpp"
+					RelativePath="..\itpp\base\newton_search.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel\jv.cpp"
+					RelativePath="..\itpp\base\operators.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel\k0.cpp"
+					RelativePath="..\itpp\base\parser.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel\k1.cpp"
+					RelativePath="..\itpp\base\poly.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel\kn.cpp"
+					RelativePath="..\itpp\base\qr.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\ls_solve.cpp"
+					RelativePath="..\itpp\base\random.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\lu.cpp"
+					RelativePath="..\itpp\base\scalfunc.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\mat.cpp"
+					RelativePath="..\itpp\base\schur.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\matfunc.cpp"
+					RelativePath="..\itpp\base\sigfun.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\operators.cpp"
+					RelativePath="..\itpp\base\smat.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\parser.cpp"
+					RelativePath="..\itpp\base\source.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel\polevl.cpp"
+					RelativePath="..\itpp\base\specmat.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\poly.cpp"
+					RelativePath="..\itpp\base\stat.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\qr.cpp"
+					RelativePath="..\itpp\base\svd.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\random.cpp"
+					RelativePath="..\itpp\base\svec.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\scalfunc.cpp"
+					RelativePath="..\itpp\base\timing.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\sigfun.cpp"
+					RelativePath="..\itpp\base\transforms.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\smat.cpp"
+					RelativePath="..\itpp\base\vec.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\source.cpp"
+					RelativePath="..\itpp\base\window.cpp"
 					>
 				</File>
-				<File
-					RelativePath=".\itpp\base\specmat.cpp"
+				<Filter
+					Name="bessel"
 					>
-				</File>
-				<File
-					RelativePath=".\itpp\base\stat.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\itpp\base\bessel\struve.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\itpp\base\svd.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\itpp\base\svec.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\itpp\base\timing.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\itpp\base\transforms.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\itpp\base\vec.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\itpp\base\window.cpp"
-					>
-				</File>
+					<File
+						RelativePath="..\itpp\base\bessel\airy.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\itpp\base\bessel\chbevl.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\itpp\base\bessel\hyperg.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\itpp\base\bessel\i0.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\itpp\base\bessel\i1.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\itpp\base\bessel\iv.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\itpp\base\bessel\jv.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\itpp\base\bessel\k0.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\itpp\base\bessel\k1.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\itpp\base\bessel\kn.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\itpp\base\bessel\polevl.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\itpp\base\bessel\struve.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="comm"
 				>
 				<File
-					RelativePath=".\itpp\comm\bch.cpp"
+					RelativePath="..\itpp\comm\bch.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\channel.cpp"
+					RelativePath="..\itpp\comm\channel.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\commfunc.cpp"
+					RelativePath="..\itpp\comm\commfunc.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\convcode.cpp"
+					RelativePath="..\itpp\comm\convcode.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\crc.cpp"
+					RelativePath="..\itpp\comm\crc.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\egolay.cpp"
+					RelativePath="..\itpp\comm\egolay.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\error_counters.cpp"
+					RelativePath="..\itpp\comm\error_counters.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\galois.cpp"
+					RelativePath="..\itpp\comm\galois.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\hammcode.cpp"
+					RelativePath="..\itpp\comm\hammcode.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\interleave.cpp"
+					RelativePath="..\itpp\comm\interleave.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\modulator.cpp"
+					RelativePath="..\itpp\comm\llr.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\ofdm.cpp"
+					RelativePath="..\itpp\comm\modulator.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\pulse_shape.cpp"
+					RelativePath="..\itpp\comm\modulator_nd.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\punct_convcode.cpp"
+					RelativePath="..\itpp\comm\ofdm.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\rec_syst_conv_code.cpp"
+					RelativePath="..\itpp\comm\pulse_shape.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\reedsolomon.cpp"
+					RelativePath="..\itpp\comm\punct_convcode.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\sequence.cpp"
+					RelativePath="..\itpp\comm\rec_syst_conv_code.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\spread.cpp"
+					RelativePath="..\itpp\comm\reedsolomon.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\turbo.cpp"
+					RelativePath="..\itpp\comm\sequence.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\itpp\comm\spread.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\itpp\comm\turbo.cpp"
 					>
 				</File>
 			</Filter>
@@ -450,27 +474,27 @@
 				Name="srccode"
 				>
 				<File
-					RelativePath=".\itpp\srccode\audiofile.cpp"
+					RelativePath="..\itpp\srccode\audiofile.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\srccode\gmm.cpp"
+					RelativePath="..\itpp\srccode\gmm.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\srccode\lpcfunc.cpp"
+					RelativePath="..\itpp\srccode\lpcfunc.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\srccode\pnm.cpp"
+					RelativePath="..\itpp\srccode\pnm.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\srccode\vq.cpp"
+					RelativePath="..\itpp\srccode\vq.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\srccode\vqtrain.cpp"
+					RelativePath="..\itpp\srccode\vqtrain.cpp"
 					>
 				</File>
 			</Filter>
@@ -478,35 +502,35 @@
 				Name="fixedpoint"
 				>
 				<File
-					RelativePath=".\itpp\fixedpoint\cfix.cpp"
+					RelativePath="..\itpp\fixedpoint\cfix.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\cfixed.cpp"
+					RelativePath="..\itpp\fixedpoint\cfixed.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\fix.cpp"
+					RelativePath="..\itpp\fixedpoint\fix.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\fix_base.cpp"
+					RelativePath="..\itpp\fixedpoint\fix_base.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\fix_factory.cpp"
+					RelativePath="..\itpp\fixedpoint\fix_factory.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\fix_functions.cpp"
+					RelativePath="..\itpp\fixedpoint\fix_functions.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\fix_operators.cpp"
+					RelativePath="..\itpp\fixedpoint\fix_operators.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\fixed.cpp"
+					RelativePath="..\itpp\fixedpoint\fixed.cpp"
 					>
 				</File>
 			</Filter>
@@ -514,27 +538,27 @@
 				Name="protocol"
 				>
 				<File
-					RelativePath=".\itpp\protocol\events.cpp"
+					RelativePath="..\itpp\protocol\events.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\protocol\front_drop_queue.cpp"
+					RelativePath="..\itpp\protocol\front_drop_queue.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\protocol\packet_channel.cpp"
+					RelativePath="..\itpp\protocol\packet_channel.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\protocol\packet_generator.cpp"
+					RelativePath="..\itpp\protocol\packet_generator.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\protocol\selective_repeat.cpp"
+					RelativePath="..\itpp\protocol\selective_repeat.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\protocol\tcp.cpp"
+					RelativePath="..\itpp\protocol\tcp.cpp"
 					>
 				</File>
 			</Filter>
@@ -548,295 +572,311 @@
 				Name="base"
 				>
 				<File
-					RelativePath=".\itpp\base\array.h"
+					RelativePath="..\itpp\base\array.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel.h"
+					RelativePath="..\itpp\base\bessel.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\bessel\bessel_internal.h"
+					RelativePath="..\itpp\base\binary.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\binary.h"
+					RelativePath="..\itpp\base\binfile.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\binfile.h"
+					RelativePath="..\itpp\base\cblas.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\cblas.h"
+					RelativePath="..\itpp\base\cholesky.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\cholesky.h"
+					RelativePath="..\itpp\base\circular_buffer.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\circular_buffer.h"
+					RelativePath="..\itpp\base\converters.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\converters.h"
+					RelativePath="..\itpp\base\copy_vector.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\copy_vector.h"
+					RelativePath="..\itpp\base\det.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\det.h"
+					RelativePath="..\itpp\base\eigen.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\eigen.h"
+					RelativePath="..\itpp\base\elmatfunc.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\elmatfunc.h"
+					RelativePath="..\itpp\base\factory.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\factory.h"
+					RelativePath="..\itpp\base\fastica.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\fastica.h"
+					RelativePath="..\itpp\base\fastmath.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\fastmath.h"
+					RelativePath="..\itpp\base\filter.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\fftw3.h"
+					RelativePath="..\itpp\base\filter_design.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\filter.h"
+					RelativePath="..\itpp\base\freq_filt.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\filter_design.h"
+					RelativePath="..\itpp\base\gf2mat.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\freq_filt.h"
+					RelativePath="..\itpp\base\help_functions.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\gf2mat.h"
+					RelativePath="..\itpp\base\integration.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\help_functions.h"
+					RelativePath="..\itpp\base\inv.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\integration.h"
+					RelativePath="..\itpp\base\itassert.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\inv.h"
+					RelativePath="..\itpp\base\itfile.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\itassert.h"
+					RelativePath="..\itpp\base\itpp_version.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\itfile.h"
+					RelativePath="..\itpp\base\lapack.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\itpp_version.h"
+					RelativePath="..\itpp\base\ls_solve.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\lapack.h"
+					RelativePath="..\itpp\base\lu.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\ls_solve.h"
+					RelativePath="..\itpp\base\machdep.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\lu.h"
+					RelativePath="..\itpp\base\mat.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\machdep.h"
+					RelativePath="..\itpp\base\matfunc.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\mat.h"
+					RelativePath="..\itpp\base\newton_search.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\matfunc.h"
+					RelativePath="..\itpp\base\operators.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\operators.h"
+					RelativePath="..\itpp\base\parser.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\parser.h"
+					RelativePath="..\itpp\base\poly.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\poly.h"
+					RelativePath="..\itpp\base\qr.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\qr.h"
+					RelativePath="..\itpp\base\random.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\random.h"
+					RelativePath="..\itpp\base\scalfunc.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\scalfunc.h"
+					RelativePath="..\itpp\base\schur.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\sigfun.h"
+					RelativePath="..\itpp\base\sigfun.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\smat.h"
+					RelativePath="..\itpp\base\smat.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\sort.h"
+					RelativePath="..\itpp\base\sort.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\source.h"
+					RelativePath="..\itpp\base\source.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\specmat.h"
+					RelativePath="..\itpp\base\specmat.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\stack.h"
+					RelativePath="..\itpp\base\stack.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\stat.h"
+					RelativePath="..\itpp\base\stat.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\svd.h"
+					RelativePath="..\itpp\base\svd.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\svec.h"
+					RelativePath="..\itpp\base\svec.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\timing.h"
+					RelativePath="..\itpp\base\timing.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\transforms.h"
+					RelativePath="..\itpp\base\transforms.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\vec.h"
+					RelativePath="..\itpp\base\vec.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\base\window.h"
+					RelativePath="..\itpp\base\window.h"
 					>
 				</File>
+				<Filter
+					Name="bessel"
+					>
+					<File
+						RelativePath="..\itpp\base\bessel\bessel_internal.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="comm"
 				>
 				<File
-					RelativePath=".\itpp\comm\bch.h"
+					RelativePath="..\itpp\comm\bch.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\channel.h"
+					RelativePath="..\itpp\comm\channel.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\channel_code.h"
+					RelativePath="..\itpp\comm\channel_code.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\commfunc.h"
+					RelativePath="..\itpp\comm\commfunc.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\convcode.h"
+					RelativePath="..\itpp\comm\convcode.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\crc.h"
+					RelativePath="..\itpp\comm\crc.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\egolay.h"
+					RelativePath="..\itpp\comm\egolay.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\error_counters.h"
+					RelativePath="..\itpp\comm\error_counters.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\galois.h"
+					RelativePath="..\itpp\comm\galois.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\hammcode.h"
+					RelativePath="..\itpp\comm\hammcode.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\interleave.h"
+					RelativePath="..\itpp\comm\interleave.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\modulator.h"
+					RelativePath="..\itpp\comm\llr.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\ofdm.h"
+					RelativePath="..\itpp\comm\modulator.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\pulse_shape.h"
+					RelativePath="..\itpp\comm\modulator_nd.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\punct_convcode.h"
+					RelativePath="..\itpp\comm\ofdm.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\rec_syst_conv_code.h"
+					RelativePath="..\itpp\comm\pulse_shape.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\reedsolomon.h"
+					RelativePath="..\itpp\comm\punct_convcode.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\sequence.h"
+					RelativePath="..\itpp\comm\rec_syst_conv_code.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\spread.h"
+					RelativePath="..\itpp\comm\reedsolomon.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\comm\turbo.h"
+					RelativePath="..\itpp\comm\sequence.h"
+					>
+				</File>
+				<File
+					RelativePath="..\itpp\comm\spread.h"
+					>
+				</File>
+				<File
+					RelativePath="..\itpp\comm\turbo.h"
 					>
 				</File>
 			</Filter>
@@ -844,27 +884,27 @@
 				Name="srccode"
 				>
 				<File
-					RelativePath=".\itpp\srccode\audiofile.h"
+					RelativePath="..\itpp\srccode\audiofile.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\srccode\gmm.h"
+					RelativePath="..\itpp\srccode\gmm.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\srccode\lpcfunc.h"
+					RelativePath="..\itpp\srccode\lpcfunc.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\srccode\pnm.h"
+					RelativePath="..\itpp\srccode\pnm.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\srccode\vq.h"
+					RelativePath="..\itpp\srccode\vq.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\srccode\vqtrain.h"
+					RelativePath="..\itpp\srccode\vqtrain.h"
 					>
 				</File>
 			</Filter>
@@ -872,47 +912,97 @@
 				Name="fixedpoint"
 				>
 				<File
-					RelativePath=".\itpp\fixedpoint\cfix.h"
+					RelativePath="..\itpp\fixedpoint\cfix.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\cfixed.h"
+					RelativePath="..\itpp\fixedpoint\cfixed.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\fix.h"
+					RelativePath="..\itpp\fixedpoint\fix.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\fix_base.h"
+					RelativePath="..\itpp\fixedpoint\fix_base.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\fix_factory.h"
+					RelativePath="..\itpp\fixedpoint\fix_factory.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\fix_functions.h"
+					RelativePath="..\itpp\fixedpoint\fix_functions.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\fix_operators.h"
+					RelativePath="..\itpp\fixedpoint\fix_operators.h"
 					>
 				</File>
 				<File
-					RelativePath=".\itpp\fixedpoint\fixed.h"
+					RelativePath="..\itpp\fixedpoint\fixed.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="protocol"
+				>
+				<File
+					RelativePath="..\itpp\protocol\events.h"
+					>
+				</File>
+				<File
+					RelativePath="..\itpp\protocol\front_drop_queue.h"
+					>
+				</File>
+				<File
+					RelativePath="..\itpp\protocol\packet.h"
+					>
+				</File>
+				<File
+					RelativePath="..\itpp\protocol\packet_channel.h"
+					>
+				</File>
+				<File
+					RelativePath="..\itpp\protocol\packet_generator.h"
+					>
+				</File>
+				<File
+					RelativePath="..\itpp\protocol\selective_repeat.h"
+					>
+				</File>
+				<File
+					RelativePath="..\itpp\protocol\signals_slots.h"
+					>
+				</File>
+				<File
+					RelativePath="..\itpp\protocol\tcp.h"
+					>
+				</File>
+				<File
+					RelativePath="..\itpp\protocol\tcp_client_server.h"
 					>
 				</File>
 			</Filter>
 		</Filter>
-		<Filter
-			Name="Resource Files"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
-			>
-		</Filter>
 		<File
-			RelativePath=".\ChangeLog"
+			RelativePath="..\AUTHORS"
+			>
+		</File>
+		<File
+			RelativePath="..\ChangeLog"
+			>
+		</File>
+		<File
+			RelativePath="..\COPYING"
+			>
+		</File>
+		<File
+			RelativePath="..\NEWS"
+			>
+		</File>
+		<File
+			RelativePath="..\README"
 			>
 		</File>
 	</Files>
