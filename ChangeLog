@@ -1,5 +1,8 @@
 2006-07-17  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/base/itassert.cpp: Conversion from integer to std::string
+	implemented in pure C++ by using std::stringstream class.
+
 	* itpp/base/itfile.h: Fixed a minor problem with overloaded virtual
 	function open().
 

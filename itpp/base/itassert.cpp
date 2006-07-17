@@ -11,7 +11,7 @@
  * IT++ - C++ library of mathematical, signal processing, speech processing,
  *        and communications classes and functions
  *
- * Copyright (C) 1995-2005  (see AUTHORS file for a list of contributors)
+ * Copyright (C) 1995-2006  (see AUTHORS file for a list of contributors)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,6 +38,7 @@
 
 #include <itpp/base/itassert.h>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <stdexcept>
 
@@ -58,13 +59,13 @@ namespace itpp {
 
   void it_assert_f(std::string ass, std::string msg, std::string file, int line)
   {
-    char line_str[100];
+    std::ostringstream line_str;
+    line_str << line << std::flush;
 
     std::string error = "*** Assertation failed in ";
     error += file;
     error += " on line ";
-    sprintf(line_str, "%d", line);
-    error += line_str;
+    error += line_str.str();
     error += ":\n";
     error += msg;
     error += " (";
@@ -79,13 +80,13 @@ namespace itpp {
 
   void it_error_f(std::string msg, std::string file, int line)
   {
-    char line_str[100];
+    std::ostringstream line_str;
+    line_str << line << std::flush;
 
     std::string error = "*** Error in ";
     error += file;
     error += " on line ";
-    sprintf(line_str, "%d", line);
-    error += line_str;
+    error += line_str.str();
     error += ":";
     error += msg;
     std::cerr << error << std::endl << std::flush;
