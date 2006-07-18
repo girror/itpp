@@ -1,5 +1,14 @@
 2006-07-18  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/base/vec.cpp, itpp/base/vec.h: Minor fixes of a few
+	wrong template declarations, which caused warnings and errors
+	under MSVC++ .NET compiler (merged rev. 546:548 from the main
+	trunk).
+
+	* doc/local/installation.doc: Updated installation document - the
+	section about using MSVC++ .NET compiler and Intel MKL external
+	library (merged rev. 546:548 from the main trunk).
+
 	* itpp/Makefile.am, itpp/sources.mk: Fixed Makefiles so the
 	generated `config.h' file is not distributed (merged rev. 544:545
 	from the main trunk).
