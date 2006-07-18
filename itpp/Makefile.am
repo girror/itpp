@@ -28,5 +28,6 @@ lib@PACKAGE@_debug_la_LIBADD = \
 	$(top_builddir)/@PACKAGE@/protocol/libprotocol_debug.la \
 	$(top_builddir)/@PACKAGE@/srccode/libsrccode_debug.la
 
-pkgincludedir = $(includedir)/@PACKAGE@
+#pkgincludedir = $(includedir)/@PACKAGE@
 nobase_pkginclude_HEADERS = $(h_sources)
+nobase_nodist_pkginclude_HEADERS = $(top_builddir)/@PACKAGE@/config.h

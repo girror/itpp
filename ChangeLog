@@ -1,3 +1,9 @@
+2006-07-18  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/Makefile.am, itpp/sources.mk: Fixed Makefiles so the
+	generated `config.h' file is not distributed (merged rev. 544:545
+	from the main trunk).
+
 2006-07-17  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* win32/Makefile.am, Makefile.am, configure.ac: Added and updated
