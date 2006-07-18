@@ -1,5 +1,9 @@
 2006-07-18  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/base/scalfunc.cpp: Fixed a bug that caused unresolved
+	erfc() function under MSVC++ .NET compiler. The function
+	definition is now outside namespace itpp.
+
 	* itpp/base/vec.cpp, itpp/base/vec.h: Minor fixes of a few
 	wrong template declarations, which caused warnings and errors
 	under MSVC++ .NET compiler (merged rev. 546:548 from the main

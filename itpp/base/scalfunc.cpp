@@ -11,7 +11,7 @@
  * IT++ - C++ library of mathematical, signal processing, speech processing,
  *        and communications classes and functions
  *
- * Copyright (C) 1995-2005  (see AUTHORS file for a list of contributors)
+ * Copyright (C) 1995-2006  (see AUTHORS file for a list of contributors)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,113 +71,112 @@ double cbrt(double x)
 #endif
 
 #ifndef HAVE_ASINH
-  double asinh(double x)
-  {
-    return ((x>=0) ? log(x+sqrt(x*x+1)):-log(-x+sqrt(x*x+1)));
-  }
+double asinh(double x)
+{
+  return ((x>=0) ? log(x+sqrt(x*x+1)):-log(-x+sqrt(x*x+1)));
+}
 #endif
 
 #ifndef HAVE_ACOSH
-  double acosh(double x)
-  {
-    it_error_if(x<1,"acosh(x): x<1");
-    return log(x+sqrt(x*x-1));
-  }
+double acosh(double x)
+{
+  it_error_if(x<1,"acosh(x): x<1");
+  return log(x+sqrt(x*x-1));
+}
 #endif
 
 #ifndef HAVE_ATANH
-  double atanh(double x)
-  {
-    it_error_if(fabs(x)>=1,"atanh(x): abs(x)>=1");
-    return 0.5*log((x+1)/(x-1));
-  }
+double atanh(double x)
+{
+  it_error_if(fabs(x)>=1,"atanh(x): abs(x)>=1");
+  return 0.5*log((x+1)/(x-1));
+}
 #endif
-
-
-namespace itpp { 
 
 #ifdef _MSC_VER
-  double erfc(double Y)
-  {
-    int  ISW,I;
-    double P[4],Q[3],P1[6],Q1[5],P2[4],Q2[3];
-    double XMIN,XLARGE,SQRPI;
-    double X,RES,XSQ,XNUM,XDEN,XI,XBIG,ERFCret;
-    P[1]=0.3166529;
-    P[2]=1.722276;
-    P[3]=21.38533;
-    Q[1]=7.843746;
-    Q[2]=18.95226;
-    P1[1]=0.5631696;
-    P1[2]=3.031799;
-    P1[3]=6.865018;
-    P1[4]=7.373888;
-    P1[5]=4.318779e-5;
-    Q1[1]=5.354217;
-    Q1[2]=12.79553;
-    Q1[3]=15.18491;
-    Q1[4]=7.373961;
-    P2[1]=5.168823e-2;
-    P2[2]=0.1960690;
-    P2[3]=4.257996e-2;
-    Q2[1]=0.9214524;
-    Q2[2]=0.1509421;
-    XMIN=1.0E-5;
-    XLARGE=4.1875E0;
-    XBIG=9.0;
-    SQRPI=0.5641896;
-    X=Y;
-    ISW=1;
-    if (X<0) {
-      ISW=-1;
-      X=-X;
+double erfc(double Y)
+{
+  int  ISW,I;
+  double P[4],Q[3],P1[6],Q1[5],P2[4],Q2[3];
+  double XMIN,XLARGE,SQRPI;
+  double X,RES,XSQ,XNUM,XDEN,XI,XBIG,ERFCret;
+  P[1]=0.3166529;
+  P[2]=1.722276;
+  P[3]=21.38533;
+  Q[1]=7.843746;
+  Q[2]=18.95226;
+  P1[1]=0.5631696;
+  P1[2]=3.031799;
+  P1[3]=6.865018;
+  P1[4]=7.373888;
+  P1[5]=4.318779e-5;
+  Q1[1]=5.354217;
+  Q1[2]=12.79553;
+  Q1[3]=15.18491;
+  Q1[4]=7.373961;
+  P2[1]=5.168823e-2;
+  P2[2]=0.1960690;
+  P2[3]=4.257996e-2;
+  Q2[1]=0.9214524;
+  Q2[2]=0.1509421;
+  XMIN=1.0E-5;
+  XLARGE=4.1875E0;
+  XBIG=9.0;
+  SQRPI=0.5641896;
+  X=Y;
+  ISW=1;
+  if (X<0) {
+    ISW=-1;
+    X=-X;
+  }
+  if (X<0.477) {
+    if (X>=XMIN) {
+      XSQ=X*X;
+      XNUM=(P[1]*XSQ+P[2])*XSQ+P[3];
+      XDEN=(XSQ+Q[1])*XSQ+Q[2];
+      RES=X*XNUM/XDEN;
     }
-    if (X<0.477) {
-      if (X>=XMIN) {
-	XSQ=X*X;
-	XNUM=(P[1]*XSQ+P[2])*XSQ+P[3];
-	XDEN=(XSQ+Q[1])*XSQ+Q[2];
-	RES=X*XNUM/XDEN;
-      }
-      else RES=X*P[3]/Q[2];
-      if (ISW==-1) RES=-RES;
-      RES=1.0-RES;
-      goto slut;
-    }
-    if (X>4.0) {
-      if (ISW>0) goto ulf;
-      if (X<XLARGE) goto eva;
-      RES=2.0;
-      goto slut;
-    }
-    XSQ=X*X;
-    XNUM=P1[5]*X+P1[1];
-    XDEN=X+Q1[1];
-    for(I=2;I<=4;I++) {
-      XNUM=XNUM*X+P1[I];
-      XDEN=XDEN*X+Q1[I];
-    }
-    RES=XNUM/XDEN;
-    goto elin;
-  ulf:  	if (X>XBIG) goto fred;
-  eva:  	XSQ=X*X;
-    XI=1.0/XSQ;
-    XNUM=(P2[1]*XI+P2[2])*XI+P2[3];
-    XDEN=XI+Q2[1]*XI+Q2[2];
-    RES=(SQRPI+XI*XNUM/XDEN)/X;
-  elin:	RES=RES*exp(-XSQ);
-    if (ISW==-1) RES=2.0-RES;
+    else RES=X*P[3]/Q[2];
+    if (ISW==-1) RES=-RES;
+    RES=1.0-RES;
     goto slut;
-  fred:	RES=0.0;
-  slut:	ERFCret=RES;
-    return  ERFCret;
   }
+  if (X>4.0) {
+    if (ISW>0) goto ulf;
+    if (X<XLARGE) goto eva;
+    RES=2.0;
+    goto slut;
+  }
+  XSQ=X*X;
+  XNUM=P1[5]*X+P1[1];
+  XDEN=X+Q1[1];
+  for(I=2;I<=4;I++) {
+    XNUM=XNUM*X+P1[I];
+    XDEN=XDEN*X+Q1[I];
+  }
+  RES=XNUM/XDEN;
+  goto elin;
+ ulf:  	if (X>XBIG) goto fred;
+ eva:  	XSQ=X*X;
+  XI=1.0/XSQ;
+  XNUM=(P2[1]*XI+P2[2])*XI+P2[3];
+  XDEN=XI+Q2[1]*XI+Q2[2];
+  RES=(SQRPI+XI*XNUM/XDEN)/X;
+ elin:	RES=RES*exp(-XSQ);
+  if (ISW==-1) RES=2.0-RES;
+  goto slut;
+ fred:	RES=0.0;
+ slut:	ERFCret=RES;
+  return  ERFCret;
+}
 
-  double erf(double x)
-  {
-    return (1.0-erfc(x));
-  }
+double erf(double x)
+{
+  return (1.0-erfc(x));
+}
 #endif
+
+namespace itpp { 
 
   double gamma(double x)
   {
@@ -279,7 +278,7 @@ namespace itpp {
     f = 1.0 / f;
 
     // and do the final scaling
-	f = f * exp(-z * z) / sqrt(pi);
+    f = f * exp(-z * z) / sqrt(pi);
 
     return f;
   }
@@ -349,7 +348,7 @@ namespace itpp {
    * This function calculates a well known error function erf(z) for
    * complex z. Three methods are implemented. Which one is used
    * depends on z. 
-	 */
+   */
   std::complex<double> erf(const std::complex<double>& z)
   {
     // Use the method appropriate to size of z - 
