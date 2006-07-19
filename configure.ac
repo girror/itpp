@@ -1,7 +1,7 @@
 # Process this file with autoconf to produce a configure script
 AC_PREREQ(2.59)
 AC_COPYRIGHT([Copyright (C) 2006  Adam Piatyszek <ediap@users.sourceforge.net>])
-AC_INIT([IT++], [3.10.4], [ediap@users.sourceforge.net], [itpp])
+AC_INIT([IT++],[3.10.4],[ediap@users.sourceforge.net],[itpp])
 AC_CONFIG_HEADER([itpp/config.h])
 AC_CONFIG_SRCDIR([itpp/base/vec.cpp])
 AC_CONFIG_AUX_DIR([config])
@@ -45,6 +45,7 @@ save_CXXFLAGS="$CXXFLAGS"
 AC_PROG_CXX
 AC_PROG_CXXCPP
 CXXFLAGS="$save_CXXFLAGS"
+AC_PROG_F77
 AC_PROG_INSTALL
 AC_PROG_LIBTOOL
 AC_PROG_LN_S
@@ -55,14 +56,14 @@ AC_LANG([C++])
 
 # Check for debug switch
 AC_ARG_ENABLE(debug,
-              [AC_HELP_STRING([--enable-debug],
+              [AS_HELP_STRING([--enable-debug],
                               [enable building debug library [default=no]])])
 test "x$enable_debug" != xyes && enable_debug=no
 AM_CONDITIONAL([ENABLE_DEBUG], [test "x$enable_debug" = xyes])
 
 # Check for exceptions switch
 AC_ARG_ENABLE(exceptions,
-              [AC_HELP_STRING([--enable-exceptions],
+              [AS_HELP_STRING([--enable-exceptions],
                               [enable exceptions handling [default=no]])],
               [AC_DEFINE([ITPP_EXCEPTIONS], [1],
                          [Define if you want exceptions handling])])
@@ -70,13 +71,13 @@ test "x$enable_exceptions" != xyes && enable_exceptions=no
 
 # Check for htmldocs switch
 AC_ARG_ENABLE(html-doc, 
-              [AC_HELP_STRING([--enable-html-doc],
-                              [enable HTML documentation [default=yes]])])
+              [AS_HELP_STRING([--disable-html-doc],
+                              [do not generate HTML documentation])])
 test "x$enable_html_doc" != xno && enable_html_doc=yes
 
 # Provide --with-docdir
 AC_ARG_WITH(docdir,
-            [AC_HELP_STRING([--with-docdir=DIR],
+            [AS_HELP_STRING([--with-docdir=DIR],
                             [set documentation directory to DIR])],
             [DOC_DIR="$withval"],
             [DOC_DIR=""])
@@ -95,7 +96,7 @@ if test "x$enable_debug" = xyes; then
   CXXFLAGS_DEBUG="-DASSERT_LEVEL=2 -g"
   # Only for GCC compiler 
   if test "x$GXX" = xyes; then
-    CXXFLAGS_DEBUG="$CXXFLAGS_DEBUG -Wall"
+    CXXFLAGS_DEBUG="$CXXFLAGS_DEBUG -Wall -pipe"
   fi
 fi
 AC_SUBST(CXXFLAGS_DEBUG)
@@ -138,30 +139,40 @@ test "x$diff_ok" != xyes && enable_tests=no
 test "x$sed_ok" != xyes && enable_tests=no
 AM_CONDITIONAL([RUN_TESTS], [test "x$enable_tests" = xyes])
 
+# Check if we have Fortran compiler
+if test "x$F77" != x; then
+  # Checks for BLAS (ACML, MKL, ATLAS or NETLIB)
+  ACX_BLAS
 
-# Checks for BLAS (ACML, MKL, ATLAS or NETLIB)
-ACX_BLAS
+  # Checks for CBLAS (ACML, MKL, ATLAS or NETLIB)
+  ACX_CBLAS
 
-# Checks for CBLAS (ACML, MKL, ATLAS or NETLIB)
-ACX_CBLAS
+  # Checks for LAPACK (ACML, MKL, ATLAS or NETLIB)
+  ACX_LAPACK
 
-# Checks for LAPACK (ACML, MKL, ATLAS or NETLIB)
-ACX_LAPACK
+  # Set LIBS
+  if test x"$acx_blas_ok" = xyes; then
+    LIBS="$BLAS_LIBS $LIBS $FLIBS"
+    if test "x$CBLAS_LIBS" != x; then
+      LIBS="$CBLAS_LIBS $LIBS"
+    fi
+    if test x"$LAPACK_LIBS" != x; then
+      LIBS="$LAPACK_LIBS $LIBS"
+    fi
+  fi
+else
+  acx_blas_ok=nofortran;
+  blas_mkl_ok=no;
+  blas_acml_ok=no;
+  blas_atlas_ok=no;
+  acx_cblas_ok=noblas;
+  acx_lapack_ok=noblas;
+fi
 
 # Checks for FFT (ACML, MKL or FFTW3)
 ACX_FFT
 
-
 # Set LIBS
-if test x"$acx_blas_ok" = xyes; then
-  LIBS="$BLAS_LIBS $LIBS $FLIBS"
-  if test "x$CBLAS_LIBS" != x; then
-    LIBS="$CBLAS_LIBS $LIBS"
-  fi
-  if test x"$LAPACK_LIBS" != x; then
-    LIBS="$LAPACK_LIBS $LIBS"
-  fi
-fi
 if test "x$FFT_LIBS" != x; then
   LIBS="$FFT_LIBS $LIBS"
 fi
@@ -265,6 +276,7 @@ External libs:
 
 Compiler/linker flags/libs/defs:
   - CXX ............ : ${CXX}
+  - F77 ............ : ${F77}
   - CXXFLAGS ....... : ${CXXFLAGS_OPT}
   - CXXFLAGS_DEBUG . : ${CXXFLAGS_DEBUG}
   - CPPFLAGS ....... : ${CPPFLAGS}
