@@ -1,10 +1,15 @@
+2006-08-03  Erik G. Larsson <erik_g_larsson@users.sourceforge.net>
+
+	* itpp/comm/rec_syst_conv_code.h: Documentation update (fixes bug 
+	[1532371]) (merged rev. 566:567 from the main trunk). 
+
 2006-07-26  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* tests/rec_syst_conv_code_test.cpp,
 	tests/rec_syst_conv_code_test.ref: Fixed a minor bug in the RSC
 	code test program. The generator polynomials were initialised with
 	a string using octal notation, which is not supported by Vec<>
-	parser yet (merged rev: 562:563 from the main trunk).
+	parser yet (merged rev. 562:563 from the main trunk).
 
 2006-07-19  Adam Piatyszek  <ediap@users.sourceforge.net>
 
