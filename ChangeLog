@@ -1,4 +1,13 @@
+2006-08-03  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* doc/local/installation.doc: Updated installation manual using
+	MSVC++ with MKL (merged rev. 571:573 from the main trunk).
+
 2006-08-03  Erik G. Larsson <erik_g_larsson@users.sourceforge.net>
+
+	* itpp/signal/transforms.*: Documentation update to comment on the
+	the issues with memory alignment for FFTW (cf. bug/feature request
+	[1418707]) (merged rev. 571:573 from the main trunk).
 
 	* itpp/comm/rec_syst_conv_code.h: Documentation update (fixes bug 
 	[1532371]) (merged rev. 566:567 from the main trunk). 
