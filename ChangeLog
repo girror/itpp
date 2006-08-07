@@ -1,5 +1,7 @@
 2006-08-07  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* IT++ 3.10.4 released (SVN tag: release-3-10-4)
+
 	* NEWS: Updated to reflect recent changes.
 
 	* itpp/base/bessel.cpp, itpp/base/bessel/jv.cpp,
