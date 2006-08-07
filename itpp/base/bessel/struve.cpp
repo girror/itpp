@@ -11,7 +11,7 @@
  * IT++ - C++ library of mathematical, signal processing, speech processing,
  *        and communications classes and functions
  *
- * Copyright (C) 1995-2005  (see AUTHORS file for a list of contributors)
+ * Copyright (C) 1995-2006  (see AUTHORS file for a list of contributors)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,10 +36,6 @@
 #include <itpp/base/bessel/bessel_internal.h>
 #include <itpp/base/scalfunc.h>
 #include <cmath>
-
-#ifdef _MSC_VER
-#pragma warning(disable:4996)
-#endif
 
 /*
  * Struve function
@@ -291,7 +287,3 @@ double yv(double v, double x)
  *	30	32.31
  *	40	40.0
  */
-
-#ifdef _MSC_VER
-#pragma warning(default:4996)
-#endif

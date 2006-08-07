@@ -1,3 +1,14 @@
+2006-08-07  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/bessel.cpp, itpp/base/bessel/jv.cpp,
+	itpp/base/bessel/struve.cpp, itpp/base/random.h,
+	itpp/protocol/tcp.cpp: Removed most of the "#pragma warning"
+	statements needed by MSVC++ .NET compiler.
+	
+	* win32/itpp.vcproj: Added _CRT_SECURE_NO_DEPRECATE and
+	_CRT_NONSTDC_NO_DEPRECATE definitions that disable warnings on
+	some deprecated C standard library and POSIX-compilant functions.
+
 2006-08-03  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* doc/local/installation.doc: Updated installation manual using
