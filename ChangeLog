@@ -1,5 +1,7 @@
 2006-08-07  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* NEWS: Updated to reflect recent changes.
+
 	* itpp/base/bessel.cpp, itpp/base/bessel/jv.cpp,
 	itpp/base/bessel/struve.cpp, itpp/base/random.h,
 	itpp/protocol/tcp.cpp: Removed most of the "#pragma warning"
