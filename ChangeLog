@@ -1,5 +1,7 @@
 2006-08-11  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* doc/local/verification.doc: Updated with Windows tests.
+
 	* itpp/base/random.h, itpp/base/scalfunc.h: Replaced deprecated
 	hypot(x, y) function with std::sqrt(x*x + y*y) calculation. BTW,
 	macro definition M_2PI replaced with a global constant m_2pi.
