@@ -117,6 +117,53 @@ namespace itpp {
   //! Constant eps
   const double eps = std::numeric_limits<double>::epsilon();
 
+  //! Constant definition to speed up trunc_log and trunc_exp functions
+  const double log_double_max = std::log(std::numeric_limits<double>::max());
+  //! Constant definition to speed up trunc_log and trunc_exp functions
+  const double log_double_min = std::log(std::numeric_limits<double>::min());
+
+  /*!
+    \brief Truncated natural logarithm function
+
+    This truncated function provides a solution in the cases when the
+    logarithm argument is less or equal to zero or infinity. The function
+    checks for such extreme values and use some kind of truncation
+    (saturation) before calculating the logarithm.
+
+    The truncated logarithm function can be used for calculation of
+    log-likelihood in soft demodulators, when numerical instability problem
+    might occur.
+  */
+  inline double trunc_log(double x)
+  {
+    if (std::numeric_limits<double>::is_iec559) {
+      if (x == std::numeric_limits<double>::infinity())
+	return log_double_max;
+      if (x <= 0)
+	return log_double_min;
+    }
+    return std::log(x);
+  }
+
+  /*!
+    \brief Truncated exponential function
+
+    This truncated function provides a solution in the case when the
+    exponent function results in infinity. The function checks for an
+    extreme value and use truncation (saturation) before calculating 
+    the result.
+
+    The truncated exponential function can be used  when numerical
+    instability problem occurs for a standard exp function.
+  */
+  inline double trunc_exp(double x)
+  {
+    if (std::numeric_limits<double>::is_iec559
+	&& (x >= log_double_max))
+      return std::numeric_limits<double>::max();
+    return std::exp(x);
+  }
+
   /*!
     \brief Gamma function
     \ingroup miscfunc

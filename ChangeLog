@@ -5,6 +5,61 @@
 	Thanks to Max Moorkamp for reporting this bug.
 
 	* configure.ac: Version numbers incremented.
+	
+	* itpp/comm/modulator.cpp, itpp/comm/modulator.h,
+	tests/modulator_test.ref: Further cosmetic changes and minor fixes
+	in QPSK, PSK and QAM modulator classes. Use the new trunc_log()
+	function when calculating log-likelihood ratio. Reference data for
+	test program updated accordingly (merged rev. 593:602 from the
+	main trunk).
+
+2006-08-10  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/comm/modulator.cpp, itpp/comm/modulator.h: Minor fixes in
+	BPSK and PAM modulator classes. Now use the new trunc_log()
+	function when calculating log-likelihood ratio (merged rev.
+	593:602 from the main trunk).
+
+2006-08-10  Erik G. Larsson  <erik_g_larsson@users.sourceforge.net>
+
+	* itpp/comm/rec_syst_conv_code.cpp: Now use the new trunc_exp()
+	and trunc_log() functions instead of macros (merged rev. 593:602
+	from the main trunk).
+
+2006-08-10  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/comm/modulator.cpp, itpp/comm/modulator.h: Modulator_1d and
+	Modulator_2d classes revised with respect to bug [1456235]. The
+	precision problems for high SNR have been solved by using the
+	trunc_log() function recently defined in "logexpfunc.h" file.
+	Thanks to Erik for his help in solving this problem. This fix
+	closes the bug report [1456235] (merged rev. 593:602 from the main
+	trunk).
+
+	* itpp/base/logexpfunc.h: Added special truncated versions of
+	log() and exp() functions, which might be used instead of the
+	macros in modulator.cpp and rec_syst_conv_code.cpp (more stable
+	and portable solution). These functions check if floating-point
+	arithmetic is conforming to IEC 559 standard. If not, standard
+	log()/exp() functions are used (merged rev. 593:602 from the main
+	trunk). 
+
+2006-08-09  Erik G. Larsson  <erik_g_larsson@users.sourceforge.net>
+
+	* itpp/comm/rec_syst_conv_code.cpp: Changed functions into macros
+	to handle truncation of argument of exp() and log() (merged rev.
+	593:602 from the main trunk).
+	
+	* itpp/comm/modulator.cpp, itpp/comm/modulator.h: Documentation
+	updates and polishing of code (merged rev. 593:602 from the main
+	trunk).
+
+2006-08-09  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* configure.ac, doc/Makefile.am, Makefile.am: Added `upload',
+	`upload-src' and `upload-html' targets for automatic upload
+	tarballs into SourceForge ftp server (merged rev. 593:602 from the
+	main trunk).
 
 2006-08-08  Erik G. Larsson <erik_g_larsson@users.sourceforge.net>
 	
