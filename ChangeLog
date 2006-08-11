@@ -1,5 +1,12 @@
 2006-08-11  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* tests/vec_test.cpp: Fixed improper file description (merged rev.
+	583:585 from the main trunk).
+
+	* tests/parser_test.cpp: Fixed minor compilation problem caused by
+	passing C-style string as an argument of init(std::string)
+	function (merged rev. 583:585 from the main trunk).
+
 	* itpp/base/sigfun.cpp: Fixed bug [1538210], caused by
 	uninitialised variable `m2' used for covariance calculation.
 	Thanks to Max Moorkamp for reporting this bug.
