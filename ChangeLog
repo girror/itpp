@@ -1,3 +1,9 @@
+2006-08-11  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* configure.ac: Version numbers incremented.
+
+==============================================================================
+
 2006-08-07  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* IT++ 3.10.4 released (SVN tag: release-3-10-4)
