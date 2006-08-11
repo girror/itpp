@@ -1,5 +1,9 @@
 2006-08-11  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/base/sigfun.cpp: Fixed bug [1538210], caused by
+	uninitialised variable `m2' used for covariance calculation.
+	Thanks to Max Moorkamp for reporting this bug.
+
 	* configure.ac: Version numbers incremented.
 
 ==============================================================================
