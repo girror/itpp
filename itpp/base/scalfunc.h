@@ -114,6 +114,9 @@ namespace itpp {
   //! Constant pi
   const double pi = 3.14159265358979323846;
 
+  //! Constant 2*Pi
+  const double m_2pi = 2 * pi;
+
   //! Constant eps
   const double eps = std::numeric_limits<double>::epsilon();
 

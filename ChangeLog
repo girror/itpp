@@ -1,6 +1,10 @@
 2006-08-11  Adam Piatyszek  <ediap@users.sourceforge.net>
 
-	* itpp/base/sigfun.cpp: Fixed bug [1538210], caused by
+	* itpp/base/random.h, itpp/base/scalfunc.h: Replaced deprecated
+	hypot(x, y) function with std::sqrt(x*x + y*y) calculation. BTW,
+	macro definition M_2PI replaced with a global constant m_2pi.
+
+	* itpp/signal/sigfun.cpp: Fixed bug [1538210], caused by
 	uninitialised variable `m2' used for covariance calculation.
 	Thanks to Max Moorkamp for reporting this bug.
 
