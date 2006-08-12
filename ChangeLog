@@ -1,3 +1,9 @@
+2006-08-12  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/comm/modulator.h: Removed inheritance of Modulator_2d class
+	from the Modulator base class. Modulator_2d assumes different
+	received input signal than the other 2D modulator classes.
+
 2006-08-11  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* doc/local/verification.doc: Updated with Windows tests.

@@ -145,7 +145,7 @@ namespace itpp {
     can also be used by a Viterbi decoder using an AWGN based metric
     calculation function.
   */
-  class Modulator_2d : public Modulator {
+  class Modulator_2d {
   public:
     //! Constructor
     Modulator_2d(const cvec &symbols = "0+0i", const ivec &bitmap = "0");
