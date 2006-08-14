@@ -1,3 +1,10 @@
+2006-08-12  Erik G. Larsson <erik_g_larsson@users.sourceforge.net>
+
+	* itpp/comm/modulator_nd.{h,cpp}, itpp/comm/llr.{h.cpp},
+	tests/modulator_nd_test.ref, tests/llr_test.ref: Documentation
+	updates and cosmetic changes (merged rev. 614:615 from the main
+	trunk).
+
 2006-08-12  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/comm/modulator.h: Removed inheritance of Modulator_2d class
