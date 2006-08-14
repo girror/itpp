@@ -1,3 +1,7 @@
+2006-08-15  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* NEWS: Updated to reflect recent changes.
+
 2006-08-12  Erik G. Larsson <erik_g_larsson@users.sourceforge.net>
 
 	* itpp/comm/modulator_nd.{h,cpp}, itpp/comm/llr.{h.cpp},
