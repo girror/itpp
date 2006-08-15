@@ -2,6 +2,9 @@
 
 	* IT++ 3.10.5 released (SVN tag: release-3-10-5)
 
+	* doc/local/index.doc.in, README: Updated reference documentation
+	index page.
+
 	* NEWS: Updated to reflect recent changes.
 
 2006-08-12  Erik G. Larsson <erik_g_larsson@users.sourceforge.net>
