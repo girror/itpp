@@ -1,5 +1,8 @@
 2006-08-16  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* doc/doxygen_html.cfg.in: Include files and file list now contain
+	a relative path (merged rev. 630:631 from the main trunk).
+
 	* doc/doxygen_html.cfg.in, doc/local/itpp_header.html: Minor fixes
 	in Doxygen config file (merged rev. 628:629 from the main trunk).
 
