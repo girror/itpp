@@ -1,3 +1,12 @@
+2006-08-16  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* doc/doxygen_html.cfg.in, doc/local/itpp_header.html: Minor fixes
+	in Doxygen config file (merged rev. 628:629 from the main trunk).
+
+	* configure.ac: Version numbers incremented.
+	
+==============================================================================
+
 2006-08-15  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* IT++ 3.10.5 released (SVN tag: release-3-10-5)
