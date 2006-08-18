@@ -412,6 +412,7 @@ namespace itpp {
   int binom_i(int n, int k)
   {
     it_assert(k <= n, "binom_i(n, k): k can not be larger than n");
+    it_assert((n >= 0) && (k >= 0), "binom_i(n, k): n and k must be non-negative integers");
     k = ((n - k) < k) ? n - k : k;
 
     int out = n - k + 1;
@@ -424,7 +425,8 @@ namespace itpp {
 
   // Calculates the base 10-logarithm of the binomial coefficient "n over k".
   double log_binom(int n, int k) {
-    it_assert(k <= n, "binom_i(n, k): k can not be larger than n");
+    it_assert(k <= n, "log_binom(n, k): k can not be larger than n");
+    it_assert((n >= 0) && (k >= 0), "log_binom(n, k): n and k must be non-negative integers");
     k = ((n - k) < k) ? n - k : k;
 
     double out = 0.0;
