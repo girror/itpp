@@ -1,3 +1,11 @@
+2006-08-18  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/scalfunc.cpp: Fixed bug [1542482]. Now binom_i(n, k)
+	works properly. BTW, "double binom(int, int)" is redundant,
+	because the result of this function is always integral. These two
+	functions will be replaced with "int binom(int, int)" in the next
+	major release of IT++ (4.x.x).
+	
 2006-08-16  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* doc/local/index.doc.in: Minor fix ("CVS" -> "SVN").
