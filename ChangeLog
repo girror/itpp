@@ -1,5 +1,12 @@
 2006-08-19  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/comm/channel.cpp: Fixed bug [1542064]. The problem was that
+	the index in the tap_doppler_spectrum array in the
+	TDL_Channel::init() function could go out of bounds, if the
+	TDL_Channel class was used with two different channel profile
+	lengths. Thanks to Jordy Potman for reporting this bug and
+	providing a patch with a solution.
+
 	* itpp/base/scalfunc.cpp: Fixed bug [1542482]. Now binom_i(n, k)
 	works properly and gives the same results as binom(n, k).
 	
