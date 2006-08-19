@@ -405,7 +405,16 @@ namespace itpp {
   // Calculates binomial coefficient "n over k".
   double binom(int n, int k) 
   { 
-    return static_cast<double>(binom_i(n, k));
+    it_assert(k <= n, "binom(n, k): k can not be larger than n");
+    it_assert((n >= 0) && (k >= 0), "binom(n, k): n and k must be non-negative integers");
+    k = ((n - k) < k) ? n - k : k;
+
+    double out = n - k + 1;
+    for (int i = 2; i <= k; i++) {
+      out *= (i + n - k);
+      out /= i;
+    }
+    return out;
   }
 
   // Calculates binomial coefficient "n over k".
