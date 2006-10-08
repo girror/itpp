@@ -12,7 +12,7 @@
  * IT++ - C++ library of mathematical, signal processing, speech processing,
  *        and communications classes and functions
  *
- * Copyright (C) 1995-2005  (see AUTHORS file for a list of contributors)
+ * Copyright (C) 1995-2006  (see AUTHORS file for a list of contributors)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -771,17 +771,23 @@ namespace itpp {
     }
 
     no_taps = j+1; // number of taps found
-    power.set_size(no_taps, true);
-    delay_prof.set_size(no_taps, true);
+    if (no_taps != N_taps) {
+      for (int i = 0; i < N_taps; i++) {
+	it_assert(tap_doppler_spectrum(i) == Jakes, 
+		  "Channel_Specification::discretize(): Too low sampling frequecy. The discretised PDP does not match the Doppler Spectrum profile.");
+      }
+      power.set_size(no_taps, true);
+      delay_prof.set_size(no_taps, true);
+      tap_doppler_spectrum.set_size(no_taps, true);
+      N_taps = no_taps;
+    }
     
     // write over existing channel profile with the discretized version
     a_prof_dB = dB(power);
     d_prof = delay_prof * Ts; // still store in seconds
-    N_taps = no_taps;
 
     discrete = true;    
     discrete_Ts = Ts;
-
   }
 
   // ------------------------------------------------------------------------------------------------------------------
