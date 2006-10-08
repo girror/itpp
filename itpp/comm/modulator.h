@@ -148,7 +148,7 @@ namespace itpp {
   class Modulator_2d {
   public:
     //! Constructor
-    Modulator_2d(const cvec &symbols = "0+0i", const ivec &bitmap = "0");
+    Modulator_2d(const cvec &symbols = "1+0i -1+0i", const ivec &bitmap = "0 1");
     //! Destructor
     virtual ~Modulator_2d() {}
 
@@ -275,7 +275,7 @@ namespace itpp {
     cvec symbols;
   
     //! This function calculates the soft bit mapping matrices S0 and S1
-    void calculate_softbit_matricies(ivec inbitmap);
+    void calculate_softbit_matricies(const ivec& inbitmap);
     //! \brief Used by the soft demodulator functions: Matrix where row k
     //! contains the constellation points with a zero in bit position k
     imat S0;   

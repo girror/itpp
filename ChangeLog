@@ -1,5 +1,11 @@
 2006-10-08  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/comm/modulator.cpp, itpp/comm/modulator.h: Fixed bug
+	[1572807]. Modulator_2d can not be initialised with non-even
+	number of symbols. Therefore, additional checks have been added to
+	the set() function. Thanks to George Jongren for reporting this
+	bug.
+
 	* itpp/comm/channel.cpp: Added a check for undersampled PDP in
 	Channel_Specification::discretize() function. Non default Doppler
 	spectrum can not be used when sampling frequency is too low.

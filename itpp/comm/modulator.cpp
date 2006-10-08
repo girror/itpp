@@ -32,6 +32,7 @@
 
 #include <itpp/comm/modulator.h>
 #include <itpp/base/converters.h>
+#include <itpp/base/stat.h>
 #include <itpp/comm/commfunc.h>
 
 
@@ -131,7 +132,12 @@ namespace itpp {
 
   void Modulator_2d::set(const cvec &in_symbols, const ivec &in_bitmap)
   {
-    it_assert(in_symbols.size() == in_bitmap.size(), "Modulator_2d::set() Number of symbols and bitmap does not match");
+    it_assert(in_symbols.size() == in_bitmap.size(),
+	      "Modulator_2d::set() Number of symbols and bitmap does not match");
+    it_assert(is_even(in_symbols.size()) && (in_symbols.size() > 0), 
+	      "Modulator_2d::set(): Number of symbols needs to be even and non-zero");
+    it_assert((max(in_bitmap) == in_bitmap.size() - 1) && (min(in_bitmap) == 0),
+	      "Modulator_2d::set(): Improper bitmap vector");
     symbols = in_symbols;
     bitmap = in_bitmap; 
     M = bitmap.size();
@@ -359,7 +365,7 @@ namespace itpp {
     }
   }
 
-  void Modulator_2d::calculate_softbit_matricies(ivec inbitmap)
+  void Modulator_2d::calculate_softbit_matricies(const ivec& inbitmap)
   {
     // Definitions of local variables
     int count0, count1;
@@ -693,7 +699,7 @@ namespace itpp {
     bits2symbols.set_size(M, false);
     bitmap = graycode(k);
     average_energy = (sqr(M) - 1) / 3.0;
-    scaling_factor = sqrt(average_energy);
+    scaling_factor = std::sqrt(average_energy);
 
     for (int i = 0; i < M; i++) {
       symbols(i) = ((M-1) - i*2) / scaling_factor;
@@ -1166,7 +1172,7 @@ namespace itpp {
     bits2symbols.set_size(M, false);
     bmat gray_code=graycode(round_i(log2(double(L))));
     average_energy = (M-1) * 2.0 / 3.0;
-    scaling_factor = sqrt(average_energy);
+    scaling_factor = std::sqrt(average_energy);
 
     for (int i = 0; i < L; i++) {
       for (int j = 0; j < L; j++) {
