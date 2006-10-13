@@ -1,3 +1,8 @@
+2006-10-13  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/itpp_version.h: Removed improper svn:executable
+	property.
+
 2006-10-08  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/comm/modulator.cpp, itpp/comm/modulator.h: Fixed bug
