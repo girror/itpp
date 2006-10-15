@@ -11,7 +11,7 @@
  * IT++ - C++ library of mathematical, signal processing, speech processing,
  *        and communications classes and functions
  *
- * Copyright (C) 1995-2005  (see AUTHORS file for a list of contributors)
+ * Copyright (C) 1995-2006  (see AUTHORS file for a list of contributors)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -69,13 +69,13 @@ namespace itpp {
     QLLR log_apriori_prob_const_point = 0;
     short b=0;
     for (short i=0; i<k(j); i++) {
-      log_apriori_prob_const_point += ((bitmap(j)(s,i)==1) ? logP_apriori(b)(1) : logP_apriori(b)(0));
+      log_apriori_prob_const_point += ((bitmap(j)(s,i)==0) ? logP_apriori(b)(1) : logP_apriori(b)(0));
       b++;
     }
     
     b=0;
     for (short i=0; i<k(j); i++) {
-      if (bitmap(j)(s,i)==1) {
+      if (bitmap(j)(s,i)==0) {
 	p1(b) =  llrcalc.jaclog(p1(b), scaled_norm + log_apriori_prob_const_point );
       }  else {
 	p0(b) = llrcalc.jaclog(p0(b),  scaled_norm + log_apriori_prob_const_point );
@@ -90,7 +90,7 @@ namespace itpp {
     short b=0;
     for (short j=0; j<nt; j++) {
       for (short i=0; i<k(j); i++) {
-	log_apriori_prob_const_point += ((bitmap(j)(s[j],i)==1) ? logP_apriori(b)(1) : logP_apriori(b)(0));
+	log_apriori_prob_const_point += ((bitmap(j)(s[j],i)==0) ? logP_apriori(b)(1) : logP_apriori(b)(0));
 	b++;
       }
     }
@@ -98,7 +98,7 @@ namespace itpp {
     b=0;
     for (short j=0; j<nt; j++) {
       for (short i=0; i<k(j); i++) {
-	if (bitmap(j)(s[j],i)==1) {
+	if (bitmap(j)(s[j],i)==0) {
 	  p1(b) =  llrcalc.jaclog(p1(b), scaled_norm + log_apriori_prob_const_point );
 	}  else {
 	  p0(b) = llrcalc.jaclog(p0(b),  scaled_norm + log_apriori_prob_const_point );
@@ -161,10 +161,10 @@ namespace itpp {
   void Modulator_NCD::map_demod(QLLRvec &LLR_apriori,  QLLRvec &LLR_aposteriori,  
 				double sigma2,  cvec &h, cvec &y)
   {
-    it_assert(length(LLR_apriori)==sum(k),"Modulator_NRD::map_demod()");
-    it_assert(length(LLR_apriori)==length(LLR_aposteriori),"Modulator_NRD::map_demod()");
-    it_assert(length(h)==length(y),"Modulator_NRD::map_demod()");
-    it_assert(length(h)==nt,"Modulator_NRD:map_demod()");
+    it_assert(length(LLR_apriori)==sum(k),"Modulator_NCD::map_demod()");
+    it_assert(length(LLR_apriori)==length(LLR_aposteriori),"Modulator_NCD::map_demod()");
+    it_assert(length(h)==length(y),"Modulator_NCD::map_demod()");
+    it_assert(length(h)==nt,"Modulator_NCD:map_demod()");
 
     int b=0;
     for (int i=0; i<nt; i++) {
@@ -262,10 +262,10 @@ namespace itpp {
     it_assert(H.rows()==length(y),"Modulator_NCD::map_demod()");
     it_assert(H.cols()==nt,"Modulator_NCD:map_demod()");
     
-    short mode=0;
-     for (short i=0; i<length(M); i++) {
-       if (nt*M(i)>4) { mode = 1; }    // differential update only pays off for larger dimensions
-     }
+    short mode=0;  
+    for (short i=0; i<length(M); i++) {
+      if (nt*M(i)>4) { mode = 1; }    // differential update only pays off for larger dimensions
+    }
     
     Vec<QLLRvec> logP_apriori = probabilities(LLR_apriori);
     
@@ -419,8 +419,7 @@ namespace itpp {
 
     for (int i=0; i<nt; i++) {
       k(i) = round_i(log2(double(M(i))));
-      
-      it_assert(abs(pow2i(k(i))-M(i))<1.0e-10,"ND_UPAM::set_Gray_PAM(): M is not a power of 2.");
+      it_assert( ((k(i)>0) && ((1<<k(i))==M(i))),"ND_UPAM::set_Gray_PAM(): M is not a power of 2.");
        
       symbols(i).set_size(M(i)+1);
       bits2symbols(i).set_size(M(i));
@@ -572,7 +571,7 @@ namespace itpp {
 	int b=0;
 	for (short j=0; j<nt; j++) {
 	  for (short i=0; i<k(j); i++) {
-	    if (bitmap(j)((M(j)-1-s[j]),i)==1) {
+	    if (bitmap(j)((M(j)-1-s[j]),i)==0) {
 	      detected_bits(b) = 1000;
 	    }  else {
 	      detected_bits(b) = -1000;
@@ -626,20 +625,24 @@ namespace itpp {
 
     for (int i=0; i<nt; i++) {
       k(i) = round_i(log2(double(M(i))));      
-      it_assert(abs(pow2i(k(i))-M(i))<1.0e-10,"ND_UQAM::set_Gray_QAM(): M is not a power of 2.");
+      it_assert( ((k(i)>0) && ((1<<k(i))==M(i))),"ND_UQAM::set_Gray_QAM(): M is not a power of 2.");
+
       L(i) = round_i(std::sqrt((double)M(i)));
       it_assert(L(i)*L(i)== M(i),"ND_UQAM: constellation M must be square");
       
       symbols(i).set_size(M(i)+1);
-      bitmap(i) = graycode(k(i));
+      bitmap(i).set_size(M(i),k(i));
       bits2symbols(i).set_size(M(i));
       double average_energy = double(M(i)-1)*2.0/3.0;
       double scaling_factor = std::sqrt(average_energy);
+      bmat gray_code = graycode(needed_bits(L(i) - 1));
       
       for (int j1=0; j1<L(i); j1++) {
 	for (int j2=0; j2<L(i); j2++) {
 	  symbols(i)(j1*L(i)+j2) = std::complex<double>( ((L(i)-1)-j2*2.0)/scaling_factor,
 							 ((L(i)-1)-j1*2.0)/scaling_factor );
+	  bitmap(i).set_row(j1*L(i)+j2, concat(gray_code.get_row(j1), 
+					       gray_code.get_row(j2)));
 	  bits2symbols(i)( bin2dec(bitmap(i).get_row(j1*L(i)+j2)) ) = j1*L(i)+j2;
 	}
       }
@@ -679,12 +682,10 @@ namespace itpp {
     bitmap.set_size(nt);
     symbols.set_size(nt);
     bits2symbols.set_size(nt);    
-
-    
+   
     for (int i=0; i<nt; i++) {
-      k(i) = round_i(log2(double(M(i))));
-      
-      it_assert(abs(pow2i(k(i))-M(i))<1.0e-10,"ND_UPSK::set_Gray_PSK(): M is not a power of 2.");
+      k(i) = round_i(log2(double(M(i))));      
+      it_assert( ((k(i)>0) && ((1<<k(i))==M(i))),"ND_UPSK::set_Gray_PSK(): M is not a power of 2.");
        
       symbols(i).set_size(M(i)+1);
       bits2symbols(i).set_size(M(i));
@@ -709,11 +710,7 @@ namespace itpp {
       
       symbols(i)(M(i))=0.0;  // must end with a zero; only for a trick exploited in update_norm()
     }
-
-
   };
   
-  
-
 
 } // namespace itpp

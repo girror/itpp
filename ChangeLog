@@ -6,10 +6,38 @@
 	automake manual. Thanks to Ed Hill for reporting this bug and his
 	work on RPM package for Fedora Core.
 
+2006-10-14  Erik G. Larsson  <erik_g_larsson@sourceforge.net>
+
+	* doc/tutorial/src/mimoconv.doc: Improvement to tutorial example
+	(merged rev. 670:676 from the trunk).
+
+	* doc/local/installation.doc: Minor update (merged rev. 670:676
+	from the trunk).
+
+	* itpp/comm/modulator_nd.*, tests/modulator_nd_test.*: Fixed an
+	error in ND_UQAM (merged rev. 670:676 from the trunk).
+
 2006-10-13  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/base/itpp_version.h: Removed improper svn:executable
 	property.
+	
+2006-10-13  Erik G. Larsson  <erik_g_larsson@sourceforge.net>
+
+	* doc/tutorial/src/mimoconv.doc: Update to reflect the change in
+	LLR convention (merged rev. 670:676 from the trunk).
+
+2006-10-12  Erik G. Larsson  <erik_g_larsson@sourceforge.net>
+
+	* itpp/comm/llr.h, itpp/comm/modulator_nd.*: Changed the
+	definition of LLRs from log(P(b=1)/P(b=0)) to log(P(b=0)/P(b=1))
+	in the LLR and Modulator_ND classes. This was done to conform to
+	the conventions in the scalar modulator class. Note the interface
+	change (merged rev. 670:676 from the trunk).
+
+	* doc/tutorial/tutorial.doc, doc/tutorial/mimoconv.doc,
+	doc/tutorial/src/mimoconv.cpp: Added first version of new MIMO
+	tutorial (merged rev. 670:676 from the trunk).
 
 2006-10-08  Adam Piatyszek  <ediap@users.sourceforge.net>
 

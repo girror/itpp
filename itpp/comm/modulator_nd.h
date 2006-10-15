@@ -90,8 +90,8 @@ namespace itpp {
       This function updates the numerator and denominator in the expression 
     \f[ 
      \log \left( \frac{
-    \sum_{s: b_k=1}  \exp (-x^2) P(s) }{
-    \sum_{s: b_k=0}  \exp (-x^2) P(s) }  \right) 
+    \sum_{s: b_k=0}  \exp (-x^2) P(s) }{
+    \sum_{s: b_k=1}  \exp (-x^2) P(s) }  \right) 
     \f]
 
     \param logP_apriori vector of a priori probabilities per bit
@@ -99,7 +99,6 @@ namespace itpp {
     \param denominator the logarithm of the denominator in the above expression
     \param s the symbol vector
 
-    <b>Please note</b> that the LLR definition has the opposite sign of that used in the \c Modulator_1d and \c Modulator_2d classes.
     */
     void update_LLR(Vec<QLLRvec> &logP_apriori, QLLRvec &numerator, QLLRvec &denominator, ivec &s, QLLR x);
     
@@ -108,8 +107,8 @@ namespace itpp {
       This function updates the numerator and denominator in the expression 
     \f[ 
      \log \left( \frac{
-    \sum_{s: b_k=1}  \exp (-x^2) P(s) }{
-    \sum_{s: b_k=0}  \exp (-x^2) P(s) }  \right) 
+    \sum_{s: b_k=0}  \exp (-x^2) P(s) }{
+    \sum_{s: b_k=1}  \exp (-x^2) P(s) }  \right) 
     \f]
 
     \param logP_apriori vector of a priori probabilities per bit
@@ -117,7 +116,6 @@ namespace itpp {
     \param denominator the logarithm of the denominator in the above expression
     \param s the symbol vector
 
-    <b>Please note</b> that the LLR definition has the opposite sign of that used in the \c Modulator_1d and \c Modulator_2d classes.
     */
     void update_LLR(Vec<QLLRvec> &logP_apriori, QLLRvec &numerator, QLLRvec &denominator, 
 		    int s, QLLR scaled_norm, int j);
@@ -170,8 +168,8 @@ namespace itpp {
     
     \f[ 
     LLR(k) = \log \left( \frac{
-    \sum_{s: b_k=1}  \exp \left( -\frac{ |y - Hs|^2 }{2\sigma^2} \right) P(s) }{
-    \sum_{s: b_k=0}  \exp \left( -\frac{ |y - Hs|^2 }{2\sigma^2} \right) P(s) }  \right) 
+    \sum_{s: b_k=0}  \exp \left( -\frac{ |y - Hs|^2 }{2\sigma^2} \right) P(s) }{
+    \sum_{s: b_k=1}  \exp \left( -\frac{ |y - Hs|^2 }{2\sigma^2} \right) P(s) }  \right) 
     \f]
     
     without approximations. It is assumed that H, y and
@@ -188,7 +186,6 @@ namespace itpp {
     The Jacobian logarithm is used to compute
     the sum-exp expression. 
 
-    <b>Please note</b> that the LLR definition has the opposite sign of that used in the \c Modulator_1d and \c Modulator_2d classes.
     */
     void map_demod(QLLRvec &LLR_apriori,  QLLRvec &LLR_aposteriori,  double sigma2,  mat &H, vec &y);
     
@@ -256,16 +253,16 @@ namespace itpp {
 
     \f[ 
     LLR(k) = \log \left( \frac{
-    \sum_{s: b_k=1}  \exp \left( -\frac{ |y - Hs|^2 }{\sigma^2} \right) P(s)}{
-    \sum_{s: b_k=0}  \exp \left( -\frac{ |y - Hs|^2 }{\sigma^2} \right) P(s)}  \right) 
+    \sum_{s: b_k=0}  \exp \left( -\frac{ |y - Hs|^2 }{\sigma^2} \right) P(s)}{
+    \sum_{s: b_k=1}  \exp \left( -\frac{ |y - Hs|^2 }{\sigma^2} \right) P(s)}  \right) 
     \f]
 
-    without approximations. It is assumed that H, y and
-    s are real-valued. Complex-valued channels can be handled via the \c Modulator_NCD class. 
+    without approximations. It is assumed that H, y and s are
+    complex-valued.
 
     \param  H                channel matrix (m*n)
     \param  y                received vector (m*1)
-    \param  sigma2           noise variance, per real dimension
+    \param  sigma2           noise variance, per complex dimension
     \param  LLR_apriori      vector of a priori LLR values per bit
     \param  LLR_aposteriori  vector of a posteriori LLR values
 
@@ -274,7 +271,6 @@ namespace itpp {
     feasible for relatively small constellations.  The Jacobian
     logarithm is used to compute the sum-exp expression.
 
-    <b>Please note</b> that the LLR definition has the opposite sign of that used in the \c Modulator_1d and \c Modulator_2d classes.
     */
     void map_demod(QLLRvec &LLR_apriori,  QLLRvec &LLR_aposteriori,  double sigma2,  cmat &H, cvec &y) ;
 
