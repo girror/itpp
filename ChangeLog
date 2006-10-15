@@ -1,3 +1,11 @@
+2006-10-15  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/Makefile.am: Fixed bug [1576333]. The problem with
+	undefined non-weak symbols has been solved according to the
+	solution from Section 7.3.5 "Libtool Convenience Libraries" of
+	automake manual. Thanks to Ed Hill for reporting this bug and his
+	work on RPM package for Fedora Core.
+
 2006-10-13  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/base/itpp_version.h: Removed improper svn:executable
