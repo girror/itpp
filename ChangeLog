@@ -1,5 +1,9 @@
 2006-10-18  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* configure.ac: Building of the static library disabled for
+	systems that support shared libraries (merged rev. 688:689 from
+	the trunk).
+
 	* configure.ac: Updated version numbers.
 
 	* configure.ac, itpp-config.in, itpp.pc.in: Cleaned up the
