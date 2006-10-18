@@ -1,7 +1,7 @@
 # Process this file with autoconf to produce a configure script
 AC_PREREQ(2.59)
 AC_COPYRIGHT([Copyright (C) 2006  Adam Piatyszek <ediap@users.sourceforge.net>])
-AC_INIT([IT++],[3.10.6],[ediap@users.sourceforge.net],[itpp])
+AC_INIT([IT++],[3.10.7],[ediap@users.sourceforge.net],[itpp])
 AC_CONFIG_HEADER([itpp/config.h])
 AC_CONFIG_SRCDIR([itpp/base/vec.cpp])
 AC_CONFIG_AUX_DIR([config])
@@ -16,7 +16,7 @@ ITPP_EXTERNAL_VERSION="2.3.0"
 AC_SUBST(ITPP_EXTERNAL_VERSION)
 
 # Shared library versioning
-GENERIC_LIBRARY_VERSION="4:1:2"
+GENERIC_LIBRARY_VERSION="4:2:2"
 #                        | | |
 #                 +------+ | +---+
 #                 |        |     |
@@ -156,7 +156,14 @@ if test "x$F77" != x; then
 
   # Set LIBS
   if test x"$acx_blas_ok" = xyes; then
-    LIBS="$BLAS_LIBS $LIBS $FLIBS"
+    if test x"$F77" = xgfortran; then
+      MY_FLIBS="-lgfortran"
+    else 
+      if test x"$F77" = xg77; then
+        MY_FLIBS="-lg2c"
+      fi 
+    fi 
+    LIBS="$BLAS_LIBS $LIBS$MY_FLIBS"
     if test "x$CBLAS_LIBS" != x; then
       LIBS="$CBLAS_LIBS $LIBS"
     fi
