@@ -1,5 +1,9 @@
 2006-10-18  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* AUTHORS, doc/local/authors.doc, doc/local/installation.doc,
+	INSTALL: Documentation improvements and author list update
+	(merged rev. 690:691 from the trunk).
+
 	* configure.ac: Building of the static library disabled for
 	systems that support shared libraries (merged rev. 688:689 from
 	the trunk).

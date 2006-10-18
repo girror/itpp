@@ -97,7 +97,7 @@ The `configure' command can be invoked with additional switches and options
   o `--disable-shared' - do not build the shared version of the library
     (enabled by default for non Windows based platforms)
   o `--disable-static' - do not build the static version of the library
-    (enabled by default)
+    (enabled by default for Windows based platforms)
 
 Plese note that each `--enable-<OPTION>' switch can be replaced with its
 opposite switch `--disable-<OPTION>'.
@@ -128,13 +128,14 @@ detection procedure is as follows:
     defined. Besides, one of the following: HAVE_FFT_MKL8, HAVE_FFT_ACML or
     HAVE_FFTW3 is defined.
 
-If some of the external libraries are installed in a non-standard location in
-your system, e.g. MKL in `/opt/intel/mkl', the `configure' script will not
-detect them automatically. In such a case you should use LDFLAGS and CPPFLAGS
-environment variables to define additional directories to be searched for
-libraries (LDFLAGS) and include files (CPPFLAGS). For instance, to configure
-IT++ to link to the MKL 8.0.1 external library, which is installed in `/opt/
-intel/mkl/8.0.1' directory, you should use the following commands:
+If some external libraries are installed in a non-standard location in your
+system, e.g. MKL in `/opt/intel/mkl/8.0.1', the `configure' script will not
+detect them automatically. In such a case, you should use LDFLAGS and
+CPPFLAGS environment variables to define additional directories to be
+searched for libraries (LDFLAGS) and include files (CPPFLAGS). For instance,
+to configure IT++ to link to the MKL 8.0.1 external library, which is
+installed in `/opt/intel/mkl/8.0.1' directory, you should use the following
+commands:
 
   % export LDFLAGS="-L/opt/intel/mkl/8.0.1/lib/32"
   % export CPPFLAGS="-I/opt/intel/mkl/8.0.1/include"
@@ -175,14 +176,15 @@ If CXXFLAGS is not set in the environment, it will be initialised with the
 default flags, i.e. "-O3 -pipe".
 
 When the configuration process is finished, a status message is displayed.
-For instance, after having invoked the following configuration command:
+For instance, after having invoked the following configuration command on a
+recent Gentoo Linux system:
 
   % ./configure --with-blas="-lblas"
 
 one can observe something like this:
 
 ------------------------------------------------------------------------------
-itpp-3.10.0 library configuration:
+itpp-3.10.7 library configuration:
 ------------------------------------------------------------------------------
 
 Directories:
@@ -190,14 +192,14 @@ Directories:
   - exec_prefix .... : ${prefix}
   - includedir ..... : ${prefix}/include
   - libdir ......... : ${exec_prefix}/lib
-  - docdir ......... : ${prefix}/share/doc/itpp-3.10.0
+  - docdir ......... : ${prefix}/share/doc/itpp-3.10.7
 
 Switches:
   - debug .......... : no
   - exceptions ..... : no
   - html-doc ....... : yes
   - shared ......... : yes
-  - static ......... : yes
+  - static ......... : no
 
 Documentation tools:
   - doxygen ........ : yes
@@ -223,18 +225,15 @@ External libs:
 
 Compiler/linker flags/libs/defs:
   - CXX ............ : g++
-  - F77 ............ : g77
-  - CXXFLAGS ....... : -O3 -pipe
+  - F77 ............ : gfortran
+  - CXXFLAGS ....... : -DASSERT_LEVEL=1 -O3 -pipe
   - CXXFLAGS_DEBUG . :
   - CPPFLAGS ....... :
   - LDFLAGS ........ :
-  - LIBS ........... : -lfftw3 -lcblas -llapack -lblas   -L/usr/lib/gcc/i686-pc-
-linux-gnu/3.4.4 -L/usr/lib/gcc/i686-pc-linux-gnu/3.4.4/../../../../i686-pc-linux
--gnu/lib -L/usr/lib/gcc/i686-pc-linux-gnu/3.4.4/../../.. -lfrtbegin -lg2c -lm -l
-gcc_s
+  - LIBS ........... : -lfftw3 -llapack -lcblas -lblas -lgfortran
 
 ------------------------------------------------------------------------------
-Now type 'make && make install' to build and install itpp-3.10.0 library
+Now type 'make && make install' to build and install itpp-3.10.7 library
 ------------------------------------------------------------------------------
 
 

@@ -1,37 +1,48 @@
-Project Admins:
----------------
-Tony Ottosson       <tonyottoson (at) users.sourceforge.net>
-Adam Piatyszek      <ediap (at) users.sourceforge.net>  
+IT++ People
+===========
+
+Project Admins
+--------------
+  o Tony Ottosson <tonyottosson@users.sourceforge.net> (N)
+  o Adam Piatyszek <ediap@users.sourceforge.net> (N)
+
+Developers
+----------
+  o Johan Bergman <emwjohb@users.sourceforge.net>
+  o Hakan Eriksson <hakanbe@users.sourceforge.net>
+  o Thomas Eriksson <thomases2@users.sourceforge.net>
+  o Pal Frenger <frenger@users.sourceforge.net>
+  o Fredrik Huss <frehu@users.sourceforge.net>
+  o Erik G. Larsson <erik_g_larsson@users.sourceforge.net>
+  o Thomas Lemaire <thomas_lemaire@users.sourceforge.net>
+  o Anders Persson <andersats2@users.sourceforge.net>
+  o Simon Wood <sgwoodjr@users.sourceforge.net>
+
+Retired Developers
+------------------
+  o Tobias Ringstrom
+  o Jonas Samuelsson
+
+Contributors
+------------
+  o Francois Cayre
+  o Zbigniew Dlugaszewski (N)
+  o Teddy Furon
+  o Bjorn Furugard
+  o Kenneth Hilmersson
+  o Peter Klotz
+  o Krister Norlund
+  o Andy Panov
+  o Svante Signell
+  o Erik Stoy
+  o Tobias Tynderfeldt
+
+Distribution Maintainers
+------------------------
+  o Markus Dittrich <markusle@gentoo.org> (Gentoo Linux)
+  o Ed Hill <edhill@users.sourceforge.net> (Fedora Extras)
 
 
-Developers:
------------
-Johan Bergman       <emwjohb (at) users.sourceforge.net>  
-Hakan Eriksson      <hakanbe (at) users.sourceforge.net>
-Thomas Eriksson     <thomases2 (at) users.sourceforge.net>
-Pal Frenger         <frenger (at) users.sourceforge.net>
-Fredrik Huss        <frehu (at) users.sourceforge.net>
-Erik G. Larsson     <erik_g_larsson (at) users.sourceforge.net>
-Thomas Lemaire      <thomas_lemaire (at) users.sourceforge.net>
-Anders Persson      <andersats2 (at) users.sourceforge.net>
-Simon Wood          <sgwoodjr (at) users.sourceforge.net>
-
-
-Retired Developers:
 -------------------
-Tobias Ringstrom
-Jonas Samuelsson
+(N) - Newcom member
 
-
-Contributors:
--------------
-Francois Cayre
-Zbigniew Dlugaszewski
-Teddy Furon
-Bjorn Furugard
-Kenneth Hilmersson
-Peter Klotz
-Krister Norlund
-Svante Signell
-Erik Stoy
-Tobias Tynderfeldt
