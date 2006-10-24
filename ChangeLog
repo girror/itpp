@@ -1,5 +1,7 @@
 2006-10-24  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* configure.ac: Library version number updated (new iterfaces added).
+
 	* itpp/base/converters.cpp, itpp/base/matfunc.h,
 	itpp/base/scalfunc.h, itpp/base/sigfun.cpp, itpp/base/specmat.cpp,
 	itpp/base/transforms.cpp, itpp/comm/channel.cpp,

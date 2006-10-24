@@ -16,7 +16,7 @@ ITPP_EXTERNAL_VERSION="2.3.0"
 AC_SUBST(ITPP_EXTERNAL_VERSION)
 
 # Shared library versioning
-GENERIC_LIBRARY_VERSION="4:2:2"
+GENERIC_LIBRARY_VERSION="5:0:3"
 #                        | | |
 #                 +------+ | +---+
 #                 |        |     |
