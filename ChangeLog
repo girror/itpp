@@ -1,3 +1,20 @@
+2006-10-24  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/converters.cpp, itpp/base/matfunc.h,
+	itpp/base/scalfunc.h, itpp/base/sigfun.cpp, itpp/base/specmat.cpp,
+	itpp/base/transforms.cpp, itpp/comm/channel.cpp,
+	itpp/comm/modulator.cpp, itpp/comm/modulator_nd.cpp,
+	itpp/srccode/vq.h, tests/convcode_test.cpp, tests/pam_test.cpp,
+	tests/psk_test.cpp, tests/qam_test.cpp: Function `needed_bits()'
+	marked as deprecated, because its name was a bit misleading (see
+	bug [1480535]). Instead of it the following two functions were
+	added: `int2bits()' and `levels2bits()'. The first one returns the
+	number of bits required for representing an unsigned integer, e.g.
+	"int2bits(0) = 1", "int2bits(2) = 2". The latter one returns the
+	number of bits to code a certain, positive number of values
+	(levels). For example: "levels2bits(1) = 1", "levels2bits(2) = 1"
+	(merged rev. 692:693 from the trunk).
+
 2006-10-18  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* AUTHORS, doc/local/authors.doc, doc/local/installation.doc,

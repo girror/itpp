@@ -141,7 +141,7 @@ namespace itpp {
     symbols = in_symbols;
     bitmap = in_bitmap; 
     M = bitmap.size();
-    k = needed_bits(M - 1);
+    k = levels2bits(M);
     calculate_softbit_matricies(bitmap);
   }
 

@@ -8,7 +8,7 @@ int main()
 {
 
  Real_Timer time;
- int N=10000, M=16, k=needed_bits(M - 1);
+ int N=10000, M=16, k=levels2bits(M);
  
  vec EbN0 = "0:2:16";
  vec EN0ggr = inv_dB(EbN0)*k;

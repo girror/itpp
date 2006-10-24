@@ -253,10 +253,10 @@ namespace itpp {
   /*! \addtogroup logexpfunc */
   //!@{
 
-  //! Calculate how many bits are needed to represent the integer n
-  inline int needed_bits(int n)
+  //! Calculate the number of bits needed to represent an inteager \c n
+  inline int int2bits(int n)
   {
-    it_assert(n >= 0, "needed_bits(): Improper argument value");
+    it_assert(n >= 0, "int2bits(): Improper argument value");
 
     if (n == 0)
       return 1;
@@ -264,16 +264,35 @@ namespace itpp {
     int b = 0;
     while (n) { 
       n >>= 1; 
-      b++; 
+      ++b; 
     }
     return b;
   }
+  
+  //! Calculate the number of bits needed to represent \c n different values (levels).
+  inline int levels2bits(int n)
+  {
+    it_assert(n > 0,"levels2bits(): Improper argument value");
+    return int2bits(--n);
+  }
 
-  //! The number of bits needed to encode {\em n} symbols. (Yes, it is exact!)
-  inline int needed_bits(double n) { it_assert(n>0,"needed_bits()"); return int(ceil(log2(n))); }
+  //! Deprecated function. Might be removed in future releases. Please use int2bits() or levels2bits() instead.
+  inline int needed_bits(int n)
+  {
+    it_warning("needed_bits(): This function is depreceted. Might be removed in future releases. Depending on your needs, please use int2bits() or levels2bits() instead.");
+    return int2bits(n);
+  }
+
+  //! Deprecated function. Might be removed in future releases. Please use int2bits() or levels2bits() instead.
+  inline int needed_bits(double n) 
+  { 
+    it_warning("needed_bits(): This function is depreceted. Might be removed in future releases. Depending on your needs, please use int2bits() or levels2bits() instead.");
+    it_assert(n > 0, "needed_bits(): Improper argument value"); 
+    return ceil_i(log2(n));
+  }
 
   //! Integer 2^x
-#define pow2i(x) ((x)<0 ? 0 : (1<<(x)))
+  inline int pow2i(int x) { return ((x < 0) ? 0 : (1 << x)); }
   //! Calculate two to the power of x (2^x)
   inline int pow2(int x) { return pow2i(x); }
 
