@@ -1,3 +1,9 @@
+2006-11-10  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/srccode/gmm.h: Fixed bug [1570388] by adding a warning
+	message to `get_no_mixtures()' function saying that it is
+	deprecated and that `get_no_gaussians()' should be used instead.
+
 2006-10-31  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* AUTHORS, doc/local/authors.doc: Developers Thomas Lemaire and
