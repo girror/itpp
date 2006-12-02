@@ -67,14 +67,14 @@ namespace itpp {
   void Modulator_ND::update_LLR(Vec<QLLRvec> &logP_apriori, QLLRvec &p1, QLLRvec &p0, int s, QLLR scaled_norm, int j)
   {
     QLLR log_apriori_prob_const_point = 0;
-    short b=0;
-    for (short i=0; i<k(j); i++) {
+    int b=0;
+    for (int i=0; i<k(j); i++) {
       log_apriori_prob_const_point += ((bitmap(j)(s,i)==0) ? logP_apriori(b)(1) : logP_apriori(b)(0));
       b++;
     }
     
     b=0;
-    for (short i=0; i<k(j); i++) {
+    for (int i=0; i<k(j); i++) {
       if (bitmap(j)(s,i)==0) {
 	p1(b) =  llrcalc.jaclog(p1(b), scaled_norm + log_apriori_prob_const_point );
       }  else {
@@ -87,17 +87,17 @@ namespace itpp {
   void Modulator_ND::update_LLR(Vec<QLLRvec> &logP_apriori, QLLRvec &p1, QLLRvec &p0, ivec &s, QLLR scaled_norm)
   {
     QLLR log_apriori_prob_const_point = 0;
-    short b=0;
-    for (short j=0; j<nt; j++) {
-      for (short i=0; i<k(j); i++) {
+    int b=0;
+    for (int j=0; j<nt; j++) {
+      for (int i=0; i<k(j); i++) {
 	log_apriori_prob_const_point += ((bitmap(j)(s[j],i)==0) ? logP_apriori(b)(1) : logP_apriori(b)(0));
 	b++;
       }
     }
     
     b=0;
-    for (short j=0; j<nt; j++) {
-      for (short i=0; i<k(j); i++) {
+    for (int j=0; j<nt; j++) {
+      for (int i=0; i<k(j); i++) {
 	if (bitmap(j)(s[j],i)==0) {
 	  p1(b) =  llrcalc.jaclog(p1(b), scaled_norm + log_apriori_prob_const_point );
 	}  else {
@@ -114,10 +114,11 @@ namespace itpp {
     int m = length(s);
     double cdiff = symbols(k)[snew]-symbols(k)[sold];
     
-    norm -= 2.0*cdiff*ytH[k];
-    norm += cdiff*cdiff*HtH(k,k);
+    norm += sqr(cdiff)*HtH(k,k);
+    cdiff = 2.0*cdiff;
+    norm -= cdiff*ytH[k];
      for (int i=0; i<m; i++) {
-      norm += 2.0*cdiff*HtH(i,k)*symbols(k)[s[i]];
+      norm += cdiff*HtH(i,k)*symbols(k)[s[i]];
      }
   }
 
@@ -126,11 +127,11 @@ namespace itpp {
     int m = length(s);
     std::complex<double> cdiff = symbols(k)[snew]-symbols(k)[sold];
     
-    norm -= 2.0*(cdiff*ytH[k]).real();
-    double cdiff_abs2 = cdiff.real()*cdiff.real()+cdiff.imag()*cdiff.imag();
-    norm += cdiff_abs2*HtH(k,k).real();
+    norm += sqr(cdiff)*(HtH(k,k).real());
+    cdiff = 2.0*cdiff;
+    norm -= (cdiff.real()*ytH[k].real() - cdiff.imag()*ytH[k].imag());
     for (int i=0; i<m; i++) {
-      norm += 2.0*(cdiff*HtH(i,k)*conj(symbols(k)[s[i]])).real();
+      norm += (cdiff*HtH(i,k)*conj(symbols(k)[s[i]])).real();
     }
   }
 
@@ -143,14 +144,17 @@ namespace itpp {
     it_assert(length(h)==nt,"Modulator_NRD:map_demod()");
 
     int b=0;
+    double oo_2s2 = 1.0/(2.0*sigma2);
+    double norm2;
+    QLLRvec temp, bnum, bdenom;
     for (int i=0; i<nt; i++) {
-      QLLRvec temp=LLR_apriori(b,b+k(i)-1);
+      temp=LLR_apriori(b,b+k(i)-1);
+      bnum = (-QLLR_MAX)*ones_i(k(i));
+      bdenom = (-QLLR_MAX)*ones_i(k(i));    
       Vec<QLLRvec> logP_apriori = probabilities(temp);
-      QLLRvec bnum = (-QLLR_MAX)*ones_i(k(i));
-      QLLRvec bdenom = (-QLLR_MAX)*ones_i(k(i));    
       for (int j=0; j<M(i); j++) {
-	double norm2 = (y(i)-h(i)*symbols(i)(j))*(y(i)-h(i)*symbols(i)(j));
-	QLLR scaled_norm = llrcalc.to_qllr(-norm2/(2.0*sigma2));
+	norm2 = sqr(y(i)-h(i)*symbols(i)(j));
+	QLLR scaled_norm = llrcalc.to_qllr(-norm2*oo_2s2);
 	update_LLR(logP_apriori, bnum, bdenom, j, scaled_norm,i);
       }
       LLR_aposteriori.set_subvector(b,bnum-bdenom);
@@ -167,14 +171,17 @@ namespace itpp {
     it_assert(length(h)==nt,"Modulator_NCD:map_demod()");
 
     int b=0;
+    double oo_s2 = 1.0/sigma2;
+    double norm2;
+    QLLRvec temp, bnum, bdenom;
     for (int i=0; i<nt; i++) {
-      QLLRvec temp=LLR_apriori(b,b+k(i)-1);
+      temp=LLR_apriori(b,b+k(i)-1);
+      bnum = (-QLLR_MAX)*ones_i(k(i));
+      bdenom = (-QLLR_MAX)*ones_i(k(i));    
       Vec<QLLRvec> logP_apriori = probabilities(temp);
-      QLLRvec bnum = (-QLLR_MAX)*ones_i(k(i));
-      QLLRvec bdenom = (-QLLR_MAX)*ones_i(k(i));    
       for (int j=0; j<M(i); j++) {
-	double norm2 = real((y(i)-h(i)*symbols(i)(j))*conj(y(i)-h(i)*symbols(i)(j)));
-	QLLR scaled_norm = llrcalc.to_qllr(-norm2/sigma2);
+	norm2 = sqr(y(i)-h(i)*symbols(i)(j)); 
+	QLLR scaled_norm = llrcalc.to_qllr(-norm2*oo_s2);
 	update_LLR(logP_apriori, bnum, bdenom, j, scaled_norm,i);
       }
       LLR_aposteriori.set_subvector(b,bnum-bdenom);
@@ -185,15 +192,15 @@ namespace itpp {
   void Modulator_NRD::map_demod(QLLRvec &LLR_apriori,  QLLRvec &LLR_aposteriori,  
 			   double sigma2,  mat &H, vec &y)
   {
-    short nr = H.rows();
-    short np=sum(k); // number of bits in total
+    int nr = H.rows();
+    int np=sum(k); // number of bits in total
     it_assert(length(LLR_apriori)==np,"Modulator_NRD::map_demod()");
     it_assert(length(LLR_apriori)==length(LLR_aposteriori),"Modulator_NRD::map_demod()");
     it_assert(H.rows()==length(y),"Modulator_NRD::map_demod()");
     it_assert(H.cols()==nt,"Modulator_NRD:map_demod()");
     
-    short mode=0;
-     for (short i=0; i<length(M); i++) {
+    int mode=0;
+     for (int i=0; i<length(M); i++) {
        if (nt*M(i)>4) { mode = 1; }    // differential update only pays off for larger dimensions
      }
     
@@ -204,11 +211,13 @@ namespace itpp {
     
     QLLRvec bnum = (-QLLR_MAX)*ones_i(np);
     QLLRvec bdenom = (-QLLR_MAX)*ones_i(np);    
-    ivec s = zeros_i(nt);    
+    ivec s(nt);
+    s.clear();
     double norm = 0.0;
+    double oo_2s2 = 1.0/(2.0*sigma2);
     
     // Go over all constellation points  (r=dimension, s=vector of symbols)
-    short r = nt-1;
+    int r = nt-1;
     while (1==1) {
       
       if (mode==1) {
@@ -225,15 +234,15 @@ namespace itpp {
 	  if (r==0) {
 	    if (mode==0) {
 	      norm = 0.0;
-	      for (short p=0; p<nr; p++) {
+	      for (int p=0; p<nr; p++) {
 		double d = y[p];
-		for (short i=0; i<nt; i++) {
+		for (int i=0; i<nt; i++) {
 		  d -= H(p,i)*symbols(i)[s[i]];
 		}
-		norm += d*d;
+		norm += sqr(d);
 	      }
 	    }
-	    QLLR scaled_norm = llrcalc.to_qllr(-norm/(2.0*sigma2));
+	    QLLR scaled_norm = llrcalc.to_qllr(-norm*oo_2s2);
 	    update_LLR(logP_apriori, bnum, bdenom, s, scaled_norm);
 	  } else {
 	    r--;
@@ -255,15 +264,15 @@ namespace itpp {
   void Modulator_NCD::map_demod(QLLRvec &LLR_apriori,  QLLRvec &LLR_aposteriori,  double sigma2,  
 				cmat &H, cvec &y)
   {
-    short nr = H.rows();
-    short np=sum(k); // number of bits in total
+    int nr = H.rows();
+    int np=sum(k); // number of bits in total
     it_assert(length(LLR_apriori)==np,"Modulator_NCD::map_demod()");
     it_assert(length(LLR_apriori)==length(LLR_aposteriori),"Modulator_NCD::map_demod()");
     it_assert(H.rows()==length(y),"Modulator_NCD::map_demod()");
     it_assert(H.cols()==nt,"Modulator_NCD:map_demod()");
     
-    short mode=0;  
-    for (short i=0; i<length(M); i++) {
+    int mode=0;  
+    for (int i=0; i<length(M); i++) {
       if (nt*M(i)>4) { mode = 1; }    // differential update only pays off for larger dimensions
     }
     
@@ -274,11 +283,14 @@ namespace itpp {
     
     QLLRvec bnum = (-QLLR_MAX)*ones_i(np);
     QLLRvec bdenom = (-QLLR_MAX)*ones_i(np);   
-    ivec s = zeros_i(nt);    
+    ivec s(nt);
+    s.clear();
     double norm = 0.0;
-    
+    double oo_s2 = 1.0/sigma2;
+    std::complex<double> d;
+
     // Go over all constellation points  (r=dimension, s=vector of symbols)
-    short r = nt-1;
+    int r = nt-1;
     while (1==1) {
       
       if (mode==1) {
@@ -295,15 +307,15 @@ namespace itpp {
 	  if (r==0) {
 	    if (mode==0) {
 	      norm = 0.0;
-	      for (short p=0; p<nr; p++) {
-		std::complex<double> d = y[p];
-		for (short i=0; i<nt; i++) {
+	      for (int p=0; p<nr; p++) {
+		d = y[p];
+		for (int i=0; i<nt; i++) {
 		  d -= H(p,i)*symbols(i)[s[i]];
 		}
-		norm += (d.real()*d.real() + d.imag()*d.imag());
+		norm += sqr(d);
 	      }
 	    }
-    	    QLLR scaled_norm = llrcalc.to_qllr(-norm/sigma2);
+    	    QLLR scaled_norm = llrcalc.to_qllr(-norm*oo_s2);
 	    update_LLR(logP_apriori, bnum, bdenom, s, scaled_norm);
 	  } else {
 	    r--;
@@ -569,8 +581,8 @@ namespace itpp {
       if (status==0) { // search successful
 	detected_bits.set_size(sum(k));
 	int b=0;
-	for (short j=0; j<nt; j++) {
-	  for (short i=0; i<k(j); i++) {
+	for (int j=0; j<nt; j++) {
+	  for (int i=0; i<k(j); i++) {
 	    if (bitmap(j)((M(j)-1-s[j]),i)==0) {
 	      detected_bits(b) = 1000;
 	    }  else {
