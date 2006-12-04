@@ -1,13 +1,10 @@
 Things to do before releasing version 4.0.0
 ============================================
 
-* Add optional configure switches to exclude some modules from building
-
 * Documentation improvements:
   - updated reference documentation
   - revise tutorial examples; add new ones; maybe split to basics and more
     advanced stuff
-  - tips and trics for Matlab/Octave users
 
 * Go through our current feature requests at SourceForge. There are
   interesting hints and patches posted by the IT++ users.
@@ -50,16 +47,12 @@ Specific features
 * Check the fastmath functions. It seems like they are not any faster
   than the ordinary math functions.
 
-* Improve the functionality of the Vec::set(char*) and Mat::set(char*)
-  members. The current implementation does not allow newlines, tabs,
-  etc. Complex numbers should also be supported.
-
 * Add support for Array<Mat<T> > and Array<Vec<T> > in itload.m and itsave.m
 
 * Modify it-file so that a description field and comment fields are
-  added.
+  added
 
-* Add possibility to change kernel generator.
+* Add possibility to change kernel generator
 
 * Implement bug-fixes in seed. See the home-page of
   Mersenne-Twister. Also change to BSD license.
@@ -71,4 +64,4 @@ Specific features
 * Class for operation on index sets?
 
 * Revision of (scalar) modulators to use fast likelihood algebra and
-to take soft inputs (for higher order constellations)
+  to take soft inputs (for higher order constellations)

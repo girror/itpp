@@ -1,5 +1,7 @@
 2006-12-04  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* NEWS, TODO: Updated to reflect recent changes.
+
 	* config/acx_blas.m4: Fixed a problem with detection of the ACML
 	library on 64-bit platforms.
 
