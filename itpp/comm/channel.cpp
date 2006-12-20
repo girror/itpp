@@ -746,18 +746,19 @@ namespace itpp {
     it_assert(N_taps > 0, "Channel_Specification::discretize: no channel profile specified");
     vec delay_prof(N_taps);
     vec power(N_taps);
+    Array <DOPPLER_SPECTRUM> tap_spectrum(N_taps);
 
     int j = 0, no_taps, j_delay = 0;
 
-    vec a_prof = inv_dB(a_prof_dB); // Convert power profile
+    vec a_prof = inv_dB(a_prof_dB); // convert power profile
 
 
     it_assert(d_prof(0) == 0, "Channel_Specification: first tap should be at zero delay");
     delay_prof(0) = d_prof(0);
     power(0) = a_prof(0);
+    tap_spectrum(0) = tap_doppler_spectrum(0);
 
-    // Taps within ( (j-0.5)Ts,(j+0.5)Ts] are included in the jth tap
-    // 
+    // taps within ((j-0.5)Ts,(j+0.5)Ts] are included in the j-th tap
     for(int i=1; i<N_taps; i++) {
       if( d_prof(i) > (j_delay+0.5)*Ts ) {
 	while( d_prof(i) > (j_delay+0.5)*Ts ) { j_delay++; } // first skip empty taps
@@ -765,21 +766,23 @@ namespace itpp {
 	j++;
 	delay_prof(j) = j_delay;
 	power(j) = a_prof(i);
+	tap_spectrum(j) = tap_doppler_spectrum(i);
       } else {
 	power(j) += a_prof(i);
+	it_assert((tap_spectrum(j) == tap_doppler_spectrum(i) 
+		   || (tap_spectrum(j) == Rice)), 
+		  "Channel_Specification::discretize(): Sampling frequency too low. Can not discretize the channel with different Doppler spectra.");
       }
     }
 
     no_taps = j+1; // number of taps found
     if (no_taps != N_taps) {
-      for (int i = 0; i < N_taps; i++) {
-	it_assert(tap_doppler_spectrum(i) == Jakes, 
-		  "Channel_Specification::discretize(): Too low sampling frequecy. The discretised PDP does not match the Doppler Spectrum profile.");
-      }
+      it_warning("Channel_Specification::discretize(): Sampling frequency too low. The discretized channel profile will have less taps than expected.");
       power.set_size(no_taps, true);
       delay_prof.set_size(no_taps, true);
-      tap_doppler_spectrum.set_size(no_taps, true);
       N_taps = no_taps;
+      tap_doppler_spectrum = tap_spectrum;
+      tap_doppler_spectrum.set_size(no_taps, true);
     }
     
     // write over existing channel profile with the discretized version
