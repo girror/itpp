@@ -72,9 +72,11 @@ namespace itpp {
     error += ass;
     error += ")";
     std::cerr << error << std::endl << std::flush;
+#ifdef ITPP_EXCEPTIONS
     if (it_using_exceptions)
       throw std::runtime_error(error);
     else
+#endif
       abort();
   }
 
@@ -90,9 +92,11 @@ namespace itpp {
     error += ":";
     error += msg;
     std::cerr << error << std::endl << std::flush;
+#ifdef ITPP_EXCEPTIONS
     if (it_using_exceptions)
       throw std::runtime_error(error);
     else
+#endif
       abort();
   }
 
