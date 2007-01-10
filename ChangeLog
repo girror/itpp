@@ -1,3 +1,8 @@
+2007-01-10  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* AUTHORS, doc/local/authors.doc: Added Conrad to the list of
+	developers
+
 2007-01-09  Conrad Sanderson  <conrad_s@users.sourceforge.net>
 
 	* itpp/base/itassert.cpp: Changed "Assertation" to "Assertion"
