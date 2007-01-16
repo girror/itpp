@@ -7,9 +7,7 @@ LDADD = $(top_builddir)/itpp/libitpp.la
 AM_CXXFLAGS = $(CXXFLAGS_OPT)
 endif
 
-EXTRA_DIST = fastica_test_data.txt parser_test_data.txt $(ref_sources) 
-
-check_PROGRAMS = \
+ALL_TESTS = \
 	array_test \
 	bch_test \
 	bessel_test \
@@ -110,11 +108,15 @@ vec_test_SOURCES = vec_test.cpp
 vector_test_SOURCES = vector_test.cpp
 window_test_SOURCES = window_test.cpp
 
-noext_tests = $(patsubst %$(EXEEXT), %, $(check_PROGRAMS))
-ref_sources = $(patsubst %$(EXEEXT), %.ref, $(check_PROGRAMS))
 
-check-local: $(check_PROGRAMS) $(ref_sources)
-	@for i in $(noext_tests); do \
+check_PROGRAMS = $(ALL_TESTS)
+ref_files = $(ALL_TESTS:=.ref)
+tmp_files = $(ALL_TESTS:=.tmp)
+
+EXTRA_DIST = fastica_test_data.txt parser_test_data.txt $(ref_files) 
+
+check-local: $(check_PROGRAMS) $(ref_files)
+	@for i in $(ALL_TESTS); do \
 		echo ------------------------------------------------------------------------------; \
 		./$$i$(EXEEXT) | sed 's/^M$$//' | sed 's/\(-\?[0-9]\+\.\?[0-9]*e[+-]\)0\([0-9][0-9]\)/\1\2/g' > $$i.tmp; \
 		diff $$i.tmp $(srcdir)/$$i.ref > /dev/null; \
@@ -127,4 +129,4 @@ check-local: $(check_PROGRAMS) $(ref_sources)
 	echo ------------------------------------------------------------------------------
 
 clean-local:
-	rm -f *.tmp
+	-rm -f $(tmp_files)
