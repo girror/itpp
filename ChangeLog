@@ -1,3 +1,10 @@
+2007-01-17  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/random.h: Fixed bug [1635988] by implementing the
+	twist() function in a similar way as the original TWIST() macro
+	from Takuji Nishimura's and Makoto Matsumoto's C sources.
+	(merged rev 837:838 from the trunk)
+
 2007-01-16  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* tests/Makefile.am: Fixed non-portable parts of the Makefile
