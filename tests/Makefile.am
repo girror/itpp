@@ -27,6 +27,7 @@ ALL_TESTS = \
 	integration_test \
 	interleaver_test \
 	inv_test \
+	itfile_test \
 	llr_test \
 	ls_solve_test \
 	lu_test \
@@ -60,6 +61,8 @@ ALL_TESTS = \
 array_test_SOURCES = array_test.cpp
 bch_test_SOURCES = bch_test.cpp
 bessel_test_SOURCES = bessel_test.cpp
+itfile_test_SOURCES = itfile_test.cpp
+itfile_test_CPPFLAGS = -DITFILE_TEST_FILE=\"$(srcdir)/itfile_test_data.it\" $(AM_CPPFLAGS)
 cholesky_test_SOURCES = cholesky_test.cpp
 circular_buffer_test_SOURCES = circular_buffer_test.cpp
 convcode_test_SOURCES = convcode_test.cpp
