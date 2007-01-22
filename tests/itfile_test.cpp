@@ -56,9 +56,12 @@ int main()
   ff << Name("x") << x;
 #endif
   ff >> Name("x") >> y;
+  ff.close();
+
+  ff.open(string(ITFILE_TEST_FILE));
   ff.read_data_header(dh);
   ff.close();
-  
+
   if (dh.endianity == 0)
     cout << "Little endian data:" << endl;
   else if (dh.endianity == 1)
