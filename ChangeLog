@@ -1,3 +1,11 @@
+2007-01-23  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/machdep.h: Added missing architecture checks, which
+	should fix bugs [1641691] and [1640347]. BTW, fixed interchanged
+	little- and big-endian definitions (e.g. i386 and x86_64 are
+	little-endian, whereas SPARC is big-endian). 64-bit special
+	typedefs commented.
+
 2007-01-23  Erik G. Larsson  <erik_g_larsson@users.sourceforge.net>
 
 	* itpp/comm/modulator_nd.cpp: Fixed an incorrect assertion check
