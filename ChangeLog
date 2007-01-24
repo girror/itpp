@@ -1,3 +1,8 @@
+2007-01-24  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* tests/Makefile.am: Added missing "tests/itfile_test_data.it"
+	file
+
 2007-01-23  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/base/machdep.h: Added missing architecture checks, which
