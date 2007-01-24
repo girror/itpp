@@ -1,5 +1,8 @@
 2007-01-24  Adam Piatyszek  <ediap@users.sourceforge.net>
-
+	
+	* itpp/base/sort.h: Minor documentation improvements
+	(merged rev. 877:878 from the trunk)
+	
 	* configure.ac, itpp/base/machdep.h, itpp/config_msvc.h: Improved
 	portability by adding support for <endian.h> system header
 	(available at least on Linux systems). Thanks to Kumar Appaiah and
