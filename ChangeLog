@@ -1,5 +1,9 @@
 2007-01-24  Adam Piatyszek  <ediap@users.sourceforge.net>
 	
+	* AUTHORS, doc/local/authors.doc: Added Kumar Appaiah (Debian
+	packages maintainer) to the list of authors
+	(merged rev. 879:881 from the trunk)
+
 	* itpp/base/sort.h: Minor documentation improvements
 	(merged rev. 877:878 from the trunk)
 	
