@@ -33,10 +33,62 @@
 #ifndef MACHDEP_H
 #define MACHDEP_H
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
+#ifndef _MSC_VER
+#  include <itpp/config.h>
+#else
+#  include <itpp/config_msvc.h>
+#endif
+
+#ifdef HAVE_ENDIAN_H
+#  include <endian.h>
+#else
+
+#ifndef __LITTLE_ENDIAN
+#  define __LITTLE_ENDIAN 1234
+#endif
+#ifndef __BIG_ENDIAN
+#  define __BIG_ENDIAN 4321
+#endif
+
+#ifndef __BYTE_ORDER
+
+  /*
+   * Big endian: _AIX, AIX, sparc, __sparc__, __mc68000__, __m68k__, MIPSEB,
+   * __MIPSEB__, __ARMEB, HPPA, __hppa__, PPC, __ppc_, __PPC__, __powerpc__.
+   * 
+   * Little endian: i386, __i386__, __x86_64__, __amd64__, __sh__, __vax__
+   * (yes, really!), MIPSEL, __MIPSEL__, and __ARMEL__, __alpha, __alpha__,
+   * __ia64__, _M_IX86, _M_X64, _M_IA64
+   *
+   * It seems that ppc, hppa, ia64, alpha, sparc, mips, arm and superh have
+   * both big and little endian modes.
+   */
+#if defined(_AIX) || defined(AIX)					\
+  || defined(sparc) || defined(__sparc__)				\
+  || defined(__mc68000__) || defined(__mk68k__)				\
+  || defined(MIPSEB) || defined(__MIPSEB__)				\
+  || defined(__ARMEB)							\
+  || defined(HPPA) || defined(__hppa__)					\
+  || defined(PPC) || defined(__ppc__) || defined(__PPC__)		\
+  || defined(__powerpc__)						\
+  || defined(__s390__) || defined(__s390x__)
+#  define __BYTE_ORDER __BIG_ENDIAN
+#elif defined(i386) || defined(__i386__) || defined(_M_IX86)		\
+  || defined(__x86_64__) || defined(__amd64__) || defined(_M_X64)	\
+  || defined(__ia64) || defined(__ia64__) || defined(_M_IA64)		\
+  || defined(MIPSEL) || defined(__MIPSEL__)				\
+  || defined(__alpha) || defined(__alpha__)
+#  define __BYTE_ORDER __LITTLE_ENDIAN
+#endif
+
+#endif // ifndef __BYTE_ORDER
+
+#endif // ifndef HAVE_ENDIAN_H
+
 
 namespace itpp {
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 #define REV_2(from, to)                                   \
               ((char *)(to))[0] = ((char *)(from))[1];    \
@@ -79,42 +131,13 @@ namespace itpp {
   inline void  little_endian(it_s8 x, it_s8 &y) { y = x; }
   inline void  little_endian(it_u8 x, it_u8 &y) { y = x; }
 
-  /*
-   * Big endian: _AIX, AIX, sparc, __sparc__, __mc68000__, __m68k__, MIPSEB,
-   * __MIPSEB__, __ARMEB, HPPA, __hppa__, PPC, __ppc_, __PPC__, __powerpc__.
-   * 
-   * Little endian: i386, __i386__, __x86_64__, __amd64__, __sh__, __vax__
-   * (yes, really!), MIPSEL, __MIPSEL__, and __ARMEL__, __alpha, __alpha__,
-   * __ia64__.
-   *
-   * It seems that ppc, hppa, ia64, alpha, sparc, mips, arm and superh have
-   * both big and little endian modes.
-   */
-#if defined(_AIX) || defined(AIX)					\
-  || defined(sparc) || defined(__sparc__)				\
-  || defined(__mc68000__) || defined(__mk68k__)				\
-  || defined(MIPSEB) || defined(__MIPSEB__)				\
-  || defined(__ARMEB)							\
-  || defined(HPPA) || defined(__hppa__)					\
-  || defined(PPC) || defined(__ppc__) || defined(__PPC__)		\
-  || defined(__powerpc__)						\
-  || defined(__s390__) || defined(__s390x__)
-#  define __BIG_ENDIAN__
-#elif defined(i386) || defined(__i386__)       \
-  || defined(__x86_64__) || defined(__amd64__) \
-  || defined(MIPSEL) || defined(__MIPSEL__)    \
-  || defined(__alpha) || defined(__alpha__)
-#  define __LITTLE_ENDIAN__
-#endif
 
 
-#if defined(__BIG_ENDIAN__)
+#if __BYTE_ORDER == __BIG_ENDIAN
 
   //------------------------------------------------------
   // Big Endian
   //------------------------------------------------------
-
-#define IT_ENDIANITY 4321
 
   inline it_s16 big_endian(it_s16 x) { return x; }
   inline it_u16 big_endian(it_u16 x) { return x; }
@@ -158,13 +181,11 @@ namespace itpp {
 //   inline void little_endian(it_u64 x, it_u64 &y) { REV_4(&x,&y); }
 // #endif
 
-#elif defined(__LITTLE_ENDIAN__)
+#elif __BYTE_ORDER == __LITTLE_ENDIAN
 
   //------------------------------------------------------
   // Little Endian
   //------------------------------------------------------
-
-#define IT_ENDIANITY 1234
 
   //32 bit architechures (default)
   inline it_s16 big_endian(it_s16 x) { it_s16 y; REV_2(&x,&y); return y; }
@@ -213,15 +234,15 @@ namespace itpp {
 
 #error "Could not determine endianity!!!"
 
-#endif 
+#endif // if __BYTE_ORDER == ...
 
 #undef REV_2
 #undef REV_4
 #undef REV_8
 
-#endif //DOXYGEN_SHOULD_SKIP_THIS
-
 } // namespace itpp
+
+#endif //DOXYGEN_SHOULD_SKIP_THIS
 
 #endif // #ifndef MACHDEP_H
 

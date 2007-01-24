@@ -1,5 +1,10 @@
 2007-01-24  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* configure.ac, itpp/base/machdep.h, itpp/config_msvc.h: Improved
+	portability by adding support for <endian.h> system header
+	(available at least on Linux systems). Thanks to Kumar Appaiah and
+	his Debian colleagues for their valuable hints.
+
 	* tests/Makefile.am: Added missing "tests/itfile_test_data.it"
 	file
 

@@ -219,6 +219,7 @@ AC_HEADER_TIME
 AC_CHECK_HEADERS([cmath \
   complex \
   deque \
+  endian.h \
   fstream \
   iomanip \
   iostream \
