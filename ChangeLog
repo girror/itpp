@@ -1,3 +1,10 @@
+2007-01-30  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* configure.ac, extras/itpp-config.t2t, extras/txt2man.sh,
+	itpp-config.1.in, Makefile.am: Added man page for itpp-config
+	script
+	(merged rev. 892:893 from the trunk)
+	
 2007-01-24  Adam Piatyszek  <ediap@users.sourceforge.net>
 	
 	* AUTHORS, doc/local/authors.doc: Added Kumar Appaiah (Debian
