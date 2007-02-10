@@ -1,3 +1,7 @@
+2007-02-10  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* NEWS: Updated to include recent changes
+
 2007-02-08  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* configure.ac, Makefile.am: "upload" target removed
