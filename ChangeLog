@@ -1,8 +1,14 @@
+2007-02-28  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* tests/gf2mat_test.cpp: Added EXTENSIVE_TESTS macro definition,
+	which turns on/off extensive tests.
+	(merged rev. 942:943 from the trunk)
+
 2007-02-12  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* doc/Makefile.am, Makefile.am: Changed the naming scheme of
 	snapshots to "itpp-VERSION_preYYYYMMDD"
-	(merged rev. 332:333 from the trunk)
+	(merged rev. 932:933 from the trunk)
 	
 	* configure.ac: Updated version numbers
 

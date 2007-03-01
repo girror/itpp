@@ -30,6 +30,8 @@
 * -------------------------------------------------------------------------
 */
 
+// To run extensive tests uncomment the following definition
+// #define EXTENSIVE_TESTS
 
 #include <itpp/itbase.h>
 
@@ -87,7 +89,7 @@ int main()
  cout << "D=" << D << endl;
  cout << "p=" << p << endl;
  
- /*            // to run the extensive tests, remove this comment   
+#ifdef EXTENSIVE_TESTS
     
  // ========== EXTENSIVE RANDOM TESTS ========== 
 
@@ -250,6 +252,6 @@ int main()
 
  cout << "All tests successfully passed." << endl;
 
- */     // to run the extensive tests, remove this comment   
+#endif // #ifdef(EXTENSIVE_TESTS)
 
 }
