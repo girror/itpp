@@ -1,11 +1,6 @@
 include $(top_srcdir)/Makefile.common
-if ENABLE_DEBUG
-LDADD = $(top_builddir)/itpp/libitpp_debug.la
-AM_CXXFLAGS = $(CXXFLAGS_DEBUG)
-else
 LDADD = $(top_builddir)/itpp/libitpp.la
 AM_CXXFLAGS = $(CXXFLAGS_OPT)
-endif
 
 ALL_TESTS = \
 	array_test \
