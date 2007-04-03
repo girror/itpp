@@ -1,7 +1,13 @@
 2007-04-03  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* config/acx_blas.m4, config/acx_cblas.m4, config/acx_fft.m4,
+	config/acx_lapack.m4, configure.ac: Improved the speed and
+	portability of external libraries detection macros
+	(merged rev. 937:938 from the trunk)
+	
 	* AUTHORS, doc/local/authors.doc: Added Gunter Dannoritzer as
 	openSUSE distribution packages maintainer
+	(merged rev. 975:976 from the trunk)
 
 2007-03-21  Adam Piatyszek  <ediap@users.sourceforge.net>
 
