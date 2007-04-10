@@ -1,5 +1,9 @@
 2007-04-10  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* IT++ 3.10.10 released (SVN tag: release-3-10-10)
+
+	* NEWS: Updated to reflect recent changes
+
 	* tests/timer_test.cpp, tests/timer_test.ref: CPU_Timer test is
 	now independent of a Real_Timer test. This should solve test
 	failures in some specific cases (high load of CPU, etc.).
