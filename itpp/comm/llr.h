@@ -12,7 +12,7 @@
  * IT++ - C++ library of mathematical, signal processing, speech processing,
  *        and communications classes and functions
  *
- * Copyright (C) 1995-2006  (see AUTHORS file for a list of contributors)
+ * Copyright (C) 1995-2007  (see AUTHORS file for a list of contributors)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@
 #include <itpp/base/mat.h>
 #include <itpp/base/specmat.h>
 #include <itpp/base/matfunc.h>
+#include <limits>
 
 
 namespace itpp {
@@ -61,8 +62,8 @@ namespace itpp {
   /*!  \relates LLR_calc_unit 
     The largest possible QLLR value
   */
-  const QLLR QLLR_MAX=(INT_MAX>>2) ;
- // added some margin to make sure the sum of two LLR is still permissible
+  const QLLR QLLR_MAX = (std::numeric_limits<QLLR>::max() >> 2);
+  // added some margin to make sure the sum of two LLR is still permissible
 
   /*! 
     \brief Log-likelihood algebra calculation unit.

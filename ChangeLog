@@ -1,5 +1,14 @@
 2007-04-17  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/base/elmatfunc.cpp, itpp/base/itassert.cpp,
+	itpp/base/parser.cpp, itpp/base/scalfunc.cpp,
+	itpp/comm/error_counters.cpp, itpp/comm/llr.h,
+	itpp/protocol/selective_repeat.cpp, itpp/protocol/tcp.cpp,
+	itpp/srccode/vq.cpp: Added missing #include <cstdlib> and <limits>
+	header files. This fixes problems with building using GCC 4.3
+	snapshot. Thanks to Martin Michlmayr from the Debian project for
+	reporting this bug.
+
 	* configure.ac: Version bump
 
 ==============================================================================
