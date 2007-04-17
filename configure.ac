@@ -1,14 +1,14 @@
 # Process this file with autoconf to produce a configure script
 AC_PREREQ(2.59)
 AC_COPYRIGHT([Copyright (C) 2006, 2007  Adam Piatyszek <ediap@users.sourceforge.net>])
-AC_INIT([IT++],[3.10.10],[ediap@users.sourceforge.net],[itpp])
+AC_INIT([IT++],[3.10.11],[ediap@users.sourceforge.net],[itpp])
 AC_CONFIG_HEADER([itpp/config.h])
 AC_CONFIG_SRCDIR([itpp/base/vec.cpp])
 AC_CONFIG_AUX_DIR([config])
 AM_INIT_AUTOMAKE
 
 # Shared library versioning
-GENERIC_LIBRARY_VERSION="5:3:3"
+GENERIC_LIBRARY_VERSION="5:4:3"
 #                        | | |
 #                 +------+ | +---+
 #                 |        |     |
