@@ -1,3 +1,10 @@
+2007-05-15  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/transforms.cpp, itpp/base/transforms.h: Fixed
+	linking errors when trying to use Hadamard and Walsh-Hadamard
+	transform functions. This fixes bug report [1719146] submitted by
+	Stephan Ludwig.
+
 2007-04-23  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/itmex.h: Fixed bug [1703731] by implementing the missing
