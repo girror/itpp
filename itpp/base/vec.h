@@ -80,7 +80,14 @@ namespace itpp {
   //! Inner (dot) product of two vectors v1 and v2
   template<class Num_T> Num_T operator*(const Vec<Num_T> &v1, const Vec<Num_T> &v2)
   { return dot(v1, v2); }
-  //! Outer product of two vectors v1 and v2
+  /*! 
+   * \brief Outer product of two vectors v1 and v2 (v2 is a transposed vector)
+   *
+   * For complex arguments, v2 is a transposed vector only (not Hermitian
+   * transposed). This is equivalent to the Matlab's (v1 * v2.') operation.
+   * Please use \c outer_product(v1,conj(v2)) to get the same result as for
+   * Matlabs' (v1 * v2').
+   */
   template<class Num_T> const Mat<Num_T> outer_product(const Vec<Num_T> &v1, const Vec<Num_T> &v2);
   //! Multiplication of a vector and a scalar
   template<class Num_T> const Vec<Num_T> operator*(const Vec<Num_T> &v, const Num_T t);
