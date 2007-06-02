@@ -1,3 +1,9 @@
+2007-06-02  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* IT++ 3.10.11 released (SVN tag: release-3-10-11)
+
+	* NEWS: Updated to reflect recent changes
+
 2007-05-30  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/base/vec.h: Fixed bug [1727923]. Actually the behaviour of
