@@ -68,8 +68,8 @@
 #endif
 
 #ifdef HAVE_MKL
-/* Define if you have MKL8 FFT library. */
-#  define HAVE_FFT_MKL8 1
+/* Define if you have MKL FFT library. */
+#  define HAVE_FFT_MKL 1
 #endif
 
 /* Define to 1 if you have the <fstream> header file. */
