@@ -410,8 +410,8 @@ namespace itpp {
     it_assert((n >= 0) && (k >= 0), "binom(n, k): n and k must be non-negative integers");
     k = ((n - k) < k) ? n - k : k;
 
-    double out = n - k + 1;
-    for (int i = 2; i <= k; i++) {
+    double out = 1.0;
+    for (int i = 1; i <= k; ++i) {
       out *= (i + n - k);
       out /= i;
     }
@@ -425,8 +425,8 @@ namespace itpp {
     it_assert((n >= 0) && (k >= 0), "binom_i(n, k): n and k must be non-negative integers");
     k = ((n - k) < k) ? n - k : k;
 
-    int out = n - k + 1;
-    for (int i = 2; i <= k; i++) {
+    int out = 1;
+    for (int i = 1; i <= k; ++i) {
       out *= (i + n - k);
       out /= i;
     }
