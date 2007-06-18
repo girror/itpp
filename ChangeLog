@@ -1,3 +1,13 @@
+2007-06-18  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* win32/itpp_acml.vcproj, win32/itpp_mkl.vcproj:
+	Fixed bug [1738716]
+
+	The MSVC++ project files included wrong lists of source and header
+	files, which resulted in compilation errors under MSVC++. This
+	problem appeared in release 3.10.9 and has not been spotted by
+	anyone since then.
+
 2007-06-10  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* INSTALL, config/acx_blas.m4, config/acx_fft.m4,
