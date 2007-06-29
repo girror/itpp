@@ -2,7 +2,7 @@
  * \file
  * \brief Definitions of functions on vectors and matrices
  * \author Tony Ottosson and Adam Piatyszek
- * 
+ *
  * $Date$
  * $Revision$
  *
@@ -54,7 +54,7 @@ namespace itpp {
   int size(const Vec<T> &v) { return v.length(); }
 
 
-  //! Sum of all elements in the vector 
+  //! Sum of all elements in the vector
   template<class T>
   T sum(const Vec<T> &v)
   {
@@ -66,7 +66,7 @@ namespace itpp {
     return M;
   }
 
-  /*! 
+  /*!
    * \brief Sum of elements in the matrix \c m
    *
    * <tt>sum(m) = sum(m, 1)</tt> returns a vector where the elements are sum
@@ -84,14 +84,14 @@ namespace itpp {
 
       for (int i=0; i<m.cols(); i++)
 	out(i) = sum(m.get_col(i));
-    } 
+    }
     else {
       out.set_size(m.rows(), false);
 
       for (int i=0; i<m.rows(); i++)
 	out(i) = sum(m.get_row(i));
     }
-      
+
     return out;
   }
 
@@ -107,7 +107,7 @@ namespace itpp {
     return M;
   }
 
-  /*! 
+  /*!
    * \brief Sum of the square of elements in the matrix \c m
    *
    * <tt>sum(m) = sum(m, 1)</tt> returns a vector where the elements are sum
@@ -125,18 +125,18 @@ namespace itpp {
 
       for (int i=0; i<m.cols(); i++)
 	out(i) = sum_sqr(m.get_col(i));
-    } 
+    }
     else {
       out.set_size(m.rows(), false);
 
       for (int i=0; i<m.rows(); i++)
 	out(i) = sum_sqr(m.get_row(i));
     }
-      
+
     return out;
   }
 
-  //! Cumulative sum of all elements in the vector 
+  //! Cumulative sum of all elements in the vector
   template<class T>
   Vec<T> cumsum(const Vec<T> &v)
   {
@@ -149,7 +149,7 @@ namespace itpp {
     return out;
   }
 
-  /*! 
+  /*!
    * \brief Cumulative sum of elements in the matrix \c m
    *
    * <tt>cumsum(m) = cumsum(m, 1)</tt> returns a matrix where the elements
@@ -172,7 +172,7 @@ namespace itpp {
 
     return out;
   }
-  
+
   //! The product of all elements in the vector
   template<class T>
   T prod(const Vec<T> &v)
@@ -186,8 +186,8 @@ namespace itpp {
     return out;
   }
 
-  /*! 
-   * \brief Product of elements in the matrix \c m 
+  /*!
+   * \brief Product of elements in the matrix \c m
    *
    * <tt>prod(m) = prod(m, 1)</tt> returns a vector where the elements are
    * products over each column, whereas <tt>prod(m, 2)</tt> returns a vector
@@ -200,13 +200,13 @@ namespace itpp {
     Vec<T> out(m.cols());
 
     if (dim == 1) {
-      it_assert((m.cols() >= 1) && (m.rows() >= 1), 
+      it_assert((m.cols() >= 1) && (m.rows() >= 1),
 		"prod: number of columns should be at least 1");
       out.set_size(m.cols(), false);
 
       for (int i=0; i<m.cols(); i++)
 	out(i) = prod(m.get_col(i));
-    } 
+    }
     else {
       it_assert((m.cols() >= 1) && (m.rows() >= 1),
 		"prod: number of rows should be at least 1");
@@ -222,7 +222,7 @@ namespace itpp {
   template<class T>
   Vec<T> cross(const Vec<T> &v1, const Vec<T> &v2)
   {
-    it_assert((v1.size() == 3) && (v2.size() == 3), 
+    it_assert((v1.size() == 3) && (v2.size() == 3),
 	      "cross: vectors should be of size 3");
 
     Vec<T> r(3);
@@ -288,7 +288,7 @@ namespace itpp {
   template<class T>
   Mat<T> zero_pad(const Mat<T> &m, int rows, int cols)
   {
-    it_assert((rows >= m.rows()) && (cols >= m.cols()), 
+    it_assert((rows >= m.rows()) && (cols >= m.cols()),
 	      "zero_pad() cannot shrink the matrix!");
     Mat<T> m2(rows, cols);
     m2.set_submatrix(0,m.rows()-1,0,m.cols()-1, m);
@@ -299,7 +299,7 @@ namespace itpp {
 
     return m2;
   }
-  
+
 
   //! Return zero if indexing outside the vector \c v otherwise return the
   //! element \c index
@@ -323,7 +323,7 @@ namespace itpp {
 
 
   //! Hermitian transpose (complex conjugate transpose) of the matrix \c m
-  //! returning the transposed matrix in \c out 
+  //! returning the transposed matrix in \c out
   template<class T>
   void hermitian_transpose(const Mat<T> &m, Mat<T> &out) { out = m.H(); }
 
@@ -333,7 +333,7 @@ namespace itpp {
 
 
 
-  /*!  
+  /*!
    * \brief Returns true if matrix \c X is hermitian, false otherwise
    * \author M. Szalay
    *
@@ -344,14 +344,14 @@ namespace itpp {
    */
   template<class Num_T>
   bool is_hermitian(const Mat<Num_T>& X) {
-    
+
     if (X == X.H() )
       return true;
     else
       return false;
   }
 
-  /*!  
+  /*!
    * \brief Returns true if matrix \c X is unitary, false otherwise
    * \author M. Szalay
    *
@@ -362,7 +362,7 @@ namespace itpp {
    */
   template<class Num_T>
   bool is_unitary(const Mat<Num_T>& X) {
-    
+
     if ( inv(X) == X.H() )
       return true;
     else
@@ -370,7 +370,7 @@ namespace itpp {
   }
 
 
-  /*! 
+  /*!
    * \brief Computes the Kronecker product of two matrices
    *
    * <tt>K = kron(X, Y)</tt> returns the Kronecker tensor product of \c X
@@ -382,21 +382,21 @@ namespace itpp {
    * \author Adam Piatyszek
    */
   template<class Num_T>
-  Mat<Num_T> kron(const Mat<Num_T>& X, const Mat<Num_T>& Y) 
+  Mat<Num_T> kron(const Mat<Num_T>& X, const Mat<Num_T>& Y)
   {
     Mat<Num_T> result(X.rows() * Y.rows(), X.cols() * Y.cols());
 
     for (int i = 0; i < X.rows(); i++)
       for (int j = 0; j < X.cols(); j++)
 	result.set_submatrix(i * Y.rows(), j * Y.cols(), X(i, j) * Y);
-    
+
     return result;
   }
 
 
-  /*! 
-   * \brief Square root of the complex square matrix \c A 
-   *  
+  /*!
+   * \brief Square root of the complex square matrix \c A
+   *
    * This function computes the matrix square root of the complex square
    * matrix \c A. The implementation is based on the Matlab/Octave \c
    * sqrtm() function.
@@ -408,9 +408,9 @@ namespace itpp {
    */
   cmat sqrtm(const cmat& A);
 
-  /*! 
-   * \brief Square root of the real square matrix \c A 
-   *  
+  /*!
+   * \brief Square root of the real square matrix \c A
+   *
    * This function computes the matrix square root of the real square matrix
    * \c A. Please note that the returned matrix is complex. The
    * implementation is based on the Matlab/Octave \c sqrtm() function.
@@ -428,17 +428,19 @@ namespace itpp {
 
   // -------------------- Diagonal matrix functions ---------------------------------------
 
-  /*! 
+  /*!
     \addtogroup diag
-    
+
   */
 
   //!@{
 
-  /*! 
-    \brief Returns a diagonal matrix whith the elements of the vector \c v on the diagonal and zeros elsewhere.
+  /*!
+    \brief Returns a diagonal matrix whith the elements of the vector \c v
+    on the diagonal and zeros elsewhere.
 
-    The size of the return matrix will be \f$n \times n\f$, where \f$n\f$ is the length of the input vector \c v.
+    The size of the return matrix will be \f$n \times n\f$, where \f$n\f$ is
+    the length of the input vector \c v.
   */
   template<class T>
   Mat<T> diag(const Vec<T> &v, const int K = 0)
@@ -455,11 +457,12 @@ namespace itpp {
     return m;
   }
 
-  /*! 
-    \brief Returns in the output wariable \c m a diagonal matrix whith the elements of the vector \c v on the 
-    diagonal and zeros elsewhere.
-  
-    The size of the output matrix \c m will be \f$n \times n\f$, where \f$n\f$ is the length of the input vector \c v.
+  /*!
+    \brief Returns in the output wariable \c m a diagonal matrix whith the
+    elements of the vector \c v on the diagonal and zeros elsewhere.
+
+    The size of the output matrix \c m will be \f$n \times n\f$, where
+    \f$n\f$ is the length of the input vector \c v.
   */
   template<class T>
   void diag(const Vec<T> &v, Mat<T> &m)
@@ -470,10 +473,11 @@ namespace itpp {
       m(i,i) = v(i);
   }
 
-  /*! 
+  /*!
     \brief Returns the diagonal elements of the input matrix \c m.
 
-    The input matrix \c m must be a square \f$n \times n\f$ matrix. The size of the output vector will be \f$n\f$.
+    The input matrix \c m must be a square \f$n \times n\f$ matrix. The size
+    of the output vector will be \f$n\f$.
   */
   template<class T>
   Vec<T> diag(const Mat<T> &m)
@@ -486,13 +490,14 @@ namespace itpp {
     return t;
   }
 
-  // 
   /*!
-    \brief Returns a matrix with the elements of the input vector \c main on the diagonal and the elements of 
-    the input vector \c sup on the diagonal row above.
+    \brief Returns a matrix with the elements of the input vector \c main
+    on the diagonal and the elements of the input vector \c sup on the
+    diagonal row above.
 
-    If the number of elements in the vector \c main is \f$n\f$, then the number of elements in the input vector 
-    \c sup must be \f$n-1\f$. The size of the return matrix will be \f$n \times n\f$.
+    If the number of elements in the vector \c main is \f$n\f$, then the
+    number of elements in the input vector \c sup must be \f$n-1\f$. The
+    size of the return matrix will be \f$n \times n\f$.
   */
   template<class T>
   Mat<T> bidiag(const Vec<T> &main, const Vec<T> &sup)
@@ -512,11 +517,13 @@ namespace itpp {
   }
 
   /*!
-    \brief Returns in the output variable \c m a matrix with the elements of the input vector \c main on the diagonal 
-    and the elements of the input vector \c sup on the diagonal row above.
+    \brief Returns in the output variable \c m a matrix with the elements
+    of the input vector \c main on the diagonal and the elements of the
+    input vector \c sup on the diagonal row above.
 
-    If the number of elements in the vector \c main is \f$n\f$, then the number of elements in the input vector 
-    \c sup must be \f$n-1\f$. The size of the output matrix \c m will be \f$n \times n\f$.
+    If the number of elements in the vector \c main is \f$n\f$, then the
+    number of elements in the input vector \c sup must be \f$n-1\f$. The
+    size of the output matrix \c m will be \f$n \times n\f$.
   */
   template<class T>
   void bidiag(const Vec<T> &main, const Vec<T> &sup, Mat<T> &m)
@@ -534,10 +541,12 @@ namespace itpp {
   }
 
   /*!
-    \brief Returns the main diagonal and the diagonal row above in the two output vectors \c main and \c sup.
+    \brief Returns the main diagonal and the diagonal row above in the two
+    output vectors \c main and \c sup.
 
-    The input matrix \c in must be a square \f$n \times n\f$ matrix. The length of the output vector \c main will be \f$n\f$ 
-    and the length of the output vector \c sup will be \f$n-1\f$.
+    The input matrix \c in must be a square \f$n \times n\f$ matrix. The
+    length of the output vector \c main will be \f$n\f$ and the length of
+    the output vector \c sup will be \f$n-1\f$.
   */
   template<class T>
   void bidiag(const Mat<T> &m, Vec<T> &main, Vec<T> &sup)
@@ -555,11 +564,13 @@ namespace itpp {
   }
 
   /*!
-    \brief Returns a matrix with the elements of \c main on the diagonal, the elements of \c sup on the diagonal row above, 
-    and the elements of \c sub on the diagonal row below.
+    \brief Returns a matrix with the elements of \c main on the diagonal,
+    the elements of \c sup on the diagonal row above, and the elements of \c
+    sub on the diagonal row below.
 
-    If the length of the input vector \c main is \f$n\f$ then the lengths of the vectors \c sup and \c sub 
-    must equal \f$n-1\f$. The size of the return matrix will be \f$n \times n\f$.
+    If the length of the input vector \c main is \f$n\f$ then the lengths of
+    the vectors \c sup and \c sub must equal \f$n-1\f$. The size of the
+    return matrix will be \f$n \times n\f$.
   */
   template<class T>
   Mat<T> tridiag(const Vec<T> &main, const Vec<T> &sup, const Vec<T> &sub)
@@ -580,11 +591,13 @@ namespace itpp {
   }
 
   /*!
-    \brief Returns in the output matrix \c m a matrix with the elements of \c main on the diagonal, the elements of \c sup on the
-    diagonal row above, and the elements of \c sub on the diagonal row below.
-  
-    If the length of the input vector \c main is \f$n\f$ then the lengths of the vectors \c sup and \c sub 
-    must equal \f$n-1\f$. The size of the output matrix \c m will be \f$n \times n\f$.
+    \brief Returns in the output matrix \c m a matrix with the elements of
+    \c main on the diagonal, the elements of \c sup on the diagonal row
+    above, and the elements of \c sub on the diagonal row below.
+
+    If the length of the input vector \c main is \f$n\f$ then the lengths of
+    the vectors \c sup and \c sub must equal \f$n-1\f$. The size of the
+    output matrix \c m will be \f$n \times n\f$.
   */
   template<class T>
   void tridiag(const Vec<T> &main, const Vec<T> &sup, const Vec<T> &sub, Mat<T> &m)
@@ -603,10 +616,12 @@ namespace itpp {
   }
 
   /*!
-    \brief Returns the main diagonal, the diagonal row above, and the diagonal row below int the output vectors \c main, \c sup, and \c sub.
+    \brief Returns the main diagonal, the diagonal row above, and the
+    diagonal row below in the output vectors \c main, \c sup, and \c sub.
 
-    The input matrix \c m must be a square \f$n \times n\f$ matrix. The length of the output vector \c main will be \f$n\f$ 
-    and the length of the output vectors \c sup and \c sup will be \f$n-1\f$.
+    The input matrix \c m must be a square \f$n \times n\f$ matrix. The
+    length of the output vector \c main will be \f$n\f$ and the length of
+    the output vectors \c sup and \c sup will be \f$n-1\f$.
   */
   template<class T>
   void tridiag(const Mat<T> &m, Vec<T> &main, Vec<T> &sup, Vec<T> &sub)
@@ -627,7 +642,7 @@ namespace itpp {
 
 
 
-  /*! 
+  /*!
     \brief The trace of the matrix \c m, i.e. the sum of the diagonal elements.
   */
   template<class T>
@@ -640,9 +655,9 @@ namespace itpp {
 
 
   // ----------------- reshaping vectors and matrices ---------------------------
-  /*! 
+  /*!
     \addtogroup reshaping
-    
+
   */
 
   //!@{
@@ -690,7 +705,8 @@ namespace itpp {
   /*!
     \brief Reshape the matrix into an rows*cols matrix
 
-    The data is taken columnwise from the original matrix and written columnwise into the new matrix.
+    The data is taken columnwise from the original matrix and written
+    columnwise into the new matrix.
   */
   template<class T>
   Mat<T> reshape(const Mat<T> &m, int rows, int cols)
@@ -712,7 +728,8 @@ namespace itpp {
   /*!
     \brief Reshape the vector into an rows*cols matrix
 
-    The data is element by element from the vector and written columnwise into the new matrix.
+    The data is element by element from the vector and written columnwise
+    into the new matrix.
   */
   template<class T>
   Mat<T> reshape(const Vec<T> &v, int rows, int cols)
@@ -731,7 +748,7 @@ namespace itpp {
   //!@}
 
 
-  /*! 
+  /*!
     \addtogroup upsample
   */
 
@@ -765,7 +782,7 @@ namespace itpp {
   }
 
   //! Upsample a vector by inserting \a (usf-1) zeros after each sample
-  template<class T> 
+  template<class T>
   void upsample(const Vec<T> &v, int usf, Vec<T> &u)
   {
     it_assert1(usf >= 1, "upsample: upsampling factor must be equal or greater than one" );
@@ -776,7 +793,7 @@ namespace itpp {
   }
 
 
-  //! Upsample a vector by incerting \a (usf-1) zeros after each sample
+  //! Upsample a vector by inserting \a (usf-1) zeros after each sample
   template<class T>
   Vec<T> upsample(const Vec<T> &v, int usf)
   {
@@ -785,7 +802,7 @@ namespace itpp {
     return u;
   }
 
-  //! Upsample each column by incerting \a (usf-1) zeros after each column
+  //! Upsample each column by inserting \a (usf-1) zeros after each column
   template<class T>
   void upsample(const Mat<T> &v, int usf, Mat<T> &u)
   {
@@ -796,7 +813,7 @@ namespace itpp {
       u.set_col(j*usf,v.get_col(j));
   }
 
-  //! Upsample each column by incerting \a (usf-1) zeros after each column
+  //! Upsample each column by inserting \a (usf-1) zeros after each column
   template<class T>
   Mat<T> upsample(const Mat<T> &v, int usf)
   {
@@ -805,7 +822,7 @@ namespace itpp {
     return u;
   }
 
-  //! Upsample each column by a factor of  \a (usf-1) by linear interpolation
+  //! Upsample each column by a factor of \a (usf-1) by linear interpolation
   template<class T>
   void lininterp(const Mat<T> &m, int usf, Mat<T> &u)
   {
@@ -819,12 +836,12 @@ namespace itpp {
     }
   }
 
-  /*! 
+  /*!
     \brief Upsample each column of matrix \a m to achieve \a f_ups
     frequency using linear interpolation
 
     This function performs upsampling of matrix \a m to achieve \a
-    nrof_samples samples at \a f_ups frequency starting from the 
+    nrof_samples samples at \a f_ups frequency starting from the
     sample at \a t_start time. The frequency of input samples stored
     in the matrix \a m is defined by the \a f_base parameter.
 
@@ -842,13 +859,13 @@ namespace itpp {
     it_assert1((nrof_samples * t_ups + t_start) <= (cols * t_base), "lininterp: too many samples required or input data to short");
     Mat<T> u(rows, nrof_samples);
     double curr_time = t_start;
-    
+
     int i = 0;
     int k = 0;
     while (i < cols - 1) {
       while ((curr_time < (i + 1) * t_base) && (k < nrof_samples)) {
 	for (int j = 0; j < rows; j++) {
-	  u(j, k) = (m(j, i) * ((i + 1) * t_base - curr_time) 
+	  u(j, k) = (m(j, i) * ((i + 1) * t_base - curr_time)
 		     - m(j, i + 1) * (i * t_base - curr_time)) / t_base;
 	}
 	k++;
@@ -891,12 +908,12 @@ namespace itpp {
     return u;
   }
 
-  /*! 
+  /*!
     \brief Upsample each sample of vector \a v to achieve \a f_ups
     frequency using linear interpolation
 
     This function performs upsampling of vector \a v to achieve \a
-    nrof_samples samples at \a f_ups frequency starting from the 
+    nrof_samples samples at \a f_ups frequency starting from the
     sample at \a t_start time. The frequency of input samples stored
     in the vector \a v is defined by the \a f_base parameter.
 
@@ -918,7 +935,7 @@ namespace itpp {
     int k = 0;
     while (i < len - 1) {
       while ((curr_time < (i + 1) * t_base) && (k < nrof_samples)) {
-	u(k) = (v(i) * ((i + 1) * t_base - curr_time) 
+	u(k) = (v(i) * ((i + 1) * t_base - curr_time)
 		- v(i + 1) * (i * t_base - curr_time)) / t_base;
 	k++;
 	curr_time += t_ups;
