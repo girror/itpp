@@ -1,3 +1,11 @@
+2007-07-12  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/vec.h: Fixed bug [1752576] in operators "+=" and "-="
+
+	The "+=" and "-=" operators for vectors did not add or subtract a
+	vector to or from itself. This was caused by incorrect order of
+	checks for empty vector and self incrementation/decrementation.
+
 2007-06-29  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/base/matfunc.h: Minor spelling and cosmetic fixes in

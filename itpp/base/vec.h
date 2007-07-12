@@ -661,17 +661,16 @@ namespace itpp {
   template<class Num_T> inline
   Vec<Num_T>& Vec<Num_T>::operator+=(const Vec<Num_T> &v)
   {
-    if (this != &v) {
-      int i;
-      if (datasize == 0) { // if not assigned a size.
+    if (datasize == 0) { // if not assigned a size.
+      if (this != &v) { // check for self addition
 	alloc(v.datasize);
-	for (i=0; i<v.datasize; i++)
+	for (int i = 0; i < v.datasize; i++)
 	  data[i] = v.data[i];
-      } else {
-	it_assert1(datasize==v.datasize, "Vec<Num_T>::operator+=: wrong sizes");
-	for (i=0; i<datasize; i++)
-	  data[i] += v.data[i];
       }
+    } else {
+      it_assert1(datasize == v.datasize, "Vec::operator+=: Wrong sizes");
+      for (int i = 0; i < datasize; i++)
+	data[i] += v.data[i];
     }
     return *this;
   }
@@ -724,17 +723,16 @@ namespace itpp {
   template<class Num_T> inline
   Vec<Num_T>& Vec<Num_T>::operator-=(const Vec<Num_T> &v)
   {
-    if (this != &v) {
-      int i;
-      if (datasize == 0) { // if not assigned a size.
+    if (datasize == 0) { // if not assigned a size.
+      if (this != &v) { // check for self decrementation
 	alloc(v.datasize);
-	for (i=0; i<v.datasize; i++)
+	for (int i = 0; i < v.datasize; i++)
 	  data[i] = -v.data[i];
-      } else {
-	it_assert1(datasize==v.datasize, "Vec<Num_T>::operator-=: wrong sizes");
-	for (i=0; i<datasize; i++)
-	  data[i] -= v.data[i];
       }
+    } else {
+      it_assert1(datasize == v.datasize, "Vec::operator-=: Wrong sizes");
+      for (int i = 0; i < datasize; i++)
+	data[i] -= v.data[i];
     }
     return *this;
   }
