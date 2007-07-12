@@ -1,5 +1,7 @@
 2007-07-12  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* IT++ 3.10.12 released (SVN tag: release-3-10-12)
+
 	* NEWS: Updated to reflect recent changes
 
 	* itpp/base/bessel/hyperg.cpp, itpp/base/gf2mat.cpp,
