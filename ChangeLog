@@ -1,5 +1,14 @@
 2007-07-12  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* NEWS: Updated to reflect recent changes
+
+	* itpp/base/bessel/hyperg.cpp, itpp/base/gf2mat.cpp,
+	itpp/comm/modulator_nd.cpp: Minor fixes to prevent compiler
+	warnings
+
+	Code refactored to suppress warnings on unused or uninitialised
+	variables.
+
 	* itpp/base/vec.h: Fixed bug [1752576] in operators "+=" and "-="
 
 	The "+=" and "-=" operators for vectors did not add or subtract a

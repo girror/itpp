@@ -482,7 +482,9 @@ namespace itpp {
     // first compute the T-factorization
     GF2mat T,U;
     ivec perm;
-    int rank = T_fact(T,U,perm);
+    int rank;
+    // 2007-07-12 ediap: workaround to fix unused variable warning
+    rank = T_fact(T,U,perm);
     it_assert1(rank==ncols,"GF2mat::inverse(): Matrix is not full rank"); 
  
     // backward substitution

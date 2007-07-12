@@ -102,7 +102,7 @@ static double hy1f1a(double, double, double, double *);
 
 double hyperg(double a, double b, double x)
 {
-  double asum, psum, acanc, pcanc, temp;
+  double asum, psum, acanc, pcanc = 0, temp;
 
   /* See if a Kummer transformation will help */
   temp = b - a;

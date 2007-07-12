@@ -572,7 +572,7 @@ namespace itpp {
       crange(i,1) = M(i)-1;
     }
 
-    int status;  
+    int status = 0;  
     double r = rstart;
     ivec s(sum(M));
     while (r<=rmax) {
