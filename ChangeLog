@@ -1,5 +1,7 @@
 2007-08-11  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* NEWS-3.10: Updated to include 3.10.12 release notes
+
 	* NEWS, NEWS-3.99: Created a new NEWS file for 4.0.x releases
 
 	* configure.ac: Version number updated
