@@ -1,3 +1,11 @@
+2007-08-11  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* NEWS, NEWS-3.99: Created a new NEWS file for 4.0.x releases
+
+	* configure.ac: Version number updated
+
+==============================================================================
+
 2007-08-10  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* IT++ 3.99.3.1 released (SVN tag: release-3-99-3-1)
