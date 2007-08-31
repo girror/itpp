@@ -1,8 +1,8 @@
 /*!
  * \file
  * \brief Implementation of a class factory for fixed-point data types Fix
- * and CFix
- * \author Johan Bergman
+ *        and CFix
+ * \author Johan Bergman and Adam Piatyszek
  *
  * -------------------------------------------------------------------------
  *
@@ -36,25 +36,21 @@ namespace itpp {
 
   void Fix_Factory::create(Fix* &ptr, const int n) const
   {
-    ptr = new Fix[n];
-    if (ptr) {
-      // Set fixed-point restrictions
-      for (int i=0; i<n; i++) {
-        // Note: explicit destructor call intentionally omitted (to save time)
-        new (ptr + i) Fix(0.0, 0, wordlen, emode, omode, qmode, stat_ptr);
-      }
+    void *p = ::operator new(sizeof(Fix) * n);
+    ptr = reinterpret_cast<Fix*>(p);
+    // Set fixed-point restrictions
+    for (int i = 0; i < n; ++i) {
+      new (ptr + i) Fix(0.0, 0, wordlen, emode, omode, qmode, stat_ptr);
     }
   }
 
   void Fix_Factory::create(CFix* &ptr, const int n) const
   {
-    ptr = new CFix[n];
-    if (ptr) {
-      // Set fixed-point restrictions
-      for (int i=0; i<n; i++) {
-        // Note: explicit destructor call intentionally omitted (to save time)
-        new (ptr + i) CFix(0.0, 0, wordlen, emode, omode, qmode, stat_ptr);
-      }
+    void *p = ::operator new(sizeof(CFix) * n);
+    ptr = reinterpret_cast<CFix*>(p);
+    // Set fixed-point restrictions
+    for (int i = 0; i < n; ++i) {
+      new (ptr + i) CFix(0.0, 0, wordlen, emode, omode, qmode, stat_ptr);
     }
   }
 
@@ -68,7 +64,11 @@ namespace itpp {
     else {
       // No, f does not seem to be a Fix_Factory. As a fallback solution,
       // assume that f is DEFAULT_FACTORY and use the default constructor
-      ptr = new Fix[n];
+      void *p = ::operator new(sizeof(Fix) * n);
+      ptr = reinterpret_cast<Fix*>(p);
+      for (int i = 0; i < n; i++) {
+	new (ptr + i) Fix();
+      }
     }
   }
 
@@ -82,7 +82,11 @@ namespace itpp {
     else {
       // No, f does not seem to be a Fix_Factory. As a fallback solution,
       // assume that f is DEFAULT_FACTORY and use the default constructor
-      ptr = new CFix[n];
+      void *p = ::operator new(sizeof(CFix) * n);
+      ptr = reinterpret_cast<CFix*>(p);
+      for (int i = 0; i < n; i++) {
+	new (ptr + i) CFix();
+      }
     }
   }
 
