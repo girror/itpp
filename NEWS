@@ -1,12 +1,12 @@
 ===============================================================================
-IT++ version 4.0.0                                         Released: 2007-??-??
+IT++ version 4.0.0-rc1                                     Released: 2007-09-28
 -------------------------------------------------------------------------------
 
-IT++ 4.0.0 is the first stable release based on itpp-3-99 development
-branch. It supersedes our previous 3.10.x stable series. After almost one
-and a half year of intensive development it includes a lot of new features
-and improvements with respect to IT++ 3.10.12 release (the last stable
-release of 3.10.x series).
+IT++ 4.0.0-rc1 is the first release candidate of our next stable series
+based on itpp-3-99 development branch. It supersedes our previous 3.10.x
+stable series. After almost one and a half year of intensive development it
+includes a lot of new features and improvements with respect to IT++ 3.10.12
+release (the last stable release of 3.10.x series).
 
 A brief summary of the most important additions and changes is listed below.
 Should you need more detailed history of changes that are new in this stable
@@ -32,6 +32,7 @@ New features:
   - Matlab's "a:b" or "a:b:c" notation for increasing and decreasing
     values, e.g. "0:2:10", "-9:-18", "4:-1:0", "0x0:0x8:0xFF"
   - Matrix rows separated with a single semicolon `;'
+  - `NaN' (not a number) and `Inf' (infinity) values properly interpreted
   - Detection of syntax errors during parsing
 
 * New features of the communication channels:
@@ -61,6 +62,8 @@ New features:
 * New methods in Vec and Mat classes: elem_mult_inplace(), elem_mult_out(),
   elem_div_out(), elem_mult_sum(), elem_div_sum() and sumsum()
 
+* New methods: set_rows() and set_cols() implemented in the Mat class
+
 * Added missing left(), right() and mid() methods to the Array class
 
 ### Communications module: ###
@@ -87,7 +90,7 @@ New features:
 ### Other: ###
 
 * MS Visual C++ .NET project file for linking IT++ with ACML added. Also
-  added a few MSVC++ project files for test programs.
+  added MSVC++ project files for building test programs.
 
 
 Modifications:
@@ -176,6 +179,17 @@ Modifications:
     the same Doppler spectrum type.
   - Cleaned up the interfaces of various fading generator classes
 
+* Improved interfaces of Modulator_ND classes, so they are now more similar
+  to 1D and 2D modulators. BTW, implemented Zero-Forcing (ZF) Log-MAP soft
+  demodulator.
+
+### Signal processing module: ###
+
+* Memory allocation for double and complex<double> based vectors and
+  matrices uses 16-byte alignment. This results in much better performance
+  (up to 30% improvement) of FFT/IFFT and DCT/IDCT operations when using
+  FFTW external library (feature request [1418707]).
+
 ### Other: ###
 
 * Removed dependency on the external CBLAS library by providing direct
@@ -192,3 +206,15 @@ Modifications:
   select a limited set of modules, which will be built and installed as the
   IT++ library.
 
+* Improvements in itpp-config and pkg-config's itpp.pc scripts. The changes
+  are intended to follow the distinction between linking to a static and
+  shared version of the library, which is used in pkg-config's itpp.pc file.
+  By default "itpp-config --libs" returns "-I${prefix}/lib -litpp", whereas
+  when "--static" is added in front of "--libs", the returned string is
+  extended with a set of external library names required for proper static
+  linking. Moreover, an additional "--debug" switch has been added, which
+  changes the output of "itpp-config --cflags" and "itpp-config --libs" by
+  providing debugging flags and debugging library name. For backward
+  compatibility "--cflags-opt", "--cflags-debug", "--libs-opt" and
+  "--libs-debug" still exist, but they are not documented and their use is
+  deprecated.

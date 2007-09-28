@@ -1,3 +1,9 @@
+2007-09-28  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* IT++ 4.0.0-rc1 released (SVN tag: release-4-0-0-rc1)
+
+	* NEWS: Updated to reflect recent changes
+
 2007-09-27  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* tests/modulator_nd_test.cpp, tests/modulator_nd_test.ref: Test
