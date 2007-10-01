@@ -2,7 +2,7 @@
 #-------------------------------------------------------------------
 AC_PREREQ(2.59)
 AC_COPYRIGHT([Copyright (C) 2006, 2007  Adam Piatyszek <ediap@users.sourceforge.net>])
-AC_INIT([IT++],[4.0.0-rc1],[ediap@users.sourceforge.net],[itpp])
+AC_INIT([IT++],[4.0.0-rc2],[ediap@users.sourceforge.net],[itpp])
 AC_CONFIG_HEADER([itpp/config.h])
 AC_CONFIG_SRCDIR([itpp/base/vec.cpp])
 AC_CONFIG_AUX_DIR([config])
@@ -47,9 +47,6 @@ AC_PROG_INSTALL
 AC_PROG_LIBTOOL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
-
-# Pass HAVE_F77 conditional to Makefiles
-AM_CONDITIONAL([HAVE_F77], [test "x$F77" != x])
 
 # Set default language to C++
 AC_LANG([C++])
@@ -272,6 +269,9 @@ LDFLAGS="`echo \"$LDFLAGS\" | sed -e 's/  */ /g' -e 's/^ //' -e 's/ $//'`"
 LIBS="`echo \"$LIBS\" | sed -e 's/  */ /g' -e 's/^ //' -e 's/ $//'`"
 LDLIBS="`echo \"$LDFLAGS $LIBS\" | sed -e 's/^ //' -e 's/ $//'`"
 AC_SUBST(LDLIBS)
+
+# Set conditional BUILD_ZDOTUSUB flag for ZDOTU Fortran wrapper
+AM_CONDITIONAL([BUILD_ZDOTUSUB], [test "x$acx_blas_ok" = xyes])
 
 # Set conditionals for runing test programs
 AM_CONDITIONAL([RUN_LAPACK_TESTS], [test "x$acx_lapack_ok" = xyes])
