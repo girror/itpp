@@ -410,7 +410,7 @@ namespace itpp {
    * \brief Returns a matrix with \c m by \c n copies of the vector \c data
    * \author Adam Piatyszek
    *
-   * \param data Vector to be repeated
+   * \param v Vector to be repeated
    * \param m Number of times to repeat data vertically
    * \param n Number of times to repeat data horizontally
    * \param transpose Specifies the input vector orientation (column vector
