@@ -1,3 +1,7 @@
+2007-10-14  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* configure.ac: Version number updated
+
 2007-10-12  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/base/converters.h, itpp/base/help_functions.h,
