@@ -1,3 +1,8 @@
+2007-10-22  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/algebra/svd.h, itpp/base/matfunc.h: Documentation of
+	diag() and svd() updated
+
 2007-10-18  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* doc/doxygen_html.cfg.in: Reset TAB_SIZE to 8 spaces
