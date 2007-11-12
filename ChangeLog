@@ -1,3 +1,8 @@
+2007-11-12  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* Makefile.am, configure.ac.in: Save configuration summary to
+	config_summary.log file
+
 2007-11-02  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* doc/tutorial/src/mimoconv.cpp: Updated MIMO with convolutional
