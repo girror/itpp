@@ -253,5 +253,13 @@
 #  define finite(a) isfinite(a)
 #endif
 
+/* IT++ uses only std::min() and std::max() functions, not macros */
+#ifdef min
+#  undef min
+#endif
+#ifdef max
+#  undef max
+#endif
+
 #endif /* #ifndef CONFIG_H */
 
