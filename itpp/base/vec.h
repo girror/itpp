@@ -757,8 +757,10 @@ namespace itpp {
     return temp;
   }
 
+  //! \cond
   template<>
   Mat<std::complex<double> > Vec<std::complex<double> >::hermitian_transpose() const;
+  //! \endcond
 
   template<class Num_T>
   Mat<Num_T> Vec<Num_T>::hermitian_transpose() const
@@ -1540,8 +1542,10 @@ namespace itpp {
     return *this;
   }
 
+  //! \cond
   template<>
   bvec Vec<std::complex<double> >::operator==(std::complex<double>) const;
+  //! \endcond
 
   template<class Num_T>
   bvec Vec<Num_T>::operator==(const Num_T value) const
@@ -1556,8 +1560,10 @@ namespace itpp {
     return temp;
   }
 
+  //! \cond
   template<>
   bvec Vec<std::complex<double> >::operator!=(std::complex<double>) const;
+  //! \endcond
 
   template<class Num_T>
   bvec Vec<Num_T>::operator!=(const Num_T value) const
@@ -1572,8 +1578,10 @@ namespace itpp {
     return temp;
   }
 
+  //! \cond
   template<>
   bvec Vec<std::complex<double> >::operator<(std::complex<double>) const;
+  //! \endcond
 
   template<class Num_T>
   bvec Vec<Num_T>::operator<(const Num_T value) const
@@ -1588,8 +1596,10 @@ namespace itpp {
     return temp;
   }
 
+  //! \cond
   template<>
   bvec Vec<std::complex<double> >::operator<=(std::complex<double>) const;
+  //! \endcond
 
   template<class Num_T>
   bvec Vec<Num_T>::operator<=(const Num_T value) const
@@ -1604,8 +1614,10 @@ namespace itpp {
     return temp;
   }
 
+  //! \cond
   template<>
   bvec Vec<std::complex<double> >::operator>(std::complex<double>) const;
+  //! \endcond
 
   template<class Num_T>
   bvec Vec<Num_T>::operator>(const Num_T value) const
@@ -1620,8 +1632,10 @@ namespace itpp {
     return temp;
   }
 
+  //! \cond
   template<>
   bvec Vec<std::complex<double> >::operator>=(std::complex<double>) const;
+  //! \endcond
 
   template<class Num_T>
   bvec Vec<Num_T>::operator>=(const Num_T value) const
