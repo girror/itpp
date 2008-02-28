@@ -301,6 +301,8 @@ namespace itpp {
     //! Initialize the generator
     virtual void init() { init_flag = true; }
 
+    using Fading_Generator::generate;
+
     //! Generate \a no_samples values from the fading process
     virtual void generate(int no_samples, cvec& output);
   };
@@ -324,6 +326,8 @@ namespace itpp {
 
     //! Initialize the generator
     virtual void init();
+
+    using Fading_Generator::generate;
 
     //! Generate \a no_samples values from the fading process
     virtual void generate(int no_samples, cvec& output);
@@ -372,6 +376,8 @@ namespace itpp {
 
     //! Initialize the generator
     virtual void init() = 0;
+
+    using Fading_Generator::generate;
 
     //! Generate \a no_samples values from the fading process
     virtual void generate(int no_samples, cvec& output) = 0;
@@ -445,6 +451,8 @@ namespace itpp {
     //! Initialize the generator
     virtual void init();
 
+    using Correlated_Fading_Generator::generate;
+
     //! Generate \a no_samples values from the fading process
     virtual void generate(int no_samples, cvec &output);
 
@@ -500,6 +508,8 @@ namespace itpp {
 
     //! Initialize the generator
     virtual void init();
+
+    using Correlated_Fading_Generator::generate;
 
     //! Generate \a no_samples values from the fading process
     virtual void generate(int no_samples, cvec &output);
@@ -559,6 +569,8 @@ namespace itpp {
 
     //! Initialize the generator
     virtual void init() { init_flag = true; }
+
+    using Correlated_Fading_Generator::generate;
 
     //! Generate \a no_samples values from the fading process
     virtual void generate(int no_samples, cvec &output);
