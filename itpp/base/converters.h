@@ -119,6 +119,14 @@ namespace itpp {
     return temp;
   }
 
+  //! \cond
+  template<> inline
+  cvec to_cvec(const cvec& v)
+  {
+    return v;
+  }
+  //! \endcond
+
   /*!
     \relatesalso Vec
     \brief Converts real and imaginary Vec<T> to cvec
@@ -237,6 +245,14 @@ namespace itpp {
     }
     return temp;
   }
+
+  //! \cond
+  template<> inline
+  cmat to_cmat(const cmat& m)
+  {
+    return m;
+  }
+  //! \endcond
 
   /*!
     \relatesalso Mat
