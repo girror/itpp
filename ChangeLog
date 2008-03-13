@@ -1,5 +1,14 @@
 2008-03-13  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/base/factory.cpp, itpp/base/factory.h,
+	itpp/base/sources.mk, win32/itpp_acml.vcproj,
+	win32/itpp_mkl.vcproj: Mark all create_elements() functions as
+	inline ones
+
+	These functions have 2-4 lines and are only used by alloc() and
+	free() methods only, so we might gain more by inlining them
+	instead of more general functions of Vec, Mat and Array classes.
+
 	* itpp/base/mat.cpp, itpp/base/mat.h: Add in_range(r,c),
 	col_in_range(c) and row_in_range(r) inline methods
 
