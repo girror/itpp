@@ -1093,8 +1093,8 @@ namespace itpp {
   template<class Num_T> inline
   void elem_mult_out(const Vec<Num_T> &a, const Vec<Num_T> &b, const Vec<Num_T> &c, Vec<Num_T> &out)
   {
-    it_assert_debug(a.datasize==b.datasize==c.datasize, "Vec::elem_mult_out: wrong sizes");
-
+    it_assert_debug((a.datasize == b.datasize) && (a.datasize == c.datasize),
+                    "Vec<>::elem_mult_out(): Wrong sizes");
     if(out.datasize != a.datasize)
       out.set_size(a.size());
 
@@ -1105,8 +1105,9 @@ namespace itpp {
   template<class Num_T> inline
   void elem_mult_out(const Vec<Num_T> &a, const Vec<Num_T> &b, const Vec<Num_T> &c, const Vec<Num_T> &d, Vec<Num_T> &out)
   {
-    it_assert_debug(a.datasize==b.datasize==c.datasize==d.datasize, "Vec::elem_mult_out: wrong sizes");
-
+    it_assert_debug((a.datasize == b.datasize) && (a.datasize == c.datasize)
+                    && (a.datasize == d.datasize),
+                    "Vec<>::elem_mult_out(): Wrong sizes");
     if(out.datasize != a.datasize)
       out.set_size(a.size());
 
@@ -1117,8 +1118,8 @@ namespace itpp {
   template<class Num_T> inline
   void elem_mult_inplace(const Vec<Num_T> &a, Vec<Num_T> &b)
   {
-    it_assert_debug(a.datasize==b.datasize, "Vec::elem_mult_inplace: wrong sizes");
-
+    it_assert_debug(a.datasize == b.datasize,
+                    "Vec<>::elem_mult_inplace(): Wrong sizes");
     for(int i=0; i<a.datasize; i++)
       b.data[i] *= a.data[i];
   }
@@ -1126,13 +1127,11 @@ namespace itpp {
   template<class Num_T> inline
   Num_T elem_mult_sum(const Vec<Num_T> &a, const Vec<Num_T> &b)
   {
-    it_assert_debug(a.datasize==b.datasize, "Vec::elem_mult_sum: wrong sizes");
-
+    it_assert_debug(a.datasize == b.datasize,
+                    "Vec<>::elem_mult_sum(): Wrong sizes");
     Num_T acc = 0;
-
     for(int i=0; i<a.datasize; i++)
       acc += a.data[i] * b.data[i];
-
     return acc;
   }
 

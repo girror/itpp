@@ -1562,9 +1562,9 @@ namespace itpp {
   template<class Num_T> inline
   void elem_mult_out(const Mat<Num_T> &A, const Mat<Num_T> &B, const Mat<Num_T> &C, Mat<Num_T> &out)
   {
-    it_assert_debug( (A.no_rows==B.no_rows==C.no_rows) \
-                && (A.no_cols==B.no_cols==C.no_cols), \
-                "Mat<Num_T>::elem_mult_out: wrong sizes" );
+    it_assert_debug((A.no_rows == B.no_rows) && (A.no_rows == C.no_rows)
+                    && (A.no_cols == B.no_cols) && (A.no_cols == C.no_cols),
+                    "Mat<Num_T>::elem_mult_out: wrong sizes" );
 
     if( (out.no_rows != A.no_rows) || (out.no_cols != A.no_cols) )
       out.set_size(A.no_rows, A.no_cols);
@@ -1576,9 +1576,10 @@ namespace itpp {
   template<class Num_T> inline
   void elem_mult_out(const Mat<Num_T> &A, const Mat<Num_T> &B, const Mat<Num_T> &C, const Mat<Num_T> &D, Mat<Num_T> &out)
   {
-    it_assert_debug( (A.no_rows==B.no_rows==C.no_rows==D.no_rows) \
-                && (A.no_cols==B.no_cols==C.no_cols==D.no_cols), \
-                "Mat<Num_T>::elem_mult_out: wrong sizes" );
+    it_assert_debug((A.no_rows == B.no_rows) && (A.no_rows == C.no_rows)
+                    && (A.no_rows == D.no_rows) && (A.no_cols == B.no_cols)
+                    && (A.no_cols == C.no_cols) && (A.no_cols == D.no_cols),
+                    "Mat<Num_T>::elem_mult_out: wrong sizes" );
     if( (out.no_rows != A.no_rows) || (out.no_cols != A.no_cols) )
       out.set_size(A.no_rows, A.no_cols);
 
