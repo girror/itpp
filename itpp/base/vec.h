@@ -1131,11 +1131,9 @@ namespace itpp {
   template<class Num_T>
   void elem_mult_out(const Vec<Num_T> &a, const Vec<Num_T> &b, Vec<Num_T> &out)
   {
-    it_assert_debug(a.datasize==b.datasize, "Vec::elem_mult_out: wrong sizes");
-
-    if(out.datasize != a.datasize)
-      out.set_size(a.size());
-
+    it_assert_debug(a.datasize == b.datasize,
+                    "Vec<>::elem_mult_out(): Wrong sizes");
+    out.set_size(a.datasize);
     for(int i=0; i<a.datasize; i++)
       out.data[i] = a.data[i] * b.data[i];
   }
@@ -1146,9 +1144,7 @@ namespace itpp {
   {
     it_assert_debug((a.datasize == b.datasize) && (a.datasize == c.datasize),
                     "Vec<>::elem_mult_out(): Wrong sizes");
-    if(out.datasize != a.datasize)
-      out.set_size(a.size());
-
+    out.set_size(a.datasize);
     for(int i=0; i<a.datasize; i++)
       out.data[i] = a.data[i] * b.data[i] * c.data[i];
   }
@@ -1160,9 +1156,7 @@ namespace itpp {
     it_assert_debug((a.datasize == b.datasize) && (a.datasize == c.datasize)
                     && (a.datasize == d.datasize),
                     "Vec<>::elem_mult_out(): Wrong sizes");
-    if(out.datasize != a.datasize)
-      out.set_size(a.size());
-
+    out.set_size(a.datasize);
     for(int i=0; i<a.datasize; i++)
       out.data[i] = a.data[i] * b.data[i] * c.data[i] * d.data[i];
   }
@@ -1253,11 +1247,9 @@ namespace itpp {
   template<class Num_T>
   void elem_div_out(const Vec<Num_T> &a, const Vec<Num_T> &b, Vec<Num_T> &out)
   {
-    it_assert_debug(a.datasize==b.datasize, "Vecelem_div_out: wrong sizes");
-
-    if(out.datasize != a.datasize)
-      out.set_size(a.size());
-
+    it_assert_debug(a.datasize == b.datasize,
+                    "Vec<>::elem_div_out(): Wrong sizes");
+    out.set_size(a.datasize);
     for(int i=0; i<a.datasize; i++)
       out.data[i] = a.data[i] / b.data[i];
   }
