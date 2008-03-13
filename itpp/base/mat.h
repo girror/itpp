@@ -640,7 +640,7 @@ namespace itpp {
     set(str);
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T>::Mat(const Num_T *c_array, int rows, int cols, bool row_major,
                   const Factory &f):
     datasize(0), no_rows(0), no_cols(0), data(0), factory(f)
@@ -904,7 +904,7 @@ namespace itpp {
     return a;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> Mat<Num_T>::get_cols(int c1, int c2) const
   {
     it_assert_debug((c1 >= 0) && (c1 <= c2) && (c2 < no_cols),
@@ -917,7 +917,7 @@ namespace itpp {
     return m;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> Mat<Num_T>::get_cols(const Vec<int> &indexlist) const
   {
     Mat<Num_T> m(no_rows,indexlist.size());
@@ -950,7 +950,7 @@ namespace itpp {
   }
 
 
-  template<class Num_T> inline
+  template<class Num_T>
   void Mat<Num_T>::set_rows(int r, const Mat<Num_T> &m)
   {
     it_assert_debug(row_in_range(r), "Mat<>::set_rows(): Index out of range");
@@ -964,7 +964,7 @@ namespace itpp {
     }
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void Mat<Num_T>::set_cols(int c, const Mat<Num_T> &m)
   {
     it_assert_debug(col_in_range(c), "Mat<>::set_cols(): Index out of range");
@@ -1023,8 +1023,9 @@ namespace itpp {
     swap_vector(no_rows, data+c1*no_rows, data+c2*no_rows);
   }
 
-  template<class Num_T> inline
-  void Mat<Num_T>::set_submatrix(int r1, int r2, int c1, int c2, const Mat<Num_T> &m)
+  template<class Num_T>
+  void Mat<Num_T>::set_submatrix(int r1, int r2, int c1, int c2,
+                                 const Mat<Num_T> &m)
   {
 
     if (r1 == -1) r1 = no_rows-1;
@@ -1079,7 +1080,7 @@ namespace itpp {
     }
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void Mat<Num_T>::del_row(int r)
   {
     it_assert_debug(row_in_range(r), "Mat<>::del_row(): Index out of range");
@@ -1094,7 +1095,7 @@ namespace itpp {
 
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void Mat<Num_T>::del_rows(int r1, int r2)
   {
     it_assert_debug((r1 >= 0) && (r1 <= r2) && (r2 < no_rows),
@@ -1111,7 +1112,7 @@ namespace itpp {
     }
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void Mat<Num_T>::del_col(int c)
   {
     it_assert_debug(col_in_range(c), "Mat<>::del_col(): Index out of range");
@@ -1122,7 +1123,7 @@ namespace itpp {
     copy_vector((no_cols - c)*no_rows, &Temp.data[(c+1)*no_rows], &data[c*no_rows]);
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void Mat<Num_T>::del_cols(int c1, int c2)
   {
     it_assert_debug((c1 >= 0) && (c1 <= c2) && (c2 < no_cols),
@@ -1134,7 +1135,7 @@ namespace itpp {
     copy_vector((no_cols-c1)*no_rows, &Temp.data[(c2+1)*no_rows], &data[c1*no_rows]);
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void Mat<Num_T>::ins_row(int r, const Vec<Num_T> &v)
   {
     it_assert_debug((r >= 0) && (r <= no_rows),
@@ -1158,7 +1159,7 @@ namespace itpp {
     }
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void Mat<Num_T>::ins_col(int c, const Vec<Num_T> &v)
   {
     it_assert_debug((c >= 0) && (c <= no_cols),
@@ -1287,7 +1288,7 @@ namespace itpp {
 
   //-------------------- Templated friend functions --------------------------
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T>& Mat<Num_T>::operator+=(const Mat<Num_T> &m)
   {
     if (datasize == 0)
@@ -1313,7 +1314,7 @@ namespace itpp {
     return *this;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> operator+(const Mat<Num_T> &m1, const Mat<Num_T> &m2)
   {
     Mat<Num_T> r(m1.no_rows, m1.no_cols);
@@ -1335,7 +1336,7 @@ namespace itpp {
   }
 
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> operator+(const Mat<Num_T> &m, Num_T t)
   {
     Mat<Num_T> r(m.no_rows, m.no_cols);
@@ -1346,7 +1347,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> operator+(Num_T t, const Mat<Num_T> &m)
   {
     Mat<Num_T> r(m.no_rows, m.no_cols);
@@ -1357,7 +1358,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T>& Mat<Num_T>::operator-=(const Mat<Num_T> &m)
   {
     int i,j, m_pos=0, pos=0;
@@ -1386,7 +1387,7 @@ namespace itpp {
     return *this;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> operator-(const Mat<Num_T> &m1, const Mat<Num_T> &m2)
   {
     Mat<Num_T> r(m1.no_rows, m1.no_cols);
@@ -1414,7 +1415,7 @@ namespace itpp {
     return *this;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> operator-(const Mat<Num_T> &m, Num_T t)
   {
     Mat<Num_T> r(m.no_rows, m.no_cols);
@@ -1431,7 +1432,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> operator-(Num_T t, const Mat<Num_T> &m)
   {
     Mat<Num_T> r(m.no_rows, m.no_cols);
@@ -1448,7 +1449,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> operator-(const Mat<Num_T> &m)
   {
     Mat<Num_T> r(m.no_rows, m.no_cols);
@@ -1470,7 +1471,7 @@ namespace itpp {
   template<> cmat& cmat::operator*=(const cmat &m);
 #endif
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T>& Mat<Num_T>::operator*=(const Mat<Num_T> &m)
   {
     it_assert_debug(no_cols == m.no_rows,"Mat<>::operator*=(): Wrong sizes");
@@ -1561,7 +1562,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> operator*(const Vec<Num_T> &v, const Mat<Num_T> &m)
   {
     it_assert((m.no_rows == 1),"Mat<Num_T>::operator*(): wrong sizes");
@@ -1570,7 +1571,7 @@ namespace itpp {
     return outer_product(v, m.get_row(0));
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> operator*(const Mat<Num_T> &m, Num_T t)
   {
     Mat<Num_T> r(m.no_rows, m.no_cols);
@@ -1595,7 +1596,7 @@ namespace itpp {
     return out;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void elem_mult_out(const Mat<Num_T> &m1, const Mat<Num_T> &m2,
                      Mat<Num_T> &out)
   {
@@ -1608,7 +1609,7 @@ namespace itpp {
       out.data[i] = m1.data[i] * m2.data[i];
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void elem_mult_out(const Mat<Num_T> &m1, const Mat<Num_T> &m2,
                      const Mat<Num_T> &m3, Mat<Num_T> &out)
   {
@@ -1622,7 +1623,7 @@ namespace itpp {
       out.data[i] = m1.data[i] * m2.data[i] * m3.data[i];
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void elem_mult_out(const Mat<Num_T> &m1, const Mat<Num_T> &m2,
                      const Mat<Num_T> &m3, const Mat<Num_T> &m4,
                      Mat<Num_T> &out)
@@ -1668,7 +1669,7 @@ namespace itpp {
     return *this;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> operator/(const Mat<Num_T> &m, Num_T t)
   {
     Mat<Num_T> r(m.no_rows, m.no_cols);
@@ -1697,7 +1698,7 @@ namespace itpp {
     return out;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void elem_div_out(const Mat<Num_T> &m1, const Mat<Num_T> &m2,
                     Mat<Num_T> &out)
   {

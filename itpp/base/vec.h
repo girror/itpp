@@ -791,7 +791,7 @@ namespace itpp {
 	     "`short int' and `bin' types supported");
   }
 
-  template<class Num_T>
+  template<class Num_T> inline
   void Vec<Num_T>::set(const char *str)
   {
     set(std::string(str));
@@ -819,7 +819,7 @@ namespace itpp {
     return temp;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T>& Vec<Num_T>::operator+=(const Vec<Num_T> &v)
   {
     if (datasize == 0) { // if not assigned a size.
@@ -843,7 +843,7 @@ namespace itpp {
     return *this;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> operator+(const Vec<Num_T> &v1, const Vec<Num_T> &v2)
   {
     int i;
@@ -856,7 +856,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> operator+(const Vec<Num_T> &v, Num_T t)
   {
     int i;
@@ -868,7 +868,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> operator+(Num_T t, const Vec<Num_T> &v)
   {
     int i;
@@ -880,7 +880,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T>& Vec<Num_T>::operator-=(const Vec<Num_T> &v)
   {
     if (datasize == 0) { // if not assigned a size.
@@ -905,7 +905,7 @@ namespace itpp {
     return *this;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> operator-(const Vec<Num_T> &v1, const Vec<Num_T> &v2)
   {
     int i;
@@ -918,7 +918,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> operator-(const Vec<Num_T> &v, Num_T t)
   {
     int i;
@@ -930,7 +930,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> operator-(Num_T t, const Vec<Num_T> &v)
   {
     int i;
@@ -942,7 +942,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> operator-(const Vec<Num_T> &v)
   {
     int i;
@@ -983,7 +983,7 @@ namespace itpp {
 #endif // HAVE_ZDOTUSUB || HAVE_ZDOTU_VOID
 #endif // HAVE_BLAS
 
-  template<class Num_T> inline
+  template<class Num_T>
   Num_T dot(const Vec<Num_T> &v1, const Vec<Num_T> &v2)
   {
     int i;
@@ -1041,7 +1041,7 @@ namespace itpp {
   }
 #else
   //! Outer product of two vectors v1 and v2
-  template<> inline
+  template<>
   cmat outer_product(const cvec &v1, const cvec &v2, bool hermitian)
   {
     it_assert_debug((v1.datasize > 0) && (v2.datasize > 0),
@@ -1066,7 +1066,7 @@ namespace itpp {
   }
 #endif // HAVE_BLAS
 
-  template<class Num_T> inline
+  template<class Num_T>
   Mat<Num_T> outer_product(const Vec<Num_T> &v1, const Vec<Num_T> &v2,
                            bool hermitian)
   {
@@ -1085,7 +1085,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> operator*(const Vec<Num_T> &v, Num_T t)
   {
     int i;
@@ -1128,7 +1128,7 @@ namespace itpp {
     return out;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void elem_mult_out(const Vec<Num_T> &a, const Vec<Num_T> &b, Vec<Num_T> &out)
   {
     it_assert_debug(a.datasize==b.datasize, "Vec::elem_mult_out: wrong sizes");
@@ -1140,7 +1140,7 @@ namespace itpp {
       out.data[i] = a.data[i] * b.data[i];
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void elem_mult_out(const Vec<Num_T> &a, const Vec<Num_T> &b,
                      const Vec<Num_T> &c, Vec<Num_T> &out)
   {
@@ -1153,7 +1153,7 @@ namespace itpp {
       out.data[i] = a.data[i] * b.data[i] * c.data[i];
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void elem_mult_out(const Vec<Num_T> &a, const Vec<Num_T> &b,
                      const Vec<Num_T> &c, const Vec<Num_T> &d, Vec<Num_T> &out)
   {
@@ -1187,7 +1187,7 @@ namespace itpp {
     return acc;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> operator/(const Vec<Num_T> &v, Num_T t)
   {
     int i;
@@ -1199,7 +1199,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> operator/(Num_T t, const Vec<Num_T> &v)
   {
     int i;
@@ -1238,7 +1238,7 @@ namespace itpp {
     return out;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> elem_div(Num_T t, const Vec<Num_T> &v)
   {
     int i;
@@ -1250,7 +1250,7 @@ namespace itpp {
     return r;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void elem_div_out(const Vec<Num_T> &a, const Vec<Num_T> &b, Vec<Num_T> &out)
   {
     it_assert_debug(a.datasize==b.datasize, "Vecelem_div_out: wrong sizes");
@@ -1292,7 +1292,7 @@ namespace itpp {
     return temp;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> Vec<Num_T>::right(int nr) const
   {
     it_assert_debug(nr <= datasize, "Vec::right(): index out of range");
@@ -1303,7 +1303,7 @@ namespace itpp {
     return temp;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> Vec<Num_T>::left(int nr) const
   {
     it_assert_debug(nr <= datasize, "Vec::left(): index out of range");
@@ -1314,7 +1314,7 @@ namespace itpp {
     return temp;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T> Vec<Num_T>::mid(int start, int nr) const
   {
     it_assert_debug((start >= 0) && ((start+nr) <= datasize),
@@ -1460,7 +1460,7 @@ namespace itpp {
     return temp;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   void Vec<Num_T>::set_subvector(int i1, int i2, const Vec<Num_T> &v)
   {
     if (i1 == -1) i1 = datasize-1;
@@ -1482,7 +1482,7 @@ namespace itpp {
     copy_vector(v.datasize, v.data, data+i);
   }
 
-  template<class Num_T>
+  template<class Num_T> inline
   void Vec<Num_T>::set_subvector(int i1, int i2, Num_T t)
   {
     if (i1 == -1) i1 = datasize-1;
@@ -1494,11 +1494,12 @@ namespace itpp {
       data[i] = t;
   }
 
-  template<class Num_T>
-  void Vec<Num_T>::replace_mid(int pos, const Vec<Num_T> &v)
+  template<class Num_T> inline
+  void Vec<Num_T>::replace_mid(int i, const Vec<Num_T> &v)
   {
-    it_assert_debug((pos>=0) && ((pos+v.length())<=datasize), "Vec::replace_mid: indexing out of range");
-    copy_vector(v.datasize, v.data, &data[pos]);
+    it_assert_debug((i >= 0) && ((i + v.length()) <= datasize),
+                    "Vec<>::replace_mid(): Indexing out of range");
+    copy_vector(v.datasize, v.data, &data[i]);
   }
 
   template<class Num_T>
@@ -1569,7 +1570,7 @@ namespace itpp {
     return *this;
   }
 
-  template<class Num_T> inline
+  template<class Num_T>
   Vec<Num_T>& Vec<Num_T>::operator=(const Mat<Num_T> &m)
   {
     if (m.cols() == 1) {
