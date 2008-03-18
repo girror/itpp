@@ -1,3 +1,16 @@
+2008-03-18  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* itpp/base/operators.cpp: Fix complex constructors in
+	operators.cpp to build with g++ 4.3
+
+	It appears that g++ 4.3 is a bit more strict with respect to type
+	checking when we attempt to overload the std::complex constructor for
+	use with non-double types. Use of an explicit static_cast is needed to
+	overcome this restriction. This patch does the needful by converting
+	those constructors to use static_casts.
+
+	Signed-off-by: Kumar Appaiah <akumar@ee.iitm.ac.in>
+
 2008-03-13  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/base/vec.h: Remove checks for different sizes before
