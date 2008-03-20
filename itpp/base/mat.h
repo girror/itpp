@@ -57,7 +57,7 @@ namespace itpp {
   template<class Num_T>
   Mat<Num_T> concat_vertical(const Mat<Num_T> &m1, const Mat<Num_T> &m2);
 
-  //! Addition of two matricies
+  //! Addition of two matrices
   template<class Num_T>
   Mat<Num_T> operator+(const Mat<Num_T> &m1, const Mat<Num_T> &m2);
   //! Addition of a matrix and a scalar
@@ -80,7 +80,7 @@ namespace itpp {
   template<class Num_T>
   Mat<Num_T> operator-(const Mat<Num_T> &m);
 
-  //! Multiplication of two matricies
+  //! Multiplication of two matrices
   template<class Num_T>
   Mat<Num_T> operator*(const Mat<Num_T> &m1, const Mat<Num_T> &m2);
   //! Multiplication of matrix and vector
@@ -299,7 +299,7 @@ namespace itpp {
     void set_col(int c, const Vec<Num_T> &v);
     //! Set rows to matrix \c m, staring from row \c r
     void set_rows(int r, const Mat<Num_T> &m);
-    //! Set colums to matrix \c m, starting from column \c c
+    //! Set columns to matrix \c m, starting from column \c c
     void set_cols(int c, const Mat<Num_T> &m);
     //! Copy row \c from onto row \c to
     void copy_row(int to, int from);
@@ -376,11 +376,11 @@ namespace itpp {
     Mat<Num_T>& operator-=(Num_T t);
     //! Subtraction of \c m2 from \c m1
     friend Mat<Num_T> operator-<>(const Mat<Num_T> &m1, const Mat<Num_T> &m2);
-    //! Subraction of scalar from matrix
+    //! Subtraction of scalar from matrix
     friend Mat<Num_T> operator-<>(const Mat<Num_T> &m, Num_T t);
     //! Subtract matrix from scalar
     friend Mat<Num_T> operator-<>(Num_T t, const Mat<Num_T> &m);
-    //! Subraction of matrix
+    //! Subtraction of matrix
     friend Mat<Num_T> operator-<>(const Mat<Num_T> &m);
 
     //! Matrix multiplication
@@ -429,7 +429,7 @@ namespace itpp {
     Mat<Num_T>& operator/=(Num_T t);
     //! Division of matrix with scalar
     friend Mat<Num_T> operator/<>(const Mat<Num_T> &m, Num_T t);
-    //! Elementwise division with the current matrix
+    //! Element-wise division with the current matrix
     Mat<Num_T>& operator/=(const Mat<Num_T> &m);
 
     //! Element wise division of two matrices
@@ -781,7 +781,7 @@ namespace itpp {
     std::string::size_type beg = 0;
     std::string::size_type end = 0;
     while (end != std::string::npos) {
-      // find next occurence of a semicolon in string str
+      // find next occurrence of a semicolon in string str
       end = str.find(';', beg);
       // parse first row into a vector v
       Vec<Num_T> v(str.substr(beg, end-beg));
@@ -802,13 +802,13 @@ namespace itpp {
 	    if (rows == maxrows) {
 	      maxrows *= 2;
 	    }
-	    // check if ne need to add new colums
+	    // check if we need to add new columns
 	    if (v_size > no_cols) {
 	      set_size(maxrows, v_size, true);
 	    }
 	    else {
 	      set_size(maxrows, no_cols, true);
-	      // set the size of the parsed vector to the number of colums
+	      // set the size of the parsed vector to the number of columns
 	      v.set_size(no_cols, true);
 	    }
 	  }
@@ -1869,7 +1869,7 @@ namespace itpp {
   extern template smat operator+(short t, const smat &m);
   extern template bmat operator+(bin t, const bmat &m);
 
-  // subraction operators
+  // subtraction operators
 
   extern template mat operator-(const mat &m1, const mat &m2);
   extern template cmat operator-(const cmat &m1, const cmat &m2);
@@ -1933,7 +1933,7 @@ namespace itpp {
   extern template smat operator*(short t, const smat &m);
   extern template bmat operator*(bin t, const bmat &m);
 
-  // elementwise multiplication
+  // element-wise multiplication
 
   extern template mat elem_mult(const mat &m1, const mat &m2);
   extern template cmat elem_mult(const cmat &m1, const cmat &m2);
@@ -1998,7 +1998,7 @@ namespace itpp {
   extern template smat operator/(const smat &m, short t);
   extern template bmat operator/(const bmat &m, bin t);
 
-  // elementwise division
+  // element-wise division
 
   extern template mat elem_div(const mat &m1, const mat &m2);
   extern template cmat elem_div(const cmat &m1, const cmat &m2);

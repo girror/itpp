@@ -47,9 +47,9 @@ namespace itpp {
     \f[
     \mathbf{X} = \mathbf{F}^T \mathbf{F}
     \f]
-    where \f$\mathbf{F}\f$ is an upper trangular \f$n \times n\f$ matrix.
+    where \f$\mathbf{F}\f$ is an upper triangular \f$n \times n\f$ matrix.
 
-    Returns true if calcuation succeeded. False otherwise.
+    Returns true if calculation succeeded. False otherwise.
   */
   bool chol(const mat &X, mat &F);
 
@@ -61,7 +61,7 @@ namespace itpp {
     \f[
     \mathbf{X} = \mathbf{F}^T \mathbf{F}
     \f]
-    where \f$\mathbf{F}\f$ is an upper trangular \f$n \times n\f$ matrix.
+    where \f$\mathbf{F}\f$ is an upper triangular \f$n \times n\f$ matrix.
   */
   mat chol(const mat &X);
 
@@ -74,9 +74,9 @@ namespace itpp {
     \f[
     \mathbf{X} = \mathbf{F}^H \mathbf{F}
     \f]
-    where \f$\mathbf{F}\f$ is an upper trangular \f$n \times n\f$ matrix.
+    where \f$\mathbf{F}\f$ is an upper triangular \f$n \times n\f$ matrix.
 
-    Returns true if calcuation succeeded. False otherwise.
+    Returns true if calculation succeeded. False otherwise.
 
     If \c X is positive definite, true is returned and \c F=chol(X)
     produces an upper triangular \c F. If also \c X is symmetric then \c F'*F = X.
@@ -92,7 +92,7 @@ namespace itpp {
     \f[
     \mathbf{X} = \mathbf{F}^H \mathbf{F}
     \f]
-    where \f$\mathbf{F}\f$ is an upper trangular \f$n \times n\f$ matrix.
+    where \f$\mathbf{F}\f$ is an upper triangular \f$n \times n\f$ matrix.
   */
   cmat chol(const cmat &X);
 
