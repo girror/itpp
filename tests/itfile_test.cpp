@@ -93,7 +93,7 @@ int main()
   fw << Name("cd") << cd_ref;
   fw << Name("st") << st_ref;
   fw << Name("bv") << bv_ref;
-  fw << Name("iv") << iv_ref;
+  fw << Name("iv") << concat(iv_ref, iv_ref, iv_ref);
   fw << Name("v") << v_ref;
   fw << Name("cv") << cv_ref;
   fw << Name("bm") << bm_ref;
@@ -108,6 +108,8 @@ int main()
   fw << Name("aim") << aim_ref;
   fw << Name("am") << am_ref;
   fw << Name("acm") << acm_ref;
+  fw.remove("iv");
+  fw << Name("iv") << iv_ref;
   fw.close();
 #endif
   std::string name, type, desc;
