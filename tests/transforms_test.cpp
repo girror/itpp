@@ -47,7 +47,7 @@ int main()
     N = 16;
     x = randn(N);
     cout << "Test 1: FFT/IFFT; Real input vector x; N = " << N << endl
-	 << "        fft_real(x, y), ifft_real(y, z):" << endl << endl;
+         << "        fft_real(x, y), ifft_real(y, z):" << endl << endl;
 
     cout << "x = " << round_to_zero(x) << endl;
     fft_real(x, y);
@@ -59,8 +59,8 @@ int main()
     s = N - 4;
     x = randn(s);
     cout << "Test 2: FFT/IFFT; Real input vector x of size s = " << s
-	 << "; N = " << N << endl
-	 << "        y = fft_real(x, N), z = ifft_real(y, N):" << endl << endl;
+         << "; N = " << N << endl
+         << "        y = fft_real(x, N), z = ifft_real(y, N):" << endl << endl;
 
     cout << "x = " << round_to_zero(x) << endl;
     y = fft_real(x, N);
@@ -74,7 +74,7 @@ int main()
     N = 16;
     x = randn_c(N);
     cout << "Test 3: FFT/IFFT; Complex input vector x; N = " << N << endl
-	 << "        fft(x, y), ifft(y, z):" << endl << endl;
+         << "        fft(x, y), ifft(y, z):" << endl << endl;
 
     cout << "x = " << round_to_zero(x) << endl;
     fft(x, y);
@@ -86,8 +86,8 @@ int main()
     s = N - 7;
     x = randn_c(s);
     cout << "Test 4: FFT/IFFT; Complex input vector x of size s = " << s
-	 << "; N = " << N << endl
-	 << "        y = fft(x, N), z = ifft(y, N):" << endl << endl;
+         << "; N = " << N << endl
+         << "        y = fft(x, N), z = ifft(y, N):" << endl << endl;
 
     cout << "x = " << round_to_zero(x) << endl;
     y = fft(x, N);
@@ -101,7 +101,7 @@ int main()
     N = 8;
     x = randn(N);
     cout << "Test 5: DCT/IDCT; Real input vector; N = " << N << endl
-	 << "        dct(x, y), idct(y, z):" << endl << endl;
+         << "        dct(x, y), idct(y, z):" << endl << endl;
 
     cout << "x = " << round_to_zero(x) << endl;
     dct(x, y);
@@ -112,7 +112,7 @@ int main()
     N = 11;
     x = randn(N);
     cout << "Test 6: DCT/IDCT; Real input vector; N = " << N << endl
-	 << "        dct(x, y), idct(y, z):" << endl << endl;
+         << "        dct(x, y), idct(y, z):" << endl << endl;
 
     cout << "x = " << round_to_zero(x) << endl;
     dct(x, y);

@@ -30,82 +30,85 @@
 #include <itpp/signal/window.h>
 
 
-namespace itpp {
+namespace itpp
+{
 
 
-  vec hamming(int n)
-  {
-    vec	t(n);
+vec hamming(int n)
+{
+  vec t(n);
 
-    if (n == 1)
-      t(0) = 0.08;
-    else
-      for (int i=0;i<n;i++)
-	t[i]=(0.54-0.46*std::cos(2.0*pi*i/(n-1)));
+  if (n == 1)
+    t(0) = 0.08;
+  else
+    for (int i = 0;i < n;i++)
+      t[i] = (0.54 - 0.46 * std::cos(2.0 * pi * i / (n - 1)));
 
-    return t;
+  return t;
+}
+
+vec hanning(int n)
+{
+  vec t(n);
+
+  for (int i = 0;i < n;i++)
+    t(i) = 0.5 * (1.0 - std::cos(2.0 * pi * (i + 1) / (n + 1)));
+
+  return t;
+}
+
+// matlab version
+vec hann(int n)
+{
+  vec t(n);
+
+  for (int i = 0;i < n;i++)
+    t(i) = 0.5 * (1.0 - std::cos(2.0 * pi * i / (n - 1)));
+
+  return t;
+}
+
+vec blackman(int n)
+{
+  vec t(n);
+
+  for (int i = 0;i < n;i++)
+    t(i) = 0.42 - 0.5 * std::cos(2.0 * pi * i / (n - 1)) + 0.08 * std::cos(4.0 * pi * i / (n - 1));
+
+  return t;
+}
+
+vec triang(int n)
+{
+  vec t(n);
+
+  if (n % 2) { // Odd
+    for (int i = 0; i < n / 2; i++)
+      t(i) = t(n - i - 1) = 2.0 * (i + 1) / (n + 1);
+    t(n / 2) = 1.0;
   }
+  else
+    for (int i = 0; i < n / 2; i++)
+      t(i) = t(n - i - 1) = (2.0 * i + 1) / n;
 
-  vec hanning(int n)
-  {
-    vec	t(n);
+  return t;
+}
 
-    for (int i=0;i<n;i++)
-      t(i) = 0.5 * (1.0 - std::cos(2.0*pi*(i+1)/(n+1)));
+vec sqrt_win(int n)
+{
+  vec t(n);
 
-    return t;
+  if (n % 2) { // Odd
+    for (int i = 0; i < n / 2; i++)
+      t(i) = t(n - i - 1) = std::sqrt(2.0 * (i + 1) / (n + 1));
+    t(n / 2) = 1.0;
   }
+  else
+    for (int i = 0; i < n / 2; i++)
+      t(i) = t(n - i - 1) = std::sqrt((2.0 * i + 1) / n);
 
-  // matlab version
-  vec hann(int n)
-  {
-    vec	t(n);
-
-    for (int i=0;i<n;i++)
-      t(i) = 0.5 * (1.0 - std::cos(2.0*pi*i/(n-1)));
-
-    return t;
-  }
-
-  vec blackman(int n)
-  {
-    vec	t(n);
-
-    for (int i=0;i<n;i++)
-      t(i) = 0.42 - 0.5 * std::cos(2.0*pi*i/(n-1)) + 0.08 * std::cos(4.0*pi*i/(n-1));
-
-    return t;
-  }
-
-  vec triang(int n)
-  {
-    vec	t(n);
-
-    if (n % 2) { // Odd
-      for (int i=0; i<n/2; i++)
-	t(i) = t(n-i-1) = 2.0*(i+1)/(n+1);
-      t(n/2) = 1.0;
-    } else
-      for (int i=0; i<n/2; i++)
-	t(i) = t(n-i-1) = (2.0*i+1)/n;
-
-    return t;
-  }
-
-  vec sqrt_win(int n)
-  {
-    vec	t(n);
-
-    if (n % 2) { // Odd
-      for (int i=0; i<n/2; i++)
-	t(i) = t(n-i-1) = std::sqrt(2.0*(i+1)/(n+1));
-      t(n/2) = 1.0;
-    } else
-      for (int i=0; i<n/2; i++)
-	t(i) = t(n-i-1) = std::sqrt((2.0*i+1)/n);
-
-    return t;
-  }
+  return t;
+}
 
 
 

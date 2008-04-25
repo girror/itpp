@@ -41,141 +41,149 @@
 #include <limits>
 
 
-namespace std {
+namespace std
+{
 
-  //! \cond
+//! \cond
 
 #ifndef HAVE_STD_ISINF
 #if (HAVE_DECL_ISINF == 1) || defined(HAVE_ISINF)
-  inline int isinf(double x) { return ::isinf(x); }
+inline int isinf(double x) { return ::isinf(x); }
 #elif defined(FPCLASS)
-  inline int isinf(double x)
-  {
-    if (::fpclass(a) == FP_NINF) return -1;
-    else if (::fpclass(a) == FP_PINF) return 1;
-    else return 0;
-  }
+inline int isinf(double x)
+{
+  if (::fpclass(a) == FP_NINF) return -1;
+  else if (::fpclass(a) == FP_PINF) return 1;
+  else return 0;
+}
 #else
-  inline int isinf(double x)
-  {
-    if ((x == x) && ((x - x) != 0.0)) return (x < 0.0 ? -1 : 1);
-    else return 0;
-  }
+inline int isinf(double x)
+{
+  if ((x == x) && ((x - x) != 0.0)) return (x < 0.0 ? -1 : 1);
+  else return 0;
+}
 #endif // #if (HAVE_DECL_ISINF == 1) || defined(HAVE_ISINF)
 #  define HAVE_STD_ISINF 1
 #endif // #ifndef HAVE_STD_ISINF
 
 #ifndef HAVE_STD_ISNAN
 #if (HAVE_DECL_ISNAN == 1) || defined(HAVE_ISNAN)
-  inline int isnan(double x) { return ::isnan(x); }
+inline int isnan(double x) { return ::isnan(x); }
 #else
-  inline int isnan(double x) { return ((x != x) ? 1 : 0); }
+inline int isnan(double x) { return ((x != x) ? 1 : 0); }
 #endif // #if (HAVE_DECL_ISNAN == 1) || defined(HAVE_ISNAN)
 #  define HAVE_STD_ISNAN 1
 #endif // #ifndef HAVE_STD_ISNAN
 
 #ifndef HAVE_STD_ISFINITE
 #if (HAVE_DECL_ISFINITE == 1) || defined(HAVE_ISFINITE)
-  inline int isfinite(double x) { return ::isfinite(x); }
+inline int isfinite(double x) { return ::isfinite(x); }
 #elif defined(HAVE_FINITE)
-  inline int isfinite(double x) { return ::finite(x); }
+inline int isfinite(double x) { return ::finite(x); }
 #else
-  inline int isfinite(double x)
-  {
-    return ((!std::isnan(x) && !std::isinf(x)) ? 1 : 0);
-  }
+inline int isfinite(double x)
+{
+  return ((!std::isnan(x) && !std::isinf(x)) ? 1 : 0);
+}
 #endif // #if (HAVE_DECL_ISFINITE == 1) || defined(HAVE_ISFINITE)
 #  define HAVE_STD_ISFINITE 1
 #endif // #ifndef HAVE_STD_ISFINITE
 
-  //! \endcond
+//! \endcond
 
-  //! Output stream operator for complex numbers
-  template <class T>
-  std::ostream& operator<<(std::ostream &os, const std::complex<T> &x)
-  {
-    os << x.real();
-    ios::fmtflags saved_format = os.setf(ios::showpos);
-    os << x.imag();
-    os.setf(saved_format, ios::showpos);
-    return os << 'i';
-  }
+//! Output stream operator for complex numbers
+template <class T>
+std::ostream& operator<<(std::ostream &os, const std::complex<T> &x)
+{
+  os << x.real();
+  ios::fmtflags saved_format = os.setf(ios::showpos);
+  os << x.imag();
+  os.setf(saved_format, ios::showpos);
+  return os << 'i';
+}
 
-  //! Input stream operator for complex numbers
-  template <class T>
-  std::istream& operator>>(std::istream &is, std::complex<T> &x)
-  {
-    T re, im;
-    char c;
-    is >> c;
-    if (c == '(') {
-      is >> re >> c;
-      if (c == ',') {
-        is >> im >> c;
-        if (c == ')') {
-          x = complex<T>(re, im);
-        } else {
-          is.setstate(ios_base::failbit);
-        }
-      } else if (c == ')') {
-        x = complex<T>(re, T(0));
-      } else {
+//! Input stream operator for complex numbers
+template <class T>
+std::istream& operator>>(std::istream &is, std::complex<T> &x)
+{
+  T re, im;
+  char c;
+  is >> c;
+  if (c == '(') {
+    is >> re >> c;
+    if (c == ',') {
+      is >> im >> c;
+      if (c == ')') {
+        x = complex<T>(re, im);
+      }
+      else {
         is.setstate(ios_base::failbit);
       }
-    } else {
-      is.putback(c);
-      is >> re;
-      if (!is.eof() && ((c = is.peek()) == '+' || c == '-')) {
-        is >> im >> c;
-        if (c == 'i') {
-          x = complex<T>(re, im);
-        } else {
-          is.setstate(ios_base::failbit);
-        }
-      } else {
-        x = complex<T>(re, T(0));
+    }
+    else if (c == ')') {
+      x = complex<T>(re, T(0));
+    }
+    else {
+      is.setstate(ios_base::failbit);
+    }
+  }
+  else {
+    is.putback(c);
+    is >> re;
+    if (!is.eof() && ((c = is.peek()) == '+' || c == '-')) {
+      is >> im >> c;
+      if (c == 'i') {
+        x = complex<T>(re, im);
+      }
+      else {
+        is.setstate(ios_base::failbit);
       }
     }
-    return is;
+    else {
+      x = complex<T>(re, T(0));
+    }
   }
+  return is;
+}
 
 } // namespace std
 
 
 //! itpp namespace
-namespace itpp {
+namespace itpp
+{
 
-  //! Constant Pi
-  const double pi = 3.14159265358979323846;
+//! Constant Pi
+const double pi = 3.14159265358979323846;
 
-  //! Constant 2*Pi
-  const double m_2pi = 2 * pi;
+//! Constant 2*Pi
+const double m_2pi = 2 * pi;
 
-  //! Constant eps
-  const double eps = std::numeric_limits<double>::epsilon();
+//! Constant eps
+const double eps = std::numeric_limits<double>::epsilon();
 
-  //! \addtogroup miscfunc
-  //!@{
+//! \addtogroup miscfunc
+//!@{
 
-  //! Return true if x is an integer
-  inline bool is_int(double x)
-  {
-    double dummy;
-    return (modf(x, &dummy) == 0.0);
-  }
+//! Return true if x is an integer
+inline bool is_int(double x)
+{
+  double dummy;
+  return (modf(x, &dummy) == 0.0);
+}
 
-  //! Return true if x is an even integer
-  inline bool is_even(int x) { return ((x&1) == 0); }
-
-
-  //! Returns IT++ library version number, e.g. "3.7.1".
-  std::string itpp_version();
+//! Return true if x is an even integer
+inline bool is_even(int x) { return ((x&1) == 0); }
 
 
-  //! Returns machine endianness: big-endian = true; little-endian = false
-  bool check_big_endianness();
+//! Returns IT++ library version number, e.g. "3.7.1".
+std::string itpp_version();
 
-  //!@}
+
+//! Returns machine endianness: big-endian = true; little-endian = false
+bool check_big_endianness();
+
+//!@}
 
 } //namespace itpp
 

@@ -34,158 +34,163 @@
 #include <itpp/base/matfunc.h>
 
 
-namespace itpp {
+namespace itpp
+{
 
-  void poly(const vec &r, vec &p)
-  {
-    int n = r.size();
+void poly(const vec &r, vec &p)
+{
+  int n = r.size();
 
-    p.set_size(n+1, false);
-    p.zeros();
-    p(0) = 1.0;
+  p.set_size(n + 1, false);
+  p.zeros();
+  p(0) = 1.0;
 
-    for (int i=0; i<n; i++)
-      p.set_subvector(1, i+1, p(1,i+1) - r(i)*p(0,i));
+  for (int i = 0; i < n; i++)
+    p.set_subvector(1, i + 1, p(1, i + 1) - r(i)*p(0, i));
+}
+
+void poly(const cvec &r, cvec &p)
+{
+  int n = r.size();
+
+  p.set_size(n + 1, false);
+  p.zeros();
+  p(0) = 1.0;
+
+  for (int i = 0; i < n; i++)
+    p.set_subvector(1, i + 1, p(1, i + 1) - r(i)*p(0, i));
+}
+
+
+
+void roots(const vec &p, cvec &r)
+{
+  int n = p.size(), m, l;
+  ivec f = find(p != 0.0);
+  m = f.size();
+  vec v = p;
+  mat A;
+
+  if (m > 0 && n > 1) {
+    v = v(f(0), f(m - 1));
+    l = v.size();
+
+    if (l > 1) {
+
+      A = diag(ones(l - 2), -1);
+      A.set_row(0, -v(1, l - 1) / v(0));
+      r = eig(A);
+      cvec d;
+      cmat V;
+      eig(A, d , V);
+
+      if (f(m - 1) < n)
+        r = concat(r, zeros_c(n - f(m - 1) - 1));
+    }
+    else {
+      r.set_size(n - f(m - 1) - 1, false);
+      r.zeros();
+    }
   }
+  else
+    r.set_size(0, false);
+}
 
-  void poly(const cvec &r, cvec &p)
-  {
-    int n = r.size();
+void roots(const cvec &p, cvec &r)
+{
+  int n = p.size(), m, l;
+  ivec f;
 
-    p.set_size(n+1, false);
-    p.zeros();
-    p(0) = 1.0;
+  // find all non-zero elements
+  for (int i = 0; i < n; i++)
+    if (p(i) != 0.0)
+      f = concat(f, i);
 
-    for (int i=0; i<n; i++)
-      p.set_subvector(1, i+1, p(1,i+1) - r(i)*p(0,i));
+
+  m = f.size();
+  cvec v = p;
+  cmat A;
+
+  if (m > 0 && n > 1) {
+    v = v(f(0), f(m - 1));
+    l = v.size();
+
+    if (l > 1) {
+      A = diag(ones_c(l - 2), -1);
+      A.set_row(0, -v(1, l - 1) / v(0));
+      r = eig(A);
+      if (f(m - 1) < n)
+        r = concat(r, zeros_c(n - f(m - 1) - 1));
+    }
+    else {
+      r.set_size(n - f(m - 1) - 1, false);
+      r.zeros();
+    }
   }
+  else
+    r.set_size(0, false);
+}
 
 
+vec polyval(const vec &p, const vec &x)
+{
+  it_error_if(p.size() == 0, "polyval: size of polynomial is zero");
+  it_error_if(x.size() == 0, "polyval: size of input value vector is zero");
 
-  void roots(const vec &p, cvec &r)
-  {
-    int n = p.size(), m, l;
-    ivec f = find(p != 0.0);
-    m = f.size();
-    vec v = p;
-    mat A;
+  vec out(x.size());
 
-    if (m > 0 && n > 1) {
-      v = v(f(0),f(m-1));
-      l = v.size();
+  out = p(0);
 
-      if (l>1) {
+  for (int i = 1; i < p.size(); i++)
+    out = p(i) + elem_mult(x, out);
 
-	A = diag(ones(l-2), -1);
-	A.set_row(0, -v(1,l-1)/v(0));
-	r = eig(A);
-	cvec d;
-	cmat V;
-	eig(A, d ,V);
+  return out;
+}
 
-	if (f(m-1) < n)
-	  r = concat(r, zeros_c(n-f(m-1)-1));
-      } else {
-	r.set_size(n-f(m-1)-1, false);
-	r.zeros();
-      }
-    } else
-      r.set_size(0, false);
-  }
+cvec polyval(const vec &p, const cvec &x)
+{
+  it_error_if(p.size() == 0, "polyval: size of polynomial is zero");
+  it_error_if(x.size() == 0, "polyval: size of input value vector is zero");
 
-  void roots(const cvec &p, cvec &r)
-  {
-    int n = p.size(), m, l;
-    ivec f;
+  cvec out(x.size());
 
-    // find all non-zero elements
-    for (int i=0; i<n; i++)
-      if( p(i) != 0.0 )
-	f = concat(f, i);
+  out = p(0);
 
+  for (int i = 1; i < p.size(); i++)
+    out = std::complex<double>(p(i)) + elem_mult(x, out);
 
-    m = f.size();
-    cvec v = p;
-    cmat A;
+  return out;
+}
 
-    if (m > 0 && n > 1) {
-      v = v(f(0),f(m-1));
-      l = v.size();
+cvec polyval(const cvec &p, const vec &x)
+{
+  it_error_if(p.size() == 0, "polyval: size of polynomial is zero");
+  it_error_if(x.size() == 0, "polyval: size of input value vector is zero");
 
-      if (l>1) {
-	A = diag(ones_c(l-2), -1);
-	A.set_row(0, -v(1,l-1)/v(0));
-	r = eig(A);
-	if (f(m-1) < n)
-	  r = concat(r, zeros_c(n-f(m-1)-1));
-      } else {
-	r.set_size(n-f(m-1)-1, false);
-	r.zeros();
-      }
-    } else
-      r.set_size(0, false);
-  }
+  cvec out(x.size());
 
+  out = p(0);
 
-  vec polyval(const vec &p, const vec &x)
-  {
-    it_error_if(p.size() == 0, "polyval: size of polynomial is zero");
-    it_error_if(x.size() == 0, "polyval: size of input value vector is zero");
+  for (int i = 1; i < p.size(); i++)
+    out = std::complex<double>(p(i)) + elem_mult(to_cvec(x), out);
 
-    vec out(x.size());
+  return out;
+}
 
-    out = p(0);
+cvec polyval(const cvec &p, const cvec &x)
+{
+  it_error_if(p.size() == 0, "polyval: size of polynomial is zero");
+  it_error_if(x.size() == 0, "polyval: size of input value vector is zero");
 
-    for (int i=1; i<p.size(); i++)
-      out = p(i) + elem_mult(x, out);
+  cvec out(x.size());
 
-    return out;
-  }
+  out = p(0);
 
-  cvec polyval(const vec &p, const cvec &x)
-  {
-    it_error_if(p.size() == 0, "polyval: size of polynomial is zero");
-    it_error_if(x.size() == 0, "polyval: size of input value vector is zero");
+  for (int i = 1; i < p.size(); i++)
+    out = p(i) + elem_mult(x, out);
 
-    cvec out(x.size());
-
-    out = p(0);
-
-    for (int i=1; i<p.size(); i++)
-      out = std::complex<double>(p(i)) + elem_mult(x, out);
-
-    return out;
-  }
-
-  cvec polyval(const cvec &p, const vec &x)
-  {
-    it_error_if(p.size() == 0, "polyval: size of polynomial is zero");
-    it_error_if(x.size() == 0, "polyval: size of input value vector is zero");
-
-    cvec out(x.size());
-
-    out = p(0);
-
-    for (int i=1; i<p.size(); i++)
-      out = std::complex<double>(p(i)) + elem_mult(to_cvec(x), out);
-
-    return out;
-  }
-
-  cvec polyval(const cvec &p, const cvec &x)
-  {
-    it_error_if(p.size() == 0, "polyval: size of polynomial is zero");
-    it_error_if(x.size() == 0, "polyval: size of input value vector is zero");
-
-    cvec out(x.size());
-
-    out = p(0);
-
-    for (int i=1; i<p.size(); i++)
-      out = p(i) + elem_mult(x, out);
-
-    return out;
-  }
+  return out;
+}
 
 
 

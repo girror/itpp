@@ -84,9 +84,9 @@ double polevl(double x, double coef[], int N)
 
   do
     ans = ans * x  +  *p++;
-  while( --i );
+  while (--i);
 
-  return( ans );
+  return(ans);
 }
 
 /*                                          N
@@ -102,11 +102,11 @@ double p1evl(double x, double coef[], int N)
 
   p = coef;
   ans = x + *p++;
-  i = N-1;
+  i = N - 1;
 
   do
     ans = ans * x  + *p++;
-  while( --i );
+  while (--i);
 
-  return( ans );
+  return(ans);
 }

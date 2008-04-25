@@ -51,7 +51,7 @@ int main(void)
 
     cout << "A = " << round_to_zero(A) << endl;
     cout << "norm(A*V-V*diag(d)) = "
-	 << round_to_zero(norm(A * V - V * diag(d)), thresh) << endl;
+         << round_to_zero(norm(A * V - V * diag(d)), thresh) << endl;
   }
 
   {
@@ -63,7 +63,7 @@ int main(void)
 
     cout << "A = " << round_to_zero(A) << endl;
     cout << "norm(A*V-V*diag(d)) = "
-	 << round_to_zero(norm(A * V - V * diag(d)), thresh) << endl;
+         << round_to_zero(norm(A * V - V * diag(d)), thresh) << endl;
   }
 
   {
@@ -76,7 +76,7 @@ int main(void)
 
     cout << "A = " << round_to_zero(A) << endl;
     cout << "norm(A*V-V*diag(d)) = "
-	 << round_to_zero(norm(A * V - V * diag(d)), thresh) << endl;
+         << round_to_zero(norm(A * V - V * diag(d)), thresh) << endl;
   }
 
   {
@@ -88,7 +88,7 @@ int main(void)
 
     cout << "A = " << round_to_zero(A) << endl;
     cout << "norm(A*V-V*diag(d)) = "
-	 << round_to_zero(norm(A * V - V * diag(d)), thresh) << endl;
+         << round_to_zero(norm(A * V - V * diag(d)), thresh) << endl;
   }
 
   return 0;

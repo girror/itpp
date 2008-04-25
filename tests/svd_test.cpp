@@ -48,7 +48,7 @@ int main()
 
     cout << "A = " << round_to_zero(A) << endl;
     cout << "norm(A - U*diag(S)*V^T) = "
-	 << round_to_zero(norm(A - U * diag(S) * transpose(V))) << endl;
+         << round_to_zero(norm(A - U * diag(S) * transpose(V))) << endl;
 
   }
   {
@@ -60,8 +60,8 @@ int main()
 
     cout << "A = " << round_to_zero(A) << endl;
     cout << "norm(A - U*diag(S)*V^H) = "
-	 << round_to_zero(norm(A - U * diag(S) * hermitian_transpose(V)))
-	 << endl;
+         << round_to_zero(norm(A - U * diag(S) * hermitian_transpose(V)))
+         << endl;
   }
 
   return 0;
