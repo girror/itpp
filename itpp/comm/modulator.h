@@ -271,7 +271,7 @@ protected:
   imat S1;
 
   //! This function calculates the soft bit mapping matrices S0 and S1
-  void calculate_softbit_matrices(const ivec& bits2symbols);
+  void calculate_softbit_matrices();
 };
 
 
@@ -324,7 +324,7 @@ void Modulator<T>::set(const Vec<T> &in_symbols, const ivec &in_bits2symbols)
   for (int m = 0; m < M; m++) {
     bitmap.set_row(bits2symbols(m), dec2bin(k, m));
   }
-  calculate_softbit_matrices(bits2symbols);
+  calculate_softbit_matrices();
   setup_done = true;
 }
 
@@ -589,7 +589,7 @@ vec Modulator<T>::demodulate_soft_bits_approx(const Vec<T> &rx_symbols,
 
 
 template<typename T>
-void Modulator<T>::calculate_softbit_matrices(const ivec& in_bits2symbols)
+void Modulator<T>::calculate_softbit_matrices()
 {
   int count0, count1;
 
