@@ -225,17 +225,18 @@ void destroy_elements(T* &ptr, int n)
 
 //! Specialization for unsigned char data arrays (used in GF2Mat)
 template<> inline
-void destroy_elements<unsigned char>(unsigned char* &ptr, int n)
+void destroy_elements<unsigned char>(unsigned char* &ptr, int)
 {
   if (ptr) {
     void *p = reinterpret_cast<void*>(ptr);
     operator delete(p);
+	ptr = 0;
   }
 }
 
 //! Specialization for binary data arrays
 template<> inline
-void destroy_elements<bin>(bin* &ptr, int n)
+void destroy_elements<bin>(bin* &ptr, int)
 {
   if (ptr) {
     void *p = reinterpret_cast<void*>(ptr);
@@ -245,7 +246,7 @@ void destroy_elements<bin>(bin* &ptr, int n)
 }
 //! Specialization for short integer data arrays
 template<> inline
-void destroy_elements<short int>(short int* &ptr, int n)
+void destroy_elements<short int>(short int* &ptr, int)
 {
   if (ptr) {
     void *p = reinterpret_cast<void*>(ptr);
@@ -256,7 +257,7 @@ void destroy_elements<short int>(short int* &ptr, int n)
 
 //! Specialization for integer data arrays
 template<> inline
-void destroy_elements<int>(int* &ptr, int n)
+void destroy_elements<int>(int* &ptr, int)
 {
   if (ptr) {
     void *p = reinterpret_cast<void*>(ptr);
@@ -267,7 +268,7 @@ void destroy_elements<int>(int* &ptr, int n)
 
 //! Specialisation for 16-byte aligned double data arrays
 template<> inline
-void destroy_elements<double>(double* &ptr, int n)
+void destroy_elements<double>(double* &ptr, int)
 {
   if (ptr) {
     void *p = *(reinterpret_cast<void**>(ptr) - 1);
@@ -278,8 +279,7 @@ void destroy_elements<double>(double* &ptr, int n)
 
 //! Specialisation for 16-byte aligned complex double data arrays
 template<> inline
-void destroy_elements<std::complex<double> >(std::complex<double>* &ptr,
-    int n)
+void destroy_elements<std::complex<double> >(std::complex<double>* &ptr, int)
 {
   if (ptr) {
     void *p = *(reinterpret_cast<void**>(ptr) - 1);

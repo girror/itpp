@@ -1026,8 +1026,7 @@ void Mat<Num_T>::swap_cols(int c1, int c2)
 }
 
 template<class Num_T>
-void Mat<Num_T>::set_submatrix(int r1, int r2, int c1, int c2,
-                               const Mat<Num_T> &m)
+void Mat<Num_T>::set_submatrix(int r1, int, int c1, int, const Mat<Num_T> &m)
 {
 
   if (r1 == -1) r1 = no_rows - 1;
