@@ -1457,7 +1457,7 @@ Vec<Num_T> concat(const Vec<Num_T> &v1, const Vec<Num_T> &v2,
 }
 
 template<class Num_T>
-void Vec<Num_T>::set_subvector(int i1, int, const Vec<Num_T> &v)
+void Vec<Num_T>::set_subvector(int i1, int i2, const Vec<Num_T> &v)
 {
   if (i1 == -1) i1 = datasize - 1;
   if (i2 == -1) i2 = datasize - 1;
