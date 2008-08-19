@@ -1,3 +1,11 @@
+2008-08-18  Erik G. Larsson  <erik_g_larsson@users.sourceforge.net>
+
+	* extras/gdb_macros_for_itpp, extras/Makefile.am: Added GDB
+	debugger display macros for IT++ data types.
+
+	This closes feature request [1913404]. Thanks to Vasek Smidl for
+	providing an initial version of the macros.
+
 2008-08-11  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* win32/itpp_acml.vcproj, win32/itpp_acml_tests/*.vcproj,
