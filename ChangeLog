@@ -59,7 +59,7 @@
 
 	This fixes broken blas_test and vector_test on 64-bit linux
 	architectures when IT++ is linked to Intel MKL BLAS library. This
-	fix is equvalent to passing "--with-zdotu=zdotusub" option to
+	fix is equivalent to passing "--with-zdotu=zdotusub" option to
 	configure.
 
 -------------------------------------------------------------------------------
