@@ -1,5 +1,8 @@
 2008-08-30  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/base/math/trig_hyp.h: Reduce number of divisions in a
+	sinc() function.
+
 	* itpp/base/sort.h: Make sort() and sort_index() work for vectors
 	with less than two elements.
 
