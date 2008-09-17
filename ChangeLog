@@ -1,5 +1,8 @@
 2008-09-17  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* win32/itpp_acml.sln, win32/itpp_mkl.sln: Use CRLF line endings
+	in MSVC++ solution files.
+
 	* win32/itpp_acml_tests/itpp_acml_tests.sln,
 	win32/itpp_acml_tests/specmat_test.vcproj,
 	win32/itpp_mkl_tests/itpp_mkl_tests.sln,
