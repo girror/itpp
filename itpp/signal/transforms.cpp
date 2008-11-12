@@ -38,6 +38,7 @@
 namespace mkl
 {
 #  include <mkl_dfti.h>
+#  undef DftiCreateDescriptor
 }
 #elif defined(HAVE_FFT_ACML)
 namespace acml
