@@ -29,6 +29,7 @@
 
 #include <itpp/base/vec.h>
 #include <itpp/base/converters.h>
+#include <cstdio>
 #include <limits>
 
 //! \cond

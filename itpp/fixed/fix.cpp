@@ -29,6 +29,7 @@
 
 #include <itpp/fixed/fix.h>
 #include <itpp/base/itassert.h>
+#include <cstdio>
 #include <iostream>
 
 
