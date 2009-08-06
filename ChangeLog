@@ -1,3 +1,8 @@
+2009-08-06  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* configure.ac.in, itpp-config.1.in, extras/*, itpp/**/*.cpp,
+	itpp/**/*.h, tests/*.cpp: Copyright dates updated to `1995-2009'
+
 2008-12-11  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* itpp/base/matfunc.cpp, itpp/base/matfunc.h: Add missing template
