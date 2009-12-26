@@ -1606,11 +1606,6 @@ Vec<Num_T>& Vec<Num_T>::operator=(const char *values)
   return *this;
 }
 
-//! \cond
-template<>
-bvec Vec<std::complex<double> >::operator==(std::complex<double>) const;
-//! \endcond
-
 template<class Num_T>
 bvec Vec<Num_T>::operator==(Num_T t) const
 {
@@ -1620,11 +1615,6 @@ bvec Vec<Num_T>::operator==(Num_T t) const
     temp(i) = (data[i] == t);
   return temp;
 }
-
-//! \cond
-template<>
-bvec Vec<std::complex<double> >::operator!=(std::complex<double>) const;
-//! \endcond
 
 template<class Num_T>
 bvec Vec<Num_T>::operator!=(Num_T t) const
