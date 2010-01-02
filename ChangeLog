@@ -1,3 +1,7 @@
+2010-01-02 Bogdan Cristea  <cristeab@users.sourceforge.net>
+
+	* itpp/base/math/log_exp.h: Fixes bug report #2924984
+
 2010-01-02  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* configure.ac.in: Update bugs reporting link
