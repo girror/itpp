@@ -262,14 +262,6 @@
 #  define j1(a) _j1(a)
 #endif /* defined(_MSC_VER) */
 
-/* IT++ uses only std::min() and std::max() functions, not macros */
-#ifdef min
-#  undef min
-#endif
-#ifdef max
-#  undef max
-#endif
-
 /* Represent GCC version in a concise form */
 #define GCC_VERSION (__GNUC__ * 10000           \
                      + __GNUC_MINOR__ * 100     \

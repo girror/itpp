@@ -51,8 +51,12 @@
 inline double log1p(double x) { return std::log(1.0 + x); }
 #endif
 
-#if !defined(HAVE_LOG2) || defined(__CYGWIN__)
-#undef log2                     // This is required at least for Cygwin
+// IT++ accepts only log2() function, not a macro
+#ifdef log2
+#  undef log2
+#endif
+
+#ifndef HAVE_LOG2
 //! Base-2 logarithm
 inline double log2(double x)
 {

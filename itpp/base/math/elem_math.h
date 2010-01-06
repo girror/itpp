@@ -40,6 +40,13 @@
 #include <itpp/base/converters.h>
 #include <cstdlib>
 
+// IT++ accepts only std::min() and std::max() functions, not macros
+#ifdef min
+#  undef min
+#endif
+#ifdef max
+#  undef max
+#endif
 
 //!\addtogroup miscfunc
 //!@{

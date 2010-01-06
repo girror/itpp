@@ -1,3 +1,12 @@
+2010-01-06  Adam Piatyszek  <ediap@users.sourceforge.net>
+
+	* configure.ac.in, itpp/base/math/elem_math.h,
+	itpp/base/math/log_exp.h, itpp/config_msvc.h: Undefine min, max
+	and log2 macros.
+
+	If these macros were defined they would collide with our
+	overloaded functions.
+
 2010-01-05  Adam Piatyszek  <ediap@users.sourceforge.net>
 
 	* AUTHORS, doc/local/authors.doc: Add Bogdan to the list of
