@@ -1,5 +1,10 @@
 2010-01-10  Adam Piatyszek  <ediap@users.sourceforge.net>
 
+	* itpp/base/algebra/lapack.h, itpp/base/blas.h: Support latest
+	ACML built with Intel Fortran compiler. It uses uppercase naming
+	conventions for BLAS and LAPACK routines. This is only required on
+	MS Windows (MSVC++).
+
 	* win32/itpp_mkl_tests/*.vcproj: Update MKL libraries in MSVC++
 	project files for test programs
 
