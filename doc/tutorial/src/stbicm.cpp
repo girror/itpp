@@ -18,7 +18,60 @@ using std::cout;
 using std::endl;
 using std::string;
 
-int main(void)
+void print_help(char *prog_name)
+{
+	std::cout << "Usage: " << prog_name << " -d demapper_method -c const_size -e nb_errors_lim -b nb_bits_lim -p perm_len -i nb_iter -r rec_antennas -t em_antennas -u channel_uses -s code_name" << std::endl;
+	std::cout << "Available demapper methods: Hassibi_maxlogMAP, GA, sGA, mmsePIC, zfPIC and Alamouti_maxlogMAP" << std::endl;
+	std::cout << "Available code names: Golden_2x2, V-BLAST_MxN, Damen_2x2, Alamouti_2xN"
+}
+
+int get_opts(int argc, char *argv[], std::string &demapper_method, int &const_size, int &nb_errors_lim, int &nb_bits_lim, int &perm_len, int &nb_iter, int &rec_antennas, int &em_antennas, int &channel_uses, std::string &code_name)
+{
+	int opt;
+	while (-1 != (opt = getopt(argc, argv, "hd:c:e:b:p:i:r:t:u:s:")))
+	{
+		switch (opt)
+		{
+			case 'h':
+				return EXIT_FAILURE;//print help and exit
+			case 'd':
+				demapper_method = optarg;
+				break;
+			case 'c':
+				const_size = atoi(optarg);
+				break;
+			case 'e':
+				nb_errors_lim = atoi(optarg);
+				break;
+			case 'b':
+				nb_bits_lim = atoi(optarg);
+				break;
+			case 'p':
+				perm_len = atoi(optarg);
+				break;
+			case 'i':
+				nb_iter = atoi(optarg);
+				break;
+			case 'r':
+				rec_antennas = atoi(optarg);
+				break;
+			case 't':
+				em_antennas = atoi(optarg);
+				break;
+			case 'u':
+				channel_uses = atoi(optarg);
+				break;
+			case 's':
+				code_name = optarg;
+				break;
+			default:
+				return EXIT_FAILURE;
+		}
+	}
+	return EXIT_SUCCESS;
+}
+
+int main(int argc, char *argv[])
 {
     //receiver parameters
     ivec gen = "0133 0171";
@@ -33,16 +86,31 @@ int main(void)
     int perm_len = pow2i(14);//permutation length
     int nb_iter = 5;//number of iterations in the turbo decoder
     int rec_antennas = 2;//number of reception antennas
-    vec EbN0_dB = "0:20";
+    vec EbN0_dB = "0:10";
     double Es = 1.0;//mean symbol energy
+    int em_antennas = 2;//number of emission antennas
+    int channel_uses = 2;//ST code duration
+    string code_name = "Golden_2x2";//V-BLAST_MxN, Golden_2x2, Damen_2x2, Alamouti_2xN
+
+    //get parameters if any
+    if (EXIT_FAILURE == get_opts(argc, argv, demapper_method, const_size, nb_errors_lim, nb_bits_lim, perm_len, nb_iter, rec_antennas, em_antennas, channel_uses, code_name))
+    {
+	    print_help(argv[0]);
+	    return EXIT_FAILURE;
+    }
 
     //show configuration parameters
 #ifdef TO_FILE
     std::cout << "Saving results to file" << std::endl; 
 #endif
+    std::cout << "const_size = " << const_size << std::endl;
     std::cout << "demapper_method = " << demapper_method << std::endl;
+    std::cout << "nb_errors_lim = " << nb_errors_lim << std::endl;
     std::cout << "nb_bits_lim = " << nb_bits_lim << std::endl;
     std::cout << "perm_len = " << perm_len << std::endl;
+    std::cout << "code_name = " << code_name << std::endl;
+    std::cout << "em_antennas = " << em_antennas << std::endl;
+    std::cout << "channel_uses = " << channel_uses << std::endl;
     std::cout << "nb_iter = " << nb_iter << std::endl;
     std::cout << "rec_antennas = " << rec_antennas << std::endl;
     std::cout << "EbN0_dB = " << EbN0_dB << std::endl;
@@ -56,9 +124,6 @@ int main(void)
     QAM mod(const_size);
 
     //Space-Time code parameters
-    int em_antennas = 2;//number of emission antennas
-    int channel_uses = 2;//ST code duration
-    string code_name = "Golden_2x2";//V-BLAST_MxN, Golden_2x2, Damen_2x2, Alamouti_2xN
     STC st_block_code(code_name, const_size, em_antennas, channel_uses);//generate matrices for LD code (following Hassibi's approach)    
     int symb_block = st_block_code.get_nb_symbols_per_block();
     em_antennas = st_block_code.get_nb_emission_antenna();//these parameters could by changed depending on the selected code
