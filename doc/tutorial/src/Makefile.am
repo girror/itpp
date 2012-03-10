@@ -39,7 +39,7 @@ COMM_EXAMPLES = bpsk_example convcode_example interleaver_example		\
   rayleigh_example reedsolomon_example spread_example pccc_bersim_awgn_example \
   exit_pccc_example sccc_bersim_awgn_example turbo_equalizer_bersim_multipath_example
 if RUN_LAPACK_TESTS
-  COMM_EXAMPLES += mimoconv_example
+  COMM_EXAMPLES += mimoconv_example stbicm_example
 endif # RUN_LAPACK_TESTS
 
 USED_EXAMPLES = $(BASE_EXAMPLES)
