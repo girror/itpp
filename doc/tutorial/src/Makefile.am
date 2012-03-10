@@ -27,9 +27,11 @@ spread_example_SOURCES = spread.cpp
 timer_example_SOURCES = timer.cpp
 vector_and_matrix_example_SOURCES = vector_and_matrix.cpp
 write_it_file_example_SOURCES = write_it_file.cpp
+stbicm_example_SOURCES = stbicm.cpp
+dump_it_file_example_SOURCES = dump_it_file.cpp
 
 BASE_EXAMPLES = mog_example read_it_file_example timer_example	\
-  write_it_file_example
+  write_it_file_example dump_it_file_example
 if RUN_LAPACK_TESTS
   BASE_EXAMPLES += vector_and_matrix_example
 endif # RUN_LAPACK_TESTS

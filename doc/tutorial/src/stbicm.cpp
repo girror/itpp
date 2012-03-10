@@ -22,7 +22,7 @@ void print_help(char *prog_name)
 {
 	std::cout << "Usage: " << prog_name << " -d demapper_method -c const_size -e nb_errors_lim -b nb_bits_lim -p perm_len -i nb_iter -r rec_antennas -t em_antennas -u channel_uses -s code_name" << std::endl;
 	std::cout << "Available demapper methods: Hassibi_maxlogMAP, GA, sGA, mmsePIC, zfPIC and Alamouti_maxlogMAP" << std::endl;
-	std::cout << "Available code names: Golden_2x2, V-BLAST_MxN, Damen_2x2, Alamouti_2xN"
+	std::cout << "Available code names: Golden_2x2, V-BLAST_MxN, Damen_2x2, Alamouti_2xN" << std::endl;
 }
 
 int get_opts(int argc, char *argv[], std::string &demapper_method, int &const_size, int &nb_errors_lim, int &nb_bits_lim, int &perm_len, int &nb_iter, int &rec_antennas, int &em_antennas, int &channel_uses, std::string &code_name)
@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
     cmat fading_pattern = ones_c(1, coherence_time/channel_uses);
 
     //other parameters
-    string filename = "Res/STBICM_"+map_metric+"_"+demapper_method+".it";
+    string filename = "STBICM_"+map_metric+"_"+demapper_method+".it";
     double R = coding_rate*double(mod.bits_per_symbol()*symb_block)/double(channel_uses);//ST code rate in (info.) bits/channel use
     vec sigma2 = (0.5*Es/(R*double(mod.bits_per_symbol())))*pow(inv_dB(EbN0_dB), -1.0);//N0/2
     int nb_blocks;//number of blocks
