@@ -99,22 +99,6 @@ int main(int argc, char *argv[])
 	    return EXIT_FAILURE;
     }
 
-    //show configuration parameters
-#ifdef TO_FILE
-    std::cout << "Saving results to file" << std::endl; 
-#endif
-    std::cout << "const_size = " << const_size << std::endl;
-    std::cout << "demapper_method = " << demapper_method << std::endl;
-    std::cout << "nb_errors_lim = " << nb_errors_lim << std::endl;
-    std::cout << "nb_bits_lim = " << nb_bits_lim << std::endl;
-    std::cout << "perm_len = " << perm_len << std::endl;
-    std::cout << "code_name = " << code_name << std::endl;
-    std::cout << "em_antennas = " << em_antennas << std::endl;
-    std::cout << "channel_uses = " << channel_uses << std::endl;
-    std::cout << "nb_iter = " << nb_iter << std::endl;
-    std::cout << "rec_antennas = " << rec_antennas << std::endl;
-    std::cout << "EbN0_dB = " << EbN0_dB << std::endl;
-
     //convolutional code generator polynomials
     Convolutional_Code nsc;
     nsc.set_generator_polynomials(gen, constraint_length);
@@ -137,6 +121,19 @@ int main(int argc, char *argv[])
     int nb_subblocks = nb_symb/symb_block;//number of blocks of ST code emitted in an interleaver period
     int tx_duration = channel_uses*nb_subblocks;//transmission duration expressed in number of symbol periods
 
+    //show configuration parameters
+    std::cout << "const_size = " << const_size << std::endl;
+    std::cout << "demapper_method = " << demapper_method << std::endl;
+    std::cout << "nb_errors_lim = " << nb_errors_lim << std::endl;
+    std::cout << "nb_bits_lim = " << nb_bits_lim << std::endl;
+    std::cout << "perm_len = " << perm_len << std::endl;
+    std::cout << "code_name = " << code_name << std::endl;
+    std::cout << "em_antennas = " << em_antennas << std::endl;
+    std::cout << "channel_uses = " << channel_uses << std::endl;
+    std::cout << "nb_iter = " << nb_iter << std::endl;
+    std::cout << "rec_antennas = " << rec_antennas << std::endl;
+    std::cout << "EbN0_dB = " << EbN0_dB << std::endl;
+
     //fading channel parameters
     if (coherence_time%channel_uses)//check if the coherence time is a multiple of channel_uses
     {
@@ -154,6 +151,9 @@ int main(int argc, char *argv[])
 
     //other parameters
     string filename = "STBICM_"+map_metric+"_"+demapper_method+".it";
+#ifdef TO_FILE
+    std::cout << "Saving results to " << filename << std::endl;
+#endif
     double R = coding_rate*double(mod.bits_per_symbol()*symb_block)/double(channel_uses);//ST code rate in (info.) bits/channel use
     vec sigma2 = (0.5*Es/(R*double(mod.bits_per_symbol())))*pow(inv_dB(EbN0_dB), -1.0);//N0/2
     int nb_blocks;//number of blocks
@@ -284,6 +284,7 @@ int main(int argc, char *argv[])
     ff << Name("block_len") << block_len;
     ff << Name("nb_errors_lim") << nb_errors_lim;
     ff << Name("nb_bits_lim") << nb_bits_lim;
+    ff << Name("const_size") << const_size;
     ff.close();
 #else
     //show BER
