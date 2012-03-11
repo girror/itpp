@@ -10,8 +10,6 @@
 #define TO_FILE
 
 #include "itpp/itcomm.h"
-#include "siso.h"//SISO class
-#include "stc.h" //STC class
 
 using namespace itpp;
 using std::cout;
@@ -86,7 +84,7 @@ int main(int argc, char *argv[])
     int perm_len = pow2i(14);//permutation length
     int nb_iter = 5;//number of iterations in the turbo decoder
     int rec_antennas = 2;//number of reception antennas
-    vec EbN0_dB = "0:10";
+    vec EbN0_dB = "0:20";
     double Es = 1.0;//mean symbol energy
     int em_antennas = 2;//number of emission antennas
     int channel_uses = 2;//ST code duration
