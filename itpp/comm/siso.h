@@ -241,12 +241,16 @@ public:
              const itpp::mat &apriori_data //!< a priori informations of emitted chips from all users
             );
     //! %SISO demapper (when only a modulator is used)
-    void demapper(itpp::vec &extrinsic_data, //!< extrinsic informations of emitted bits
+    /*! Returns true on success and false on error
+     */
+    bool demapper(itpp::vec &extrinsic_data, //!< extrinsic informations of emitted bits
                   const itpp::cvec &rec_sig, //!< received signal
                   const itpp::vec &apriori_data //!< a priori informations of emitted bits
                  );
     //! %SISO demapper (when Space-Time codes are used)
-    void demapper(itpp::vec &extrinsic_data, //!< extrinsic informations of emitted bits
+    /*! Returns true on success and false on error
+     */
+    bool demapper(itpp::vec &extrinsic_data, //!< extrinsic informations of emitted bits
                   const itpp::cmat &rec_sig, //!< received signal
                   const itpp::vec &apriori_data //!< a priori informations of emitted bits
                  );
@@ -711,18 +715,18 @@ inline void SISO::mud(itpp::mat &extrinsic_data, const itpp::vec &rec_sig,
         print_err_msg("SISO::mud: unknown MUD method. The MUD method should be either maxlogMAP, GCD or sGCD");
 }
 
-inline void SISO::demapper(itpp::vec &extrinsic_data, const itpp::cvec &rec_sig,
+inline bool SISO::demapper(itpp::vec &extrinsic_data, const itpp::cvec &rec_sig,
                            const itpp::vec &apriori_data)
 {
     if (c_impulse_response.size()==0)
     {
         print_err_msg("SISO::demapper: channel impulse response not initialized");
-        return;
+        return false;
     }
     if ((constellation.size()==0) || (bin_constellation.size()==0))
     {
         print_err_msg("SISO::demapper: constellation not initialized");
-        return;
+        return false;
     }
     if (MAP_metric=="logMAP")
         demodulator_logMAP(extrinsic_data, rec_sig, apriori_data);
@@ -730,25 +734,26 @@ inline void SISO::demapper(itpp::vec &extrinsic_data, const itpp::cvec &rec_sig,
         demodulator_maxlogMAP(extrinsic_data, rec_sig, apriori_data);
     else
         print_err_msg("SISO::demapper: unknown MAP metric. The MAP metric should be either logMAP or maxlogMAP");
+    return true;
 }
 
-inline void SISO::demapper(itpp::vec &extrinsic_data, const itpp::cmat &rec_sig,
+inline bool SISO::demapper(itpp::vec &extrinsic_data, const itpp::cmat &rec_sig,
                            const itpp::vec &apriori_data)
 {
     if (c_impulse_response.size()==0)
     {
         print_err_msg("SISO::demapper: channel impulse response not initialized");
-        return;
+        return false;
     }
     if ((ST_gen1.size()==0) || (ST_gen2.size()==0))
     {
         print_err_msg("SISO::demapper: Space-Time generator polynomials not initialized");
-        return;
+        return false;
     }
     if ((constellation.size()==0) || (bin_constellation.size()==0))
     {
         print_err_msg("SISO::demapper: constellation not initialized");
-        return;
+        return false;
     }
 
     if (demapper_method=="Hassibi_maxlogMAP")
@@ -765,6 +770,7 @@ inline void SISO::demapper(itpp::vec &extrinsic_data, const itpp::cmat &rec_sig,
         Alamouti_maxlogMAP(extrinsic_data, rec_sig, apriori_data);
     else
         print_err_msg("SISO::demapper: unknown demapper method. The demapper method should be either Hassibi_maxlogMAP, GA, sGA, mmsePIC, zfPIC or Alamouti_maxlogMAP");
+    return true;
 }
 
 inline void SISO::print_err_msg(const std::string &msg) const
