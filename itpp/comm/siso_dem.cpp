@@ -86,17 +86,15 @@ void SISO::find_half_const(int &select_half, itpp::vec &re_part, itpp::bmat &re_
     {
         temp = bin_constellation.get_row(n);
         buffer = constellation(n).real();
-        if (itpp::prod(re_part-buffer)>min_diff)
+        if (fabs(itpp::prod(re_part-buffer))>min_diff)
         {
-            re_idx++;
-            re_part(re_idx) = buffer;
+            re_part(++re_idx) = buffer;
             re_bin_part.set_row(re_idx, temp(select_half*half_nb_bits_symb,(1+select_half)*half_nb_bits_symb-1));
         }
         buffer = constellation(n).imag();
-        if (itpp::prod(im_part-buffer)>min_diff)
+        if (fabs(itpp::prod(im_part-buffer))>min_diff)
         {
-            im_idx++;
-            im_part(im_idx) = buffer;
+            im_part(++im_idx) = buffer;
             im_bin_part.set_row(im_idx, temp((1-select_half)*half_nb_bits_symb,(2-select_half)*half_nb_bits_symb-1));
         }
     }
