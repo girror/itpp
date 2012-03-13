@@ -95,7 +95,7 @@ int main()
     ch_att = kron(reshape(mimo_channel, em_antennas*rec_antennas, 1), ones_c(1, tx_duration));
     siso.set_impulse_response(ch_att);
     BERC ber;
-    for (int n = 0 n < sizeof(demapper_method)/sizeof(demapper_method[0]); ++n)
+    for (unsigned int n = 0; n < sizeof(demapper_method)/sizeof(demapper_method[0]); ++n)
     {
         siso.set_demapper_method(demapper_method[n]);
         if (false == siso.demapper(demapper_extrinsic_data, rec, demapper_apriori_data))
@@ -107,6 +107,7 @@ int main()
         //show results
         ber.count((demapper_extrinsic_data > 0), bits);
         cout << demapper_method[n] << ", BER = " << ber.get_errorrate() << endl;
+	demapper_extrinsic_data.zeros();
     }
 }
 
