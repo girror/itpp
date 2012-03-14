@@ -1,3 +1,9 @@
+2012-03-14   Bogdan Cristea  <cristeab@users.sourceforge.net>
+	*  itpp/comm/siso_dem.cpp, doc/tutorial/src/dump_it_file.cpp,
+	doc/tutorial/src/stbicm.cpp: corrected bug in SISO::find_half_const
+	method affecting all MIMO demappers, added exxamples for it file dump
+	and ST-BICM simulation
+
 2011-06-02   Erik G. Larsson  <erik_g_larsson@users.sourceforge.net>
 
 	* itpp/comm/ldpc.h, itpp/comm/ldpc.cpp: Added the possibility to
